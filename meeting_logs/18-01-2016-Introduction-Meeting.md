@@ -8,7 +8,7 @@ This meeting was to introduce all the group members and get everyone talking. We
 1. Online Coupon system (Finding best deals for all types of goods and services).
 2. Improvising credit card authentication.
 3. Faculty student interaction portal.
-4. DAIICt Laptop registration portal.
+4. DAIICT Laptop registration portal.
 5. Integrated bus pass system.
 6. Collaboration portal for employees working on a project or in a team.
 
