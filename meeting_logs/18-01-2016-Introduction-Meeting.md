@@ -11,5 +11,7 @@ This meeting was to introduce all the group members and get everyone talking. We
 4. DAIICT Laptop registration portal.
 5. Integrated bus pass system.
 6. Collaboration portal for employees working on a project or in a team.
+7. EHC (Elcetronics Hobby Club) website
+8. Surveyor portal for Automobile surveyors
 
 At the end of the meeting, we formed our discussion group and a private repository in github.com. The next meeting is scheduled on 21 January 2016, where we will discuss the project ideas.
