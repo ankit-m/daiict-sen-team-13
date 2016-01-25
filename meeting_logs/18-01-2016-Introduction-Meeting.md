@@ -1,7 +1,7 @@
 
 Meeting 1: Introduction Meeting
 
-========================================================================================================================================================================
+===============================================================================================================================
 
 Date : 18th January 2016
 Time : Scheduled - 11:00 P.M. 
@@ -9,9 +9,9 @@ Time : Scheduled - 11:00 P.M.
 Venue : Cep ground floor, Main entrance
 Recorded By : Ankit Muchhala (201301099)
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
-Agenda : This meeting was to introduce all the group members and get everyone talking. We decided on the collaboration platform (github.com) and how we will   		  communicate. 
+Agenda : This meeting was to introduce all the group members and get everyone talking. We decided on the collaboration platform (github.com) and how we will communicate. 
 
 Brief description about the meeting : Some rudimentary project ideas were discussed. Some of the ideas put forth were:
 
@@ -41,4 +41,4 @@ Decision Made : Most of them liked the Idea of faculty Student Interaction porta
 
 Next meeting : 21st January 2016
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
