@@ -39,5 +39,4 @@ Post Meeting Action Items :
 
 Decision Made : Most of them liked the Idea of faculty Student Interaction portal. So we decided to think more on the features and whether it is useful to develop it. If not try to come up with a more acceptable idea.
 
-Next meeting : 21st January 2016
---------------------------------
+Next meeting : 21st January 2016  
