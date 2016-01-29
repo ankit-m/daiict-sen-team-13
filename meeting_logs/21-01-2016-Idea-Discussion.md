@@ -33,7 +33,8 @@ Features of previously discussed Ideas :
 Meeting Ended : 11:20 P.M.
 
 Post Meeting Action Items :
-    --------------------------------------------------------------------------------
+----------------------------
+
     |                  Action                  |  Assigned To   |     Deadline     |
     --------------------------------------------------------------------------------
     |learn usage of git nd clone the repository|    Everyone    |    27/01/2016    |
