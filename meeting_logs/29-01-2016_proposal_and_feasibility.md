@@ -21,7 +21,7 @@ Brief description about the meeting : First we decided the norms for the team to
 
 4) About the project work: whatever work assign to person he/she has to complete in time or try to complete before the deadline so that other team member check the work and give some suggestion to that person .
 
-5) There should be team-involvment in every work of the project.
+5) There should be team-involvement in every work of the project.
 
 
 After the norms we made the headline points on the proposal and feasibility report .
