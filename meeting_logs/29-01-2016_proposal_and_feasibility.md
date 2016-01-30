@@ -13,9 +13,9 @@ Agenda : Decide the Norms for the project and decide how to write the project pr
 
 Brief description about the meeting : First we decided the norms for the team to follow .
 
-1) Meeting will be announce before the 6 hours (Min) and if person cannot come to the meeting for some reason then he/she has to give the appropriate reason on the group atleast 1 hour before the meeting .
+1) Meeting will be announced before the 6 hours (Min) and if person cannot come to the meeting for some reason then he/she has to give the appropriate reason on the group at least 1 hour before the meeting .
 
-2) Every team member has to maintain the personal log properly plus everytime one of the team member will write the meeting log on the git-hub with guidelines.
+2) Every team member has to maintain the personal log properly plus every time one of the team member will write the meeting log on the github with guidelines.
 
 3) Lecture and meeting attendance is compulsory if due to some reason person can't make it then he/she has to give proper reason.
 
