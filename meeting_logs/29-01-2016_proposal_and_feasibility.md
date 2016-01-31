@@ -13,7 +13,7 @@ Agenda : Decide the Norms for the project and decide how to write the project pr
 
 Brief description about the meeting : First we decided the norms for the team to follow .
 
-1) Meeting will be announced before the 6 hours (Min) and if person cannot come to the meeting for some reason then he/she has to give the appropriate reason on the group at least 1 hour before the meeting .
+1) Meeting will be announced before the 6 hours (Min) and if person cannot come to the meeting for some reason then he/she has to provide the appropriate reason on the group at least 1 hour before the meeting .
 
 2) Every team member has to maintain the personal log properly plus every time one of the team member will write the meeting log on the github with guidelines.
 
@@ -23,8 +23,12 @@ Brief description about the meeting : First we decided the norms for the team to
 
 5) There should be team-involvement in every work of the project.
 
+FOr communication we decided to use Whatsapp and for the doubts and issues we will use Github.
 
-After the norms we made the headline points on the proposal and feasibility report .
+After the norms we made the headline points on the proposal and feasibility report .So we divided the feasibility report which is rejected in three main points.
+1) Main idea
+2) Explaination in brief
+3) Reasons to why it was rejected.
 
 Meeting ended : 9:35 PM.
 
@@ -35,4 +39,4 @@ Post Meeting Action Items :
    
    Make the meeing log on the git-hub :Dhwanil Desai 
    
-   Next meeting : ?? January 2016  
+   Next meeting :   ?? February  2016  
