@@ -23,7 +23,7 @@ Brief description about the meeting : First we decided the norms for the team to
 
 5) There should be team-involvement in every work of the project.
 
-FOr communication we decided to use Whatsapp and for the doubts and issues we will use Github.
+For communication we decided to use Whatsapp and for the doubts and issues we will use Github.
 
 After the norms we made the headline points on the proposal and feasibility report .So we divided the feasibility report which is rejected in three main points.
 1) Main idea
