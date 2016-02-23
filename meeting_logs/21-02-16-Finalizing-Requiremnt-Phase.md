@@ -6,7 +6,7 @@ Date : 21st February, 2016
 
 Time : Scheduled - 09:00 P.M.
 
-       Started - 09:10 P.M.
+Started - 09:10 P.M.
 
 Venue : Cep ground floor
 
