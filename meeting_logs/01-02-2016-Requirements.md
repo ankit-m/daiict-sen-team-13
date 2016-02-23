@@ -1,15 +1,18 @@
 Meeting 5: Requirement Analysis
------------------------------------------------------------
+================================
 Date: 1st February 2016
 
 Recorded By: Gauruv (201301117)
 
-Agenda: Finalize the process of fact collecting
----------------------------------------------------------
-Brief description about the meeting: We discussed the different prospective of our background study for the project. The different techniques by which we will be able to extract information which would help us to clearly identify our requirements.
+Agenda: 
+-------
+Finalize the process of fact collecting
 
-Background Research
---------------------------------------------------------
+Brief description about the meeting: 
+------------------------------------
+We discussed the different prospective of our background study for the project. The different techniques by which we will be able to extract information which would help us to clearly identify our requirements.
+
+Background Research:
 -Market study / Existing websites
 
 -To identify the extra features we can incorporate in our project
@@ -20,8 +23,7 @@ Background Research
 
 -Survey through google form
 
-Features of our project
-----------------------------
+Features of our project:
 Profile feature
 Background of professor/student will be here. Everybody will be able to show there qualification and experience over here. Everybody will be able to see everybody else’s profile
 Email Authentication
@@ -79,10 +81,15 @@ One to one
 
 
 Post Meeting Action Items :
+----------------------------
 |                  Action                  |  Assigned To   |     Deadline     |
---------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------
 |		interview faculty	 |    Everyone    |    14/02/2016    |
 |    Make the meeting log on github        |    Gauruv     |    14/02/2016    |
---------------------------------------------------------------------------------
-Decision Made : Everyone was assigned the task to interview a faculty member and upload the findings on drive
-Next meeting : 12 February 2016
+ --------------------------------------------------------------------------------
+Decision Made :
+---------------
+Everyone was assigned the task to interview a faculty member and upload the findings on drive
+Next meeting : 
+--------------
+12 February 2016
