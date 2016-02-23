@@ -3,16 +3,10 @@ Meeting 9: Finalizing requirement Phase
 ======================================
 
  Date : 21st February, 2016
-
  Time : Scheduled - 09:00 P.M.
-
  Started - 09:10 P.M.
-
  Venue : Cep ground floor
-
  Recorded By : Rajiv Reddy (201301128)
-
-
 
 Agenda : 
 -------
