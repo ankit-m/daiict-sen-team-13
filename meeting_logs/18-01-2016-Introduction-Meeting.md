@@ -10,9 +10,13 @@ Recorded By : Ankit Muchhala (201301099)
 
 
 
-Agenda : This meeting was to introduce all the group members and get everyone talking. We decided on the collaboration platform (github.com) and how we will communicate.
+Agenda : 
+-------
+This meeting was to introduce all the group members and get everyone talking. We decided on the collaboration platform (github.com) and how we will communicate.
 
-Brief description about the meeting : Some rudimentary project ideas were discussed. Some of the ideas put forth were:
+Brief description about the meeting : 
+-------------------------------------
+Some rudimentary project ideas were discussed. Some of the ideas put forth were:
 
 1. Online Coupon system (Finding best deals for all types of goods and services).
 2. Improvising credit card authentication.
@@ -23,7 +27,9 @@ Brief description about the meeting : Some rudimentary project ideas were discus
 7. EHC (Elcetronics Hobby Club) website
 8. Surveyor portal for Automobile surveyors
 
-Meeting Ended :	11:40 P.M.
+Meeting Ended :
+---------------
+11:40 P.M.
 
 Post Meeting Action Items :
 ---------------------------
@@ -37,6 +43,10 @@ Post Meeting Action Items :
     |    Make the meeting log on github        | Ankit muchhala |    21/01/2016    |  
 
 
-Decision Made : Most of them liked the Idea of faculty Student Interaction portal. So we decided to think more on the features and whether it is useful to develop it. If not try to come up with a more acceptable idea.
+Decision Made : 
+---------------
+Most of them liked the Idea of faculty Student Interaction portal. So we decided to think more on the features and whether it is useful to develop it. If not try to come up with a more acceptable idea.
 
-Next meeting : 21st January 2016  
+Next meeting :
+-------------
+21st January 2016  
