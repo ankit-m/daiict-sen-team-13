@@ -9,9 +9,13 @@ Venue : Cep ground floor
 Recorded By : Dhwanil Desai  (201301038)
 
 
-Agenda : Decide the Norms for the project and decide how to write the project proposal and fesibility report.
+Agenda : 
+--------
+Decide the Norms for the project and decide how to write the project proposal and fesibility report.
 
-Brief description about the meeting : First we decided the norms for the team to follow .
+Brief description about the meeting :
+-------------------------------------
+First we decided the norms for the team to follow .
 
 1) Meeting will be announced before the 6 hours (Min) and if person cannot come to the meeting for some reason then he/she has to provide the appropriate reason on the group at least 1 hour before the meeting .
 
@@ -30,7 +34,9 @@ After the norms we made the headline points on the proposal and feasibility repo
 2) Explaination in brief
 3) Reasons to why it was rejected.
 
-Meeting ended : 9:35 PM.
+Meeting ended :
+---------------
+9:35 PM.
 
 Post Meeting Action Items :
 ---------------------------
@@ -39,4 +45,6 @@ Post Meeting Action Items :
    
    Make the meeing log on the git-hub :Dhwanil Desai 
    
-   Next meeting :   ?? February  2016  
+Next meeting :  
+--------------
+?? February  2016  
