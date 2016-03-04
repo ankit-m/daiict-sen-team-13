@@ -36,7 +36,7 @@ Features of previously discussed Ideas :
 
 Meeting Ended : 
 -------------
-11:20 P.M.
+10:40 P.M.
 
 Post Meeting Action Items :
 ----------------------------
