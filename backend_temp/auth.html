@@ -1,76 +1,77 @@
 <html>
-  <head>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  </head>
-  <body>
-  
-  <form id="loginForm" name="someForm" action="javascript:Login()">
-   
 
-    Email ID: <input type="text" name="email" />
-   <br>
-   Password:  <input type="password" name="password" />
-   <br>
-   <input type="submit" name="login" value="Login"/>
-</form>
+<head>
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+</head>
+
+<body>
+
+  <form id="loginForm" name="someForm" action="javascript:Login()">
+
+
+    Email ID:
+    <input type="text" name="email" />
+    <br> Password:
+    <input type="password" name="password" />
+    <br>
+    <input type="submit" name="login" value="Login" />
+  </form>
 
   <form id="registerForm" name="someOtherForm" action="javascript:AddUser()">
-  <input type="submit" name="register" value="Register"/>
+    <input type="submit" name="register" value="Register" />
   </form>
-  
-  
+
+
   <script>
-  
-  
-  
-  var userId=0;
-  var newUserAuth=0;
-var ref = new Firebase("https://newapp6596.firebaseio.com");
-  function Login(){
- // alert("Hello");
- var x=document.getElementById("loginForm");
-  ref.authWithPassword({
-  "email":x.elements[0].value,
-  "password": x.elements[1].value
-}, function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    //alert(authData.token);
-	//console.log("authenticated:", authData.uid)
-	console.log("Authenticated successfully with payload:", authData);
-	console.log(authData.uid.user);
-	if(newUserAuth==1){
-	newUserAuth=0;
-	window.location.href = "file:///C:/Users/RAVIV/Desktop/firstTimeLogin.html";
-	}
-	else {
-	
-	window.location.href = "file:///C:/Users/RAVIV/Desktop/userpage.html";
-	}
-  }
-});
-  
-  
-  }
-  
-function AddUser() {
-		window.location.href = "file:///C:/Users/RAVIV/Desktop/firstTimeLogin.html";
+    var userId = 0;
+    var newUserAuth = 0;
+    var ref = new Firebase("https://newapp6596.firebaseio.com");
+
+    function Login() {
+      // alert("Hello");
+      var x = document.getElementById("loginForm");
+      ref.authWithPassword({
+        "email": x.elements[0].value,
+        "password": x.elements[1].value
+      }, function(error, authData) {
+        if (error) {
+          alert("Login Failed!", error);
+        } else {
+          //alert(authData.token);
+          //console.log("authenticated:", authData.uid)
+          console.log("Authenticated successfully with payload:", authData);
+          console.log(authData.uid.user);
+          if (newUserAuth == 1) {
+            newUserAuth = 0;
+            window.location.href = "file:///C:/Users/RAVIV/Desktop/firstTimeLogin.html";
+          } else {
+
+            window.location.href = "file:///C:/Users/RAVIV/Desktop/userpage.html";
+          }
+        }
+      });
+
+
+    }
+
+    function AddUser() {
+      window.location.href = "file:///C:/Users/RAVIV/Desktop/firstTimeLogin.html";
+    }
+
+    /*
+
+    ref.authWithPassword({
+      "email": "rajiv6596@gmail.com",
+      "password": "asdfghjkl"
+    }, function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
       }
-
-/*
-
-ref.authWithPassword({
-  "email": "rajiv6596@gmail.com",
-  "password": "asdfghjkl"
-}, function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  }
-}); */
-</script>
+    }); */
+  </script>
 </body>
+
 </html>
