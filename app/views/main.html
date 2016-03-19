@@ -1,23 +1,40 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
+<div class="container">
+  <div class="col s12 z-depth-6 card-panel">
+    <form>
+      <div class="row margin">
+        <div class="input-field col s12">
+          <i class="mdi-social-person-outline prefix"></i>
+          <input class="validate" id="email" type="email">
+          <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="input-field col s12">
+          <i class="mdi-action-lock-outline prefix"></i>
+          <input id="password" type="password">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m12 l12  login-text">
+          <input type="checkbox" id="remember-me" />
+          <label for="remember-me">Remember me</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <a href="login.html" class="btn waves-effect waves-light col s12">Login</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m6 l6">
+          <p class="margin medium-small"><a href="register.html">Register Now!</a></p>
+        </div>
+        <div class="input-field col s6 m6 l6">
+          <p class="margin right-align medium-small"><a href="forgot-password.html">Forgot password?</a></p>
+        </div>
+      </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+    </form>
+  </div>
 </div>
