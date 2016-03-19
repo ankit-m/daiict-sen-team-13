@@ -1,0 +1,199 @@
+<html>
+<head>
+ <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+	<script type="text/javascript" src="functions.js"></script>
+	
+</head>
+<body>
+
+<form id="profileForm" name="profileForm" action="javascript:createProfile()">
+ Email ID: <input type="text" name="email" />
+   <br>
+   Password:  <input type="password" name="password" />
+   <br>
+
+
+name: <input type="text" name="name"/>
+<br>
+
+<select name="dropdown_typeOfUser">
+<option value="Professor" selected>Professor</option>
+<option value="Student">Student</option>
+</select>
+
+<br>
+
+<select name="dropdown_gender">
+<option value="Male" selected>Male</option>
+<option value="Female">Female</option>
+</select>
+
+<br>
+
+Birthday:<input type="date" name="bday">
+
+<br>
+
+<input type="submit" name="submit" value="Submit" />
+
+</form>
+
+<script>
+
+
+
+
+
+
+function createProfile(){
+
+
+var email;
+var password;
+var name;
+var gender;
+var typeOfUser;
+var dateOfBirth;
+
+var userEntryInTable;
+
+
+
+
+var ref = new Firebase('https://newapp6596.firebaseio.com/');
+//var authData=ref.getAuth();
+
+var profileData=document.getElementById("profileForm");
+
+email=profileData.elements[0].value;
+password=profileData.elements[1].value;
+name = profileData.elements[2].value;
+typeOfUser=profileData.elements[3].value;
+gender=profileData.elements[4].value;
+dateOfBirth=profileData.elements[5].value;
+
+
+	if(email.indexOf("@daiict.ac.in")>-1) {
+		
+		
+		ref.createUser({
+  email: email,
+  password: password
+
+}, function(error, userData) {
+  if (error) {
+    switch (error.code) {
+      case "EMAIL_TAKEN":
+        console.log("The new user account cannot be created because the email is already in use.");
+        break;
+      case "INVALID_EMAIL":
+        console.log("The specified email is not a valid email.");
+        break;
+      default:
+        console.log("Error creating user:", error);
+    }
+  } else {
+  var userRef;
+  if(typeOfUser=="Student"){
+  userRef=ref.child("Students");
+  userEntryInTable="Students";
+  }
+  else {
+  userRef=ref.child("Professors");
+  userEntryInTable="Professors";
+  }
+   
+  userRef.once("value", function(snapshot) {
+  var a = snapshot.numChildren();
+  a=a+1;
+  console.log("Successfully created user account with uid:", a);
+	  
+userRef = ref.child(userEntryInTable+"/"+typeOfUser+""+a);
+userRef.child('email').set(email);
+userRef.child('password').set(password);
+userRef.child('name').set(name);
+userRef.child('gender').set(gender);
+userRef.child('typeOfUser').set(typeOfUser);
+userRef.child('dateOfBirth').set(dateOfBirth); 
+
+
+	ref.authWithPassword({
+  "email":email,
+  "password": password
+}, function(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    //alert(authData.token);
+	//console.log("authenticated:", authData.uid)
+	console.log("Authenticated successfully with payload:", authData);
+	window.location.href = "file:///C:/Users/RAVIV/Desktop/userpage.html";
+	}
+});
+  });
+
+
+
+}    
+  });
+	
+  
+}
+ 
+
+else {
+
+console.log("Can't register with this mail id.")
+
+}	
+
+}
+
+
+/*
+var refToUsers = new Firebase("https://newapp6596.firebaseio.com/users");
+refToUsers.orderByChild("email").equalTo(emailOfNewUser).on("child_added", function(snapshot) {
+  console.log(snapshot.key());
+  refToUsers.child(snapshot.key()).update({name: name, gender: gender, typeOfUser:typeOfUser, dateOfBirth:dateOfBirth});
+  window.location.href = "file:///C:/Users/RAVIV/Desktop/userpage.html";
+	console.log(authData.uid.user);
+	window.location.href = "file:///C:/Users/RAVIV/Desktop/userpage.html";
+	
+	*/
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	
+	
+	
+
+ // usersRef.child('email').set(emailId);
+  
+
+/*
+
+refToMyself.child('name').set(name);
+refToMyself.child('typeOfUser').set(typeOfUser);
+refToMyself.child('gender').set(gender);
+refToMyself.child('dateOfBirth').set(dateOfBirth);
+*/
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+
+
+</html>

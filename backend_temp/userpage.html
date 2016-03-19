@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  </head>
+  <body>
+
+  
+   <div id='messagesDiv'></div>
+   
+   
+   
+   
+    <input type='text' id='nameInput' placeholder='Name'>
+    <input type='text' id='messageInput' placeholder='Message'>
+	<p onClick="logout()"> Logout </p>
+
+    <script>
+    
+
+	 var ref = new Firebase('https://newapp6596.firebaseio.com/'); //https://cez10splmvw.firebaseio-demo.com/
+	 var getRefToSelf=new Firebase('https://newapp6596.firebaseio.com/users');
+	 
+	 var authData=ref.getAuth();	
+	 
+if(authData){
+	  
+	  
+	  
+	  
+	   $('#messageInput').keypress(function (e) {
+        if (e.keyCode == 13) {
+          var emailOfSender = ref.getAuth().password.email;
+		  
+          console.log(emailOfSender);
+		  
+		  var text = $('#messageInput').val();
+		  
+          ref.child("messages").push({email: emailOfSender, text: text});
+          
+		  
+		  $('#messageInput').val('');
+        }
+      });
+	  
+	  
+	  
+	   ref.child('messages').on('child_added', function(snapshot) {
+        console.log("At least entered...");
+		var message = snapshot.val();
+		console.log(message);
+		displayChatMessage(message.email, message.text);
+      });
+	  
+	  
+	  
+	  
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+        
+      }
+	   
+	   /*
+	   getRefToSelf.child(user).child('messages').on('child_added', function(snapshot) {
+        console.log(user);
+		var message = snapshot.val();
+		displayChatMessage(message.name, message.text);
+      }); 
+	  */
+	  
+else {
+
+
+alert("Please log in..")
+window.location.href = "file:///C:/Users/RAVIV/Desktop/auth.html"
+}  
+
+  function logout(){
+  var ref = new Firebase("https://newapp6596.firebaseio.com");
+  var authData = ref.getAuth();
+  console.log("Gonna die soon...",authData.uid);
+  ref.unauth();
+  console.log("Logged out");
+  window.location.href = "file:///C:/Users/RAVIV/Desktop/auth.html";
+  }
+  
+  
+  
+  </script>
+  
+  </body>
+  </html>
