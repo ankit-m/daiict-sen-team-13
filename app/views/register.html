@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card-panel" style="max-width: 400px; height:500px;  position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;">
+    <form>
+      <div class="row margin">
+        <div class="input-field col s12">
+          <input class="validate" ng-model="email" id="email" type="email">
+          <label for="email" data-error="Invalid" data-success="right" class="center-align">Email</label>
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="input-field col s12">
+          <input ng-model="firstName" id="firstName" type="text">
+          <label class="center-align">First Name</label>
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="input-field col s12">
+          <input ng-model="lastName" id="lastName" type="text">
+          <label class="center-align">Last Name</label>
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="input-field col s12">
+          <input id="password" ng-model="password" type="password">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12" ng-click="signup()">
+          <a class="btn waves-effect waves-light col s12 red">Register</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

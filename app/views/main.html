@@ -3,7 +3,13 @@
  -->
 
 <div class="container">
-  <div class="col s12 z-depth-6 card-panel">
+  <div class="card-panel" style="max-width: 400px; height:350px;  position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;">
     <form>
       <div class="row margin">
         <div class="input-field col s12">
@@ -26,13 +32,13 @@
         </div>
       </div> -->
       <div class="row">
-        <div class="input-field col s12" ng-click="submit()">
-          <a class="btn waves-effect waves-light col s12">Login</a>
+        <div class="input-field col s12" ng-click="login()">
+          <a class="btn waves-effect waves-light col s12 red">Login</a>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6 m6 l6">
-          <p class="margin medium-small"><a href="register.html">Register Now!</a></p>
+          <p class="margin medium-small"><a href="/register">Register Now!</a></p>
         </div>
         <div class="input-field col s6 m6 l6">
           <p class="margin right-align medium-small"><a href="forgot-password.html">Forgot password?</a></p>

@@ -9,25 +9,34 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('MainCtrl', ['$scope', function($scope) {
+    .controller('MainCtrl', ['$scope', '$location', function($scope, $location) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
+      var authData = ref.getAuth();
+
+      if (authData) {
+        console.log("Authenticated user with uid:", authData.uid);
+        $location.path('/profile');
+      }
 
       $scope.email = '';
       $scope.password = '';
       //  = submit; /*Self and this function used before definition*/
 
-      $scope.submit = function() {
-        console.log('submit form');
-        ref.createUser({
-          email: $scope.email,
-          password: $scope.password
-        }, function(error, userData) {
+      $scope.login = function() {
+        console.log('login called');
+        ref.authWithPassword({
+          "email": $scope.email,
+          "password": $scope.password
+        }, function(error, authData) {
           if (error) {
-            console.log("Error creating user:", error);
+            console.log("Login Failed!", error);
           } else {
-            console.log("Successfully created user account with uid:", userData.uid);
+            console.log("Authenticated successfully with payload:", authData);
+            $location.path('/profile');
+            $scope.$apply();
           }
         });
+        console.log('login return');
       };
     }]);
 })();
