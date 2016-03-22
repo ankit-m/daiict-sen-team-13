@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-
+  //TODO: date UTC format
   /**
    * @ngdoc function
    * @name daiictSenTeam13App.controller:PostingCtrl
@@ -33,6 +33,12 @@
           "location": $scope.location,
           "startDate": $scope.startDate,
           "endDate": $scope.endDate
+        }, function(error) {
+          if (error) {
+            console.error('Could not create Job');
+          } else {
+            console.log('Created Job');
+          }
         });
         console.log('createJob return');
       };
