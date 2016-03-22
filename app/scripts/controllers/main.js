@@ -29,6 +29,8 @@
           "password": $scope.password
         }, function(error, authData) {
           if (error) {
+            $scope.password = '';
+            $scope.$apply();
             console.log("Login Failed!", error);
           } else {
             console.log("Authenticated successfully with payload:", authData);
