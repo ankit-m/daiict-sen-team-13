@@ -1,10 +1,9 @@
 <div class="container">
-  <div class="card-panel" style="max-width: 400px; height:500px;  position: absolute;
+  <div class="card-panel" style="max-width: 400px; height:550px;  position: absolute;
     top:0;
     bottom: 0;
     left: 0;
     right: 0;
-
     margin: auto;">
     <form>
       <div class="row margin">
@@ -29,6 +28,15 @@
         <div class="input-field col s12">
           <input id="password" ng-model="password" type="password">
           <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row margin">
+        <div class="input-field col s12 center-align">
+          <input name="group1" ng-model="userType" type="radio" id="test1" class="with-gap" value="student"/>
+          <label for="test1">Student</label>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input name="group1" ng-model="userType" type="radio" id="test2" class="with-gap" value="professor"/>
+          <label for="test2">Professor</label>
         </div>
       </div>
       <div class="row">

@@ -17,6 +17,7 @@
       $scope.firstName = '';
       $scope.lastName = '';
       $scope.password = '';
+      $scope.userType = 'student';
 
       //  = submit; /*Self and this function used before definition*/
 
@@ -57,11 +58,11 @@
             }
           } else {
             console.log("Successfully created user account with uid:", userData.uid);
-            // sendPassword($scope.email);
             profileRef.push({
-              firstName: $scope.firstName,
-              lastName: $scope.lastName,
-              email: $scope.email
+              "firstName": $scope.firstName,
+              "lastName": $scope.lastName,
+              "email": $scope.email,
+              "userType": $scope.userType 
             });
           }
         });

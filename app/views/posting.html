@@ -1,0 +1,53 @@
+<nav>
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">Logo</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a ng-click="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<br>
+
+<div class="row container">
+  <h5 class="light" style="padding: 0 0 0 10px">Create a Job Posting</h5>
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input ng-model="jobName" id="jobName" type="text">
+        <label for="jobName">Job Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="description" ng-model="description" class="materialize-textarea"></textarea>
+        <label for="description">Job Description</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="email" type="email" ng-model="contactEmail">
+        <label for="email">Contact Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="start" ng-model="startDate" name="date" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+        <label for="start">Start Date</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="end" ng-model="endDate" name="date" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+        <label for="end">End Date</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input ng-model="location" id="location" type="text">
+        <label for="location">Location</label>
+      </div>
+    </div>
+  </form>
+  <div class="right-align">
+    <div class="btn" ng-click="resetValues()">Reset</div>
+    <div class="btn" ng-click="createJob()">Create</div>
+  </div>
+</div>

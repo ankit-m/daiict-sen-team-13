@@ -22,6 +22,10 @@
       $scope.password = '';
       //  = submit; /*Self and this function used before definition*/
 
+      $scope.goToRegister = function(){
+        $location.path('/register');
+      };
+
       $scope.login = function() {
         console.log('login called');
         ref.authWithPassword({
