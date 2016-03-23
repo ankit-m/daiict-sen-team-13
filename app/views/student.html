@@ -22,22 +22,11 @@
   <br>
   <h6 class="grey-font">Job Openings</h6>
   <ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header">First</div>
+    <li ng-repeat="(key, job) in jobs">
+      <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
-        <p>Lorem ipsum dolor sit amet.</p>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Second</div>
-      <div class="collapsible-body">
-        <p>Lorem ipsum dolor sit amet.</p>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Third</div>
-      <div class="collapsible-body">
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>{{job.description}}</p>
+        <a class="btn" style="margin:0 16px 16px 16px" ng-click="applyForJob(key)">Apply</a>
       </div>
     </li>
   </ul>

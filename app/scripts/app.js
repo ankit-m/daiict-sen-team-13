@@ -64,6 +64,11 @@ angular
         controller: 'FacultyCtrl',
         controllerAs: 'faculty'
       })
+      .when('/viewJob', {
+        templateUrl: 'views/viewjob.html',
+        controller: 'ViewjobCtrl',
+        controllerAs: 'viewJob'
+      })
       .otherwise({
         redirectTo: '/'
       });

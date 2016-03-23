@@ -10,7 +10,10 @@
   angular.module('daiictSenTeam13App')
     .controller('StudentCtrl', ['$scope', '$location', function($scope, $location) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
+      var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
+
+      $scope.jobs = {};
 
       if (authData) {
         console.log("Authenticated user with uid:", authData);
@@ -18,13 +21,12 @@
         $location.path('/');
       }
 
-      function getData(){
+      function getData() {
         console.log('getData called');
-        var profileRef = new Firebase('https://sfip.firebaseio.com/profile');
-        profileRef.orderByChild('email').equalTo(authData.password.email).once('value', function(dataSnapshot) {
-          console.log(dataSnapshot.val());
-          // console.log($scope.profile);
-          // $scope.$apply();
+        postingRef.limitToFirst(4).once('value', function(dataSnapshot) {
+          $scope.jobs = dataSnapshot.val();
+          console.log($scope.jobs);
+          $scope.$apply();
         }, function(err) {
           console.error(err);
         });
@@ -47,6 +49,13 @@
         ref.unauth();
         console.log('logged out');
         $location.path('/');
+      };
+
+      $scope.applyForJob = function(jobId) {
+        console.log('applyForJob called');
+        // console.log('/application?jobId=' + encodeURIComponent(jobId));
+        $location.path('/application').search({'jobId': jobId});
+        console.log('applyForJob return');
       };
 
     }]);
