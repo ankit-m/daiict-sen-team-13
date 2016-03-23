@@ -8,29 +8,15 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('StudentCtrl', ['$scope', '$location', function($scope, $location) {
+    .controller('FacultyCtrl', ['$scope', '$location', function($scope, $location) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
 
       if (authData) {
-        console.log("Authenticated user with uid:", authData);
+        console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
-
-      function getData(){
-        console.log('getData called');
-        var profileRef = new Firebase('https://sfip.firebaseio.com/profile');
-        profileRef.orderByChild('email').equalTo(authData.password.email).once('value', function(dataSnapshot) {
-          console.log(dataSnapshot.val());
-          // console.log($scope.profile);
-          // $scope.$apply();
-        }, function(err) {
-          console.error(err);
-        });
-        console.log('getData return');
-      }
-      getData();
 
       $scope.initMaterial = function() {
         $(document).ready(function() {

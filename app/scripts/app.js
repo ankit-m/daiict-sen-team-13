@@ -59,6 +59,11 @@ angular
         controller: 'ApplicationCtrl',
         controllerAs: 'application'
       })
+      .when('/faculty', {
+        templateUrl: 'views/faculty.html',
+        controller: 'FacultyCtrl',
+        controllerAs: 'faculty'
+      })
       .otherwise({
         redirectTo: '/'
       });

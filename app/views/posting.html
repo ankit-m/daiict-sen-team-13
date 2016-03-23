@@ -9,7 +9,15 @@
 <br>
 
 <div class="row container">
-  <h5 class="light" style="padding: 0 0 0 10px">Create a Job Posting</h5>
+  <h5 class="light">Active Jobs</h5>
+  <ul class="collection">
+    <li ng-repeat="job in createdJobs" class="collection-item">
+      {{job.jobName}}
+      <a class="secondary-content">View Job</a>
+    </li>
+  </ul>
+  <br>
+  <h5 class="light">Create a Job Posting</h5>
   <form class="col s12">
     <div class="row">
       <div class="input-field col s6">
