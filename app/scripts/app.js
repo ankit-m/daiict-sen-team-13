@@ -54,6 +54,11 @@ angular
         controller: 'PostingCtrl',
         controllerAs: 'posting'
       })
+      .when('/application', {
+        templateUrl: 'views/application.html',
+        controller: 'ApplicationCtrl',
+        controllerAs: 'application'
+      })
       .otherwise({
         redirectTo: '/'
       });

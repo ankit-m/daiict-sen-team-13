@@ -1,1 +1,24 @@
-<p>This is the jobs view.</p>
+<nav>
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">Logo</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a ng-click="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <br>
+  <h5 class="light">All Job Openings</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="(key, job) in jobs">
+      <div class="collapsible-header">{{job.jobName}}</div>
+      <div class="collapsible-body">
+        <p>{{job.description}}</p>
+        <div class="right-align" style="padding: 16px">
+          <a class="btn">Apply</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
