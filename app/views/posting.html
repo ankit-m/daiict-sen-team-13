@@ -22,9 +22,9 @@
 <div class="row container">
   <h5 class="light">Active Jobs</h5>
   <ul class="collection">
-    <li ng-repeat="job in createdJobs" class="collection-item">
+    <li ng-repeat="(jobId,job) in createdJobs" class="collection-item">
       {{job.jobName}}
-      <a class="secondary-content" href="#">View</a>
+      <a class="secondary-content" ng-click="viewJob(jobId)">View</a>
     </li>
   </ul>
   <br>

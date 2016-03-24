@@ -54,6 +54,17 @@
   <br>
   <div class="right-align">
     <div class="btn" ng-click="resetValues()">Reset</div>
-    <div class="btn" ng-click="createJob()">Apply</div>
+    <a class="waves-effect waves-light btn modal-trigger" href="#confirmApplication">Apply</a>
+  </div>
+  <!-- Modal Structure -->
+  <div id="confirmApplication" class="modal">
+    <div class="modal-content">
+      <h4>Confirm Application</h4>
+      <p>Are you sure you want to submit this application. This is an irreversible action.</p>
+    </div>
+    <div class="modal-footer">
+      <a ng-click="submitApplication()" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    </div>
   </div>
 </div>

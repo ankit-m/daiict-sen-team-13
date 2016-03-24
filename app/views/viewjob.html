@@ -17,3 +17,19 @@
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
+
+<br>
+<div class="container">
+  <h5 class="light">Applications</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="application in applications">
+      <div class="collapsible-header">{{application.contactEmail}}
+        <!-- <a class="btn right">Accept</a> -->
+      </div>
+      <div class="collapsible-body">
+        <p>{{application.letter}}</p>
+        <p style="padding-top:0"><a href="">Attachment</a></p>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -57,5 +57,11 @@
         console.log('createJob return');
       };
 
+      $scope.viewJob = function(jobId){
+        console.log(jobId);
+        $location.path('/viewJob').search({'jobId':jobId});
+      };
+
+
     }]);
 })();
