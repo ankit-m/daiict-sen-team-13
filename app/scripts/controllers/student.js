@@ -53,7 +53,6 @@
 
       $scope.applyForJob = function(jobId) {
         console.log('applyForJob called');
-        // console.log('/application?jobId=' + encodeURIComponent(jobId));
         $location.path('/application').search({'jobId': jobId});
         console.log('applyForJob return');
       };

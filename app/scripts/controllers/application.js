@@ -14,12 +14,26 @@
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
-      console.log(jobId);
-      // if (authData) {
-      //   console.log("Authenticated user with uid:", authData.uid);
-      // } else {
-      //   $location.path('/');
-      // }
+      var job = {};
+
+      $scope.jobName = '';
+
+      if (authData) {
+        console.log("Authenticated user with uid:", authData.uid);
+      } else {
+        $location.path('/');
+      }
+
+      function getData(){
+        postingRef.orderByKey().equalTo(jobId).once('value', function(dataSnapshot) {
+          job = dataSnapshot.val();
+          console.log(job);
+          $scope.$apply();
+        }, function(err) {
+          console.error(err);
+        });
+      }
+      getData();
 
     }]);
 })();
