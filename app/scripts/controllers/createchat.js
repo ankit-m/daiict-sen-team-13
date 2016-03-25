@@ -2,13 +2,13 @@
   'use strict';
   /**
    * @ngdoc function
-   * @name daiictSenTeam13App.controller:ProfileCtrl
+   * @name daiictSenTeam13App.controller:CreatechatCtrl
    * @description
-   * # ProfileCtrl
+   * # CreatechatCtrl
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ProfileCtrl', ['$scope', '$location', function($scope, $location) {
+    .controller('CreatechatCtrl', ['$scope', '$location', function($scope, $location) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
 

@@ -69,6 +69,16 @@ angular
         controller: 'ViewjobCtrl',
         controllerAs: 'viewJob'
       })
+      .when('/chatRooms', {
+        templateUrl: 'views/chatrooms.html',
+        controller: 'ChatroomsCtrl',
+        controllerAs: 'chatRooms'
+      })
+      .when('/createChat', {
+        templateUrl: 'views/createchat.html',
+        controller: 'CreatechatCtrl',
+        controllerAs: 'createChat'
+      })
       .otherwise({
         redirectTo: '/'
       });

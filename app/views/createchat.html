@@ -19,24 +19,13 @@
 </nav>
 <br>
 
-<div class="container">
-  <h5 class="light">Profile</h5>
-  <br>
-  <div class="row valign-wrapper">
-    <div class="col s2">
-      <img src="http://lorempixel.com/200/200" alt="" class="circle responsive-img">
-      <!-- notice the "circle" class -->
-    </div>
-    <div class="col s10">
-      <h5>Ankit Muchhala</h5>
-      <h6>Student</h6>
-    </div>
-  </div>
+<div class="row container">
+  <h5 class="light">Chat Room Settings</h5>
   <form class="col s12" style="padding: 0">
     <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s6">
         <input ng-model="chatName" id="chatName" type="text">
-        <label for="chatName">Institute</label>
+        <label for="chatName">Name of Chat Room</label>
       </div>
     </div>
     <div class="row">
@@ -66,5 +55,8 @@
       </div>
     </div>
   </form>
-
+  <div class="right-align">
+    <div class="btn" ng-click="resetValues()">Reset</div>
+    <div class="btn" ng-click="createJob()">Create</div>
+  </div>
 </div>
