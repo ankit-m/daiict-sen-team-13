@@ -79,6 +79,11 @@ angular
         controller: 'CreatechatCtrl',
         controllerAs: 'createChat'
       })
+      .when('/resetPassword', {
+        templateUrl: 'views/resetpassword.html',
+        controller: 'ResetpasswordCtrl',
+        controllerAs: 'resetPassword'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -42,28 +42,34 @@
     <div class="row">
       <div class="input-field col s12">
         <textarea id="description" ng-model="description" class="materialize-textarea"></textarea>
-        <label for="description">Description</label>
+        <label for="description">About</label>
       </div>
     </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <input id="start" ng-model="startTime" name="date" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
-        <label for="start">Start Time</label>
+    <div class="row" style="padding: 0 10.5px 0 10.5px">
+      <h6 class="grey-text">Areas of Interest</h6>
+      <ul class="collection">
+        <li class="collection-item">Alvin
+          <a href="#" class="secondary-content">Remove</a>
+        </li>
+      </ul>
+      <div class="input-field col s12">
+        <input ng-model="chatName" id="chatName" type="text">
+        <label for="chatName">Add New</label>
       </div>
+      <div class="btn right">Add</div>
     </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <select>
-          <option value="1" selected>Monday</option>
-          <option value="2">Tuesday</option>
-          <option value="3">Wednesday</option>
-          <option value="4">Thursday</option>
-          <option value="5">Friday</option>
-          <option value="6">Saturday</option>
-          <option value="7">Sunday</option>
-        </select>
-        <label>Day</label>
+    <div class="row" style="padding: 0 10.5px 0 10.5px">
+      <h6 class="grey-text">Publications</h6>
+      <ul class="collection">
+        <li class="collection-item">Alvin
+          <a href="#" class="secondary-content">Remove</a>
+        </li>
+      </ul>
+      <div class="input-field col s12">
+        <input ng-model="chatName" id="chatName" type="text">
+        <label for="chatName">Add New</label>
       </div>
+      <div class="btn right">Add</div>
     </div>
   </form>
 
