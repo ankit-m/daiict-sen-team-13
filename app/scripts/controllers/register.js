@@ -18,7 +18,7 @@
       $scope.lastName = '';
       $scope.password = '';
       $scope.userType = 'student';
-
+      
       //  = submit; /*Self and this function used before definition*/
 
       // function sendPassword(email) {
@@ -58,12 +58,22 @@
             }
           } else {
             console.log("Successfully created user account with uid:", userData.uid);
+            $scope.myFirstName = $scope.firstName;
             profileRef.push({
               "firstName": $scope.firstName,
               "lastName": $scope.lastName,
               "email": $scope.email,
-              "userType": $scope.userType 
+              "userType": $scope.userType
             });
+
+
+
+
+            //var tempRef = new Firebase("https://sfip.firebaseio.com/chatRooms/" + path + "/members");
+
+
+
+
           }
         });
         console.log('signup return');
