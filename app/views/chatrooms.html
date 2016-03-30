@@ -1,1 +1,61 @@
-<p>This is the chatRooms view.</p>
+<!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <nav>
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">SFIP</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a ng-click="logout()">Logout</a></li>
+      </ul>
+      <ul id="slide-out" class="side-nav fixed">
+        <div class="sidenav-profile center-align">
+          <img class="circle responsive-img" src="http://lorempixel.com/200/200">
+          <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
+        </div>
+        <li><a href="#!">Profile</a></li>
+        <li><a href="#!">People</a></li>
+        <li><a href="#!">Chat Rooms</a></li>
+        <li><a href="#!">Jobs</a></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
+  </nav>
+
+<div class="container">
+<br>
+
+
+<h6 class="grey-font">my chat rooms</h6>
+<ul class="collapsible" data-collapsible="accordion">
+  <li ng-repeat="(chatRoomId, chatRoom) in myChatRooms">
+    <div class="collapsible-header">{{chatRoom.chatRoomName}}</div>
+    <div class="collapsible-body">
+      <p>{{chatRoom.description}}</p>
+      <a class="btn" style="margin:0 16px 16px 16px" ng-click="enterChatRoom(chatRoomId)">Enter</a>
+
+    </div>
+  </li>
+</ul>
+
+
+
+<h6 class="grey-font">chat rooms</h6>
+<ul class="collapsible" data-collapsible="accordion">
+  <li ng-repeat="(chatRoomId, chatRoom) in chatRooms">
+    <div class="collapsible-header">{{chatRoom.chatRoomName}}</div>
+    <div class="collapsible-body">
+      <p>{{creatorNames[chatRoom.chatRoomId]}}</p>
+      <p>{{chatRoom.description}}</p>
+      <a class="btn" style="margin:0 16px 16px 16px" ng-click="enterChatRoom(chatRoomId)">Enter</a>
+
+    </div>
+  </li>
+</ul>
+
+
+
+
+
+</div>

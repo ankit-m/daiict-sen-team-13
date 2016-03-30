@@ -30,7 +30,7 @@
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="description" ng-model="description" class="materialize-textarea"></textarea>
+        <textarea id="description" ng-model="chatDescription" class="materialize-textarea"></textarea>
         <label for="description">Description</label>
       </div>
     </div>
@@ -42,21 +42,22 @@
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <select>
-          <option value="1" selected>Monday</option>
-          <option value="2">Tuesday</option>
-          <option value="3">Wednesday</option>
-          <option value="4">Thursday</option>
-          <option value="5">Friday</option>
-          <option value="6">Saturday</option>
-          <option value="7">Sunday</option>
+        <select name="singleSelect" ng-model="day">
+          <option value="Monday" selected>Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
         </select>
         <label>Day</label>
       </div>
     </div>
   </form>
   <div class="right-align">
-    <div class="btn" ng-click="resetValues()">Reset</div>
-    <div class="btn" ng-click="createJob()">Create</div>
+    <div class="btn" ng-click="makeChat()">Create</div>
+
+
   </div>
 </div>
