@@ -20,11 +20,11 @@ Meeting Ended :
 
 Post Meeting Action Items :
 
-|             Action             |                       Assigned To                |  Deadline  |
+|             Action             |                       Assigned To                |  Deadline  |              
 
-|       Learn about node.js      |                      Everyone                    | 28/03/2016 |
-|         Learn about HTML       | Samriddhi,Dhwanil,Jay,Viraj,Malav,Sakshi,Sheetal | 28/02/2016 |
-| Make the meeting log on github |                    Chaudhari Jay                 | 20/02/2016 |
+|       Learn about node.js      |                      Everyone                    | 28/03/2016 |              
+|         Learn about HTML       | Samriddhi,Dhwanil,Jay,Viraj,Malav,Sakshi,Sheetal | 28/02/2016 |                    
+| Make the meeting log on github |                    Chaudhari Jay                 | 20/02/2016 |                  
   
 Decision Made :
 
