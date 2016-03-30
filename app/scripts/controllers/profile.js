@@ -42,10 +42,12 @@
         allProfilesSnapshot.forEach(function(profileSnapshot) {
           // Will be called with a messageSnapshot for each child under the /messages/ node
           //var key = profileSnapshot.key(); // e.g. "-JqpIO567aKezufthrn8"
-
+          //console.log("hello boys");
           if(profileSnapshot.child("email").val()===authData.password.email){
           //console.log(profileSnapshot.child("firstName").val());
           $scope.myFirstName = profileSnapshot.child("firstName").val(); // e.g. "barney"
+          console.log("Burrrrrr",$scope.myFirstName);
+          $scope.$apply();
           $scope.myLastName= profileSnapshot.child("lastName").val();
           $scope.$apply();
 

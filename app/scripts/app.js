@@ -81,7 +81,7 @@ angular
       })
       .when('/enterChatRoom', {
         templateUrl: 'views/enterChatRoom.html',
-        controller: 'EnterChatCtrl',
+        controller: 'ChatCtrl',
         controllerAs: 'enterChatRoom'
       })
       .otherwise({

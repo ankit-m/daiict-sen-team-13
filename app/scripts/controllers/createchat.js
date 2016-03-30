@@ -14,6 +14,8 @@
       var memberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/members');
       var authData = ref.getAuth();
       var id = 0;
+      $scope.date=new Date();
+
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -62,7 +64,7 @@
           "chatRoomName": $scope.chatName,
           "createdBy": authData.password.email,
           "timeStarted": $scope.startTime,
-          //"day": $scope.day,
+          "date": $scope.startDate.toString(),
           "description": $scope.chatDescription,
           "active": "1",
         }, function(error) {

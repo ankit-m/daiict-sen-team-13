@@ -36,22 +36,14 @@
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input id="start" ng-model="startTime" name="date" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
+        <input id="start" ng-model="startTime" name="time" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
         <label for="start">Start Time</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <select name="singleSelect" ng-model="day">
-          <option value="Monday" selected>Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-          <option value="Sunday">Sunday</option>
-        </select>
-        <label>Day</label>
+        <input type="date" ng-model="startDate" name="StartDate" min="{{date | date:'yyyy-MM-dd'}}" >
+
       </div>
     </div>
   </form>
