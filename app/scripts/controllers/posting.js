@@ -91,6 +91,21 @@
         });
       };
 
+      self.deleteJob = function(jobId){ //atomize this request
+        console.log('delete job');
+        ref.child('postings').child(jobId).remove(function(error){
+          if(error){
+            Materialize.toast('Could not Delete Job. Try later', 4000);
+          }
+        });
+        ref.child('application').child(jobId).remove(function(error){
+          if(error){
+            Materialize.toast('Could not Delete Job. Try later', 4000);
+          } else {
+            Materialize.toast('Deleted Job', 4000);
+          }
+        });
+      };
 
     }]);
 })();

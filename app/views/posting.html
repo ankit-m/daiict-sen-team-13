@@ -22,10 +22,11 @@
 <div class="row container">
   <h5 class="light">Active Jobs</h5>
   <ul class="collection">
-    <li ng-repeat="(jobId,job) in createdJobs" class="collection-item">
+    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item" ng-click="posting.viewJob(jobId)">
       {{job.jobName}}
-      <a class="secondary-content" ng-click="viewJob(jobId)">View</a>
-    </li>
+      <!-- Add confirmation dialog -->
+      <div class="secondary-content red-text" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">Delete</div>
+    </a>
   </ul>
   <a class="btn right" ng-click="posting.showAll()">Show all Jobs</a>
 

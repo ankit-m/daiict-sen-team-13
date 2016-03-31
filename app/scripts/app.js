@@ -84,10 +84,10 @@ angular
         controller: 'ResetpasswordCtrl',
         controllerAs: 'resetPassword'
       })
-      .when('/viewApplications', {
-        templateUrl: 'views/viewapplications.html',
-        controller: 'ViewapplicationsCtrl',
-        controllerAs: 'viewApplications'
+      .when('/chat', {
+        templateUrl: 'views/chat.html',
+        controller: 'ChatCtrl',
+        controllerAs: 'chat'
       })
       .otherwise({
         redirectTo: '/'

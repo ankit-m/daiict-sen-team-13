@@ -13,6 +13,7 @@
       var applicationRef = new Firebase('https://sfip.firebaseio.com/application');
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
+      var self = this;
 
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -22,7 +23,7 @@
 
       function getData() {
         console.log('getData called');
-        applicationRef.orderByChild('jobId').equalTo(jobId).on('value', function(dataSnapshot) {
+        applicationRef.child(jobId).on('value', function(dataSnapshot) {
           $scope.applications = dataSnapshot.val();
           console.log(dataSnapshot.val());
           $scope.$apply();
@@ -48,6 +49,28 @@
         ref.unauth();
         console.log('logged out');
         $location.path('/');
+      };
+
+      self.acceptApplication = function(applicationId){
+        console.log('accept');
+        ref.child('application').child(jobId).child(applicationId).update({status: 'accept'}, function(error){
+          if(error){
+            Materialize.toast('Try again', 4000);
+          } else {
+            Materialize.toast('Accept Notification sent', 4000);
+          }
+        });
+      };
+
+      self.rejectApplication = function(applicationId){
+        console.log('reject');
+        ref.child('application').child(jobId).child(applicationId).update({status: 'reject'}, function(error){
+          if(error){
+            Materialize.toast('Try again', 4000);
+          } else {
+            Materialize.toast('Reject Notification sent', 4000);
+          } 
+        });
       };
 
     }]);

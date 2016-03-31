@@ -22,9 +22,14 @@
 <div class="container">
   <h5 class="light">Applications</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="application in applications">
+    <li ng-repeat="(key, application) in applications">
       <div class="collapsible-header">{{application.contactEmail}}
-        <!-- <a class="btn right">Accept</a> -->
+        <div class="secondary-content" >
+          <a class="green-text" ng-click="viewJob.acceptApplication(key); $event.stopPropagation()">Accept</a>
+          &nbsp;&nbsp;&nbsp;
+          <a class="red-text" ng-click="viewJob.rejectApplication(key); $event.stopPropagation()">Reject</a>
+        </div>
+
       </div>
       <div class="collapsible-body">
         <p>{{application.letter}}</p>
@@ -32,4 +37,11 @@
       </div>
     </li>
   </ul>
+
+  <br>
+  <h5 class="light">Accepted</h5>
+
+  <br>
+  <h5 class="light">Rejected</h5>
+
 </div>

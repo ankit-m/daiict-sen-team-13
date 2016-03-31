@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name daiictSenTeam13App.controller:ViewapplicationsCtrl
+ * @name daiictSenTeam13App.controller:ChatCtrl
  * @description
- * # ViewapplicationsCtrl
+ * # ChatCtrl
  * Controller of the daiictSenTeam13App
  */
 angular.module('daiictSenTeam13App')
-  .controller('ViewapplicationsCtrl', function () {
+  .controller('ChatCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

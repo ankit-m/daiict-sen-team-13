@@ -63,6 +63,8 @@
         }, function(error) {
           if (error) {
             Materialize.toast('Server error. Try again later', 4000);
+            $window.history.back();
+            $scope.$apply();
           } else {
             Materialize.toast('Application Submitted', 4000);
             $window.history.back();
