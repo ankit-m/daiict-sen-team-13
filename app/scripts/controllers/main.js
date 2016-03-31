@@ -15,6 +15,8 @@
 
       function redirectUser() {
         var userRef = new Firebase('https://sfip.firebaseio.com/users');
+        var authData = ref.getAuth();
+        
         //cache data!!
         userRef.orderByChild('email').equalTo(authData.password.email).once('value', function(snapshot) {
           var userObject = snapshot.val();
@@ -34,7 +36,6 @@
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
         redirectUser();
-        // $location.path('/profile');
       }
 
       $scope.email = '';

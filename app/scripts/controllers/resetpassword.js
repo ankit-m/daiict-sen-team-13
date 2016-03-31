@@ -50,6 +50,7 @@
           } else {
             console.log("User password changed successfully!");
             $location.path('/');
+            $location.$apply();
           }
         });
       };

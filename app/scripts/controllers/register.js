@@ -77,7 +77,7 @@
               //   name: 'Dhirubhai Ambani Institute of Information and Communication Technology',
               //   location: 'Gandhinagar',
               //   country: 'India',
-              //   lastCreated: Firebase.ServerValue.TIMESTAMP
+              //   createOn: Firebase.ServerValue.TIMESTAMP
               // };
 
               var userKey = ref.child('users').push().key();
@@ -103,7 +103,7 @@
                 }
               });
 
-              // sendPassword($scope.email);
+              sendPassword($scope.email);
             }
           });
         }

@@ -6,7 +6,7 @@
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
-        <img class="circle responsive-img" src="http://lorempixel.com/200/200">
+        <!-- <img class="circle responsive-img" src="http://lorempixel.com/200/200"> -->
         <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
       </div>
       <li><a href="#!">Profile</a></li>
@@ -27,6 +27,8 @@
       <a class="secondary-content" ng-click="viewJob(jobId)">View</a>
     </li>
   </ul>
+  <a class="btn right" ng-click="posting.showAll()">Show all Jobs</a>
+
   <br>
   <h5 class="light">Create a Job Posting</h5>
   <form class="col s12">
@@ -67,6 +69,6 @@
   </form>
   <div class="right-align">
     <div class="btn" ng-click="resetValues()">Reset</div>
-    <div class="btn" ng-click="createJob()">Create</div>
+    <div class="btn" ng-click="posting.createJob()">Create</div>
   </div>
 </div>

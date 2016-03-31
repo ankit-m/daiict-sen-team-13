@@ -23,10 +23,29 @@
           $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
           });
+          $(".button-collapse").sideNav();
         });
-        $(".button-collapse").sideNav();
       };
       $scope.initMaterial();
+
+      $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRoom':
+            $location.path('/createChat');
+            break;
+          case 'jobs':
+            $location.path('/posting');
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
 
       $scope.logout = function() {
         console.log('logout called');
