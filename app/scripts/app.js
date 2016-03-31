@@ -84,6 +84,11 @@ angular
         controller: 'ResetpasswordCtrl',
         controllerAs: 'resetPassword'
       })
+      .when('/viewApplications', {
+        templateUrl: 'views/viewapplications.html',
+        controller: 'ViewapplicationsCtrl',
+        controllerAs: 'viewApplications'
+      })
       .otherwise({
         redirectTo: '/'
       });

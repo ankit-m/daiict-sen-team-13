@@ -9,7 +9,8 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', '$window',
+    function($scope, $location, $routeParams, $window) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
@@ -53,18 +54,19 @@
       $scope.submitApplication = function() {
         console.log('submitApplication called');
         console.log(jobId);
-        var applicationRef = new Firebase('https://sfip.firebaseio.com/application');
-        applicationRef.push({
-          "jobId": jobId,
+        var applicationRef = new Firebase('https://sfip.firebaseio.com/application/' + jobId);
+        applicationRef.push({ //add server validation
           "appliedBy": authData.password.email,
           "contactEmail": $scope.contactEmail,
           "letter": $scope.letter,
           "attachment": $scope.attachment
         }, function(error) {
           if (error) {
-            console.error('Could not complete the application');
+            Materialize.toast('Server error. Try again later', 4000);
           } else {
-            console.log('Applied');
+            Materialize.toast('Application Submitted', 4000);
+            $window.history.back();
+            $scope.$apply();
           }
         });
       };

@@ -1,1 +1,36 @@
-<p>This is the chatRooms view.</p>
+<nav>
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">SFIP</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a ng-click="logout()">Logout</a></li>
+    </ul>
+    <ul id="slide-out" class="side-nav fixed">
+      <div class="sidenav-profile center-align">
+        <img class="circle responsive-img" src="http://lorempixel.com/200/200">
+        <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
+      </div>
+      <li><a href="#!">Profile</a></li>
+      <li><a href="#!">People</a></li>
+      <li><a href="#!">Chat Rooms</a></li>
+      <li><a href="#!">Jobs</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+  </div>
+</nav>
+<br>
+
+<div class="container">
+  <br>
+  <h5 class="light">All Chat Rooms</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="(key, chat) in chatRooms">
+      <div class="collapsible-header">{{chat.chatRoomName}}</div>
+      <div class="collapsible-body">
+        <p>{{chat.description}}</p>
+        <div class="right-align" style="padding: 16px">
+          <a class="btn">Apply</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
