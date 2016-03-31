@@ -30,26 +30,33 @@
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="description" ng-model="chatDescription" class="materialize-textarea"></textarea>
+        <textarea id="description" ng-model="description" class="materialize-textarea"></textarea>
         <label for="description">Description</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input id="start" ng-model="startTime" name="time" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
+        <input id="start" ng-model="startTime" name="date" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
         <label for="start">Start Time</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input type="date" ng-model="startDate" name="StartDate" min="{{date | date:'yyyy-MM-dd'}}" >
-
+        <select>
+          <option value="1" selected>Monday</option>
+          <option value="2">Tuesday</option>
+          <option value="3">Wednesday</option>
+          <option value="4">Thursday</option>
+          <option value="5">Friday</option>
+          <option value="6">Saturday</option>
+          <option value="7">Sunday</option>
+        </select>
+        <label>Day</label>
       </div>
     </div>
   </form>
   <div class="right-align">
-    <div class="btn" ng-click="makeChat()">Create</div>
-
-
+    <div class="btn" ng-click="resetValues()">Reset</div>
+    <div class="btn" ng-click="createJob()">Create</div>
   </div>
 </div>
