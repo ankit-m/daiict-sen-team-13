@@ -79,11 +79,6 @@ angular
         controller: 'CreatechatCtrl',
         controllerAs: 'createChat'
       })
-      .when('/enterChatRoom', {
-        templateUrl: 'views/enterChatRoom.html',
-        controller: 'ChatCtrl',
-        controllerAs: 'enterChatRoom'
-      })
       .otherwise({
         redirectTo: '/'
       });
