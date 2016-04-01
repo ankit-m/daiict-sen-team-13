@@ -2,7 +2,7 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-click="logout()">Logout</a></li>
+      <li><a ng-click="student.logout()">Logout</a></li>
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
@@ -26,7 +26,7 @@
       <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
         <p>{{job.description}}</p>
-        <a class="btn" style="margin:0 16px 16px 16px" ng-click="applyForJob(key)">Apply</a>
+        <a class="btn" style="margin:0 16px 16px 16px" ng-click="student.applyForJob(key)">Apply</a>
       </div>
     </li>
   </ul>
@@ -34,22 +34,11 @@
   <br>
   <h6 class="grey-font">Chat Rooms</h6>
   <ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header">First</div>
+    <li ng-repeat="(key, chatRoom) in chatRooms">
+      <div class="collapsible-header">{{chatRoom.chatRoomName}}</div>
       <div class="collapsible-body">
-        <p>Lorem ipsum dolor sit amet.</p>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Second</div>
-      <div class="collapsible-body">
-        <p>Lorem ipsum dolor sit amet.</p>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">Third</div>
-      <div class="collapsible-body">
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>{{chatRoom.description}}</p>
+        <a class="btn" style="margin:0 16px 16px 16px" ng-click="student.joinChatRoom(key)">Join</a>
       </div>
     </li>
   </ul>
