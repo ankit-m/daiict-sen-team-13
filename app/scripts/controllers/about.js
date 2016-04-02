@@ -1,4 +1,5 @@
-'use strict';
+(function() {
+  'use strict';
 
 /**
  * @ngdoc function
@@ -8,10 +9,18 @@
  * Controller of the daiictSenTeam13App
  */
 angular.module('daiictSenTeam13App')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+  .controller('AboutCtrl', ['$scope', function($scope)  {
+    var ref = new Firebase('https://sfip.firebaseio.com/');
+    var profileRef = new Firebase('https://sfip.firebaseio.com/abou );
+
+      $scope.login = function() {
+      $location.path('/');
+      };
+
+      $scope.SignUp = function(){
+        $location.path('/register');
+      };
+
     ];
   });
+})();
