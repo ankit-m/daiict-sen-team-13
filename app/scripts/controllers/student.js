@@ -15,6 +15,7 @@
 
       $scope.jobs = {};
       $scope.chatRooms = {};
+      $scope.loading = true;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData);
@@ -37,10 +38,10 @@
         ref.child('chatRooms').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.chatRooms = dataSnapshot.val();
           console.log($scope.chatRooms);
+          $scope.loading = false;
           $timeout(function() {
             $scope.$apply();
           });
-
         }, function(err) {
           console.error(err);
         });
@@ -58,26 +59,40 @@
       };
       $scope.initMaterial();
 
+      $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRoom':
+            $location.path('/createChat');
+            break;
+          case 'jobs':
+            $location.path('/posting');
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+
       self.logout = function() {
-        console.log('logout called');
         ref.unauth();
-        console.log('logged out');
         $location.path('/');
       };
 
       self.applyForJob = function(jobId) {
-        console.log('applyForJob called');
         $location.path('/application').search({
           'jobId': jobId
         });
-        console.log('applyForJob return');
       };
 
       self.joinChatRoom = function(chatRoomId){
-        console.log('joinChatRoom called');
         //check joining condition
         $location.path('/chat').search({
-          'chatId': chatRoomId
+          'roomId': chatRoomId
         });
       };
 

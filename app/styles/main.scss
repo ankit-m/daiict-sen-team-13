@@ -9,6 +9,7 @@
 }
 body {
   padding: 0;
+  overflow-y: scroll;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -70,7 +71,6 @@ footer {
 .sidenav-profile {
   margin-top: 16px;
 }
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
@@ -91,4 +91,13 @@ footer {
   .jumbotron {
     border-bottom: 0;
   }
+}
+/* Page loader */
+.center-div {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

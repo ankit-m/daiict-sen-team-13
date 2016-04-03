@@ -17,9 +17,23 @@
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
-<br>
 
-<div class="container">
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="loading">
+  <br>
   <h5 class="light">Profile</h5>
   <br>
   <div class="row valign-wrapper">
@@ -35,14 +49,14 @@
   <form class="col s12" style="padding: 0">
     <div class="row">
       <div class="input-field col s12">
-        <input ng-model="chatName" id="chatName" type="text">
-        <label for="chatName">Institute</label>
+        <input ng-model="institute" id="institute" type="text">
+        <label for="institute">Institute</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="description" ng-model="description" class="materialize-textarea"></textarea>
-        <label for="description">About</label>
+        <textarea id="about" ng-model="about" class="materialize-textarea"></textarea>
+        <label for="about">About</label>
       </div>
     </div>
     <div class="row" style="padding: 0 10.5px 0 10.5px">

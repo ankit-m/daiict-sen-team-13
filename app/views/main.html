@@ -2,7 +2,21 @@
   1. Validate using Angular and Disable login button accordingly
  -->
 
-<div class="container">
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="loading">
   <div class="card-panel" style="max-width: 400px; height:350px;  position: absolute;
     top:0;
     bottom: 0;
@@ -32,7 +46,7 @@
         </div>
       </div> -->
       <div class="row">
-        <div class="input-field col s12" ng-click="login()">
+        <div class="input-field col s12" ng-click="main.login()">
           <a class="btn waves-effect waves-light col s12 red">Login</a>
         </div>
       </div>

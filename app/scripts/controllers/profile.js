@@ -8,15 +8,35 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ProfileCtrl', ['$scope', '$location', function($scope, $location) {
+    .controller('ProfileCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
+      var self = this;
+
+      $scope.loading = true;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
+
+      function getData(){
+        ref.child('postings').orderByChild('email').equalTo(authData.password.email).on('value', function(dataSnapshot) {
+          if(dataSnapshot.val() === null){
+            // resetValues();
+          } else {
+
+          }
+          $scope.loading = false;
+          $timeout(function() {
+            $scope.$apply();
+          });
+        }, function(err) {
+          console.error(err);
+        });
+      }
+      getData();
 
       $scope.initMaterial = function() {
         $(document).ready(function() {
@@ -26,7 +46,7 @@
       };
       $scope.initMaterial();
 
-      $scope.logout = function() {
+      self.logout = function() {
         console.log('logout called');
         ref.unauth();
         console.log('logged out');

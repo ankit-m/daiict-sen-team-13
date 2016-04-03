@@ -10,7 +10,6 @@
  */
 angular
   .module('daiictSenTeam13App', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
