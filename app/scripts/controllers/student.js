@@ -8,12 +8,14 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('StudentCtrl', ['$scope', '$location', function($scope, $location) {
+    .controller('StudentCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
-      var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
+      var self = this;
 
       $scope.jobs = {};
+      $scope.chatRooms = {};
+      $scope.loading = true;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData);
@@ -23,10 +25,23 @@
 
       function getData() {
         console.log('getData called');
-        postingRef.limitToFirst(4).once('value', function(dataSnapshot) {
+        ref.child('postings').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.jobs = dataSnapshot.val();
           console.log($scope.jobs);
-          $scope.$apply();
+          $timeout(function() {
+            $scope.$apply();
+          });
+        }, function(err) {
+          console.error(err);
+        });
+
+        ref.child('chatRooms').limitToFirst(4).once('value', function(dataSnapshot) {
+          $scope.chatRooms = dataSnapshot.val();
+          console.log($scope.chatRooms);
+          $scope.loading = false;
+          $timeout(function() {
+            $scope.$apply();
+          });
         }, function(err) {
           console.error(err);
         });
@@ -44,17 +59,52 @@
       };
       $scope.initMaterial();
 
-      $scope.logout = function() {
-        console.log('logout called');
+       $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/createChat');
+            }
+            else {
+              $location.path('/chatRooms');
+            }
+            
+            break;
+          case 'jobs':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/posting');
+            }
+            else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+
+      self.logout = function() {
         ref.unauth();
-        console.log('logged out');
         $location.path('/');
       };
 
-      $scope.applyForJob = function(jobId) {
-        console.log('applyForJob called');
-        $location.path('/application').search({'jobId': jobId});
-        console.log('applyForJob return');
+      self.applyForJob = function(jobId) {
+        $location.path('/application').search({
+          'jobId': jobId
+        });
+      };
+
+      self.joinChatRoom = function(chatRoomId){
+        //check joining condition
+        $location.path('/chat').search({
+          'roomId': chatRoomId
+        });
       };
 
     }]);

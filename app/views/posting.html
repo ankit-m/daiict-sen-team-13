@@ -6,7 +6,7 @@
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
-        <img class="circle responsive-img" src="http://lorempixel.com/200/200">
+        <!-- <img class="circle responsive-img" src="http://lorempixel.com/200/200"> -->
         <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
       </div>
       <li><a href="#!">Profile</a></li>
@@ -19,14 +19,32 @@
 </nav>
 <br>
 
-<div class="row container">
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row container" ng-hide="loading">
   <h5 class="light">Active Jobs</h5>
   <ul class="collection">
-    <li ng-repeat="(jobId,job) in createdJobs" class="collection-item">
+    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item" ng-click="posting.viewJob(jobId)">
       {{job.jobName}}
-      <a class="secondary-content" ng-click="viewJob(jobId)">View</a>
-    </li>
+      <!-- Add confirmation dialog -->
+      <div class="secondary-content red-text" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">Delete</div>
+    </a>
   </ul>
+  <a class="btn right" ng-click="posting.showAll()">Show all Jobs</a>
+
   <br>
   <h5 class="light">Create a Job Posting</h5>
   <form class="col s12">
@@ -67,6 +85,6 @@
   </form>
   <div class="right-align">
     <div class="btn" ng-click="resetValues()">Reset</div>
-    <div class="btn" ng-click="createJob()">Create</div>
+    <div class="btn" ng-click="posting.createJob()">Create</div>
   </div>
 </div>

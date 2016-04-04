@@ -9,13 +9,14 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', '$window',
+    function($scope, $location, $routeParams, $window) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var job = {};
-
+      $scope.loading=true;
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
@@ -44,6 +45,7 @@
             break;
           }
           $scope.$apply();
+          $scope.loading=false;
         }, function(err) {
           console.error(err);
         });
@@ -53,21 +55,56 @@
       $scope.submitApplication = function() {
         console.log('submitApplication called');
         console.log(jobId);
-        var applicationRef = new Firebase('https://sfip.firebaseio.com/application');
-        applicationRef.push({
-          "jobId": jobId,
+        var applicationRef = new Firebase('https://sfip.firebaseio.com/application/' + jobId);
+        applicationRef.push({ //add server validation
           "appliedBy": authData.password.email,
           "contactEmail": $scope.contactEmail,
           "letter": $scope.letter,
           "attachment": $scope.attachment
         }, function(error) {
           if (error) {
-            console.error('Could not complete the application');
+            Materialize.toast('Server error. Try again later', 4000);
+            $window.history.back();
+            $scope.$apply();
           } else {
-            console.log('Applied');
+            Materialize.toast('Application Submitted', 4000);
+            $window.history.back();
+            $scope.$apply();
           }
         });
       };
+
+
+        $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/createChat');
+            }
+            else {
+              $location.path('/chatRooms');
+            }
+            
+            break;
+          case 'jobs':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/posting');
+            }
+            else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+      
 
     }]);
 })();

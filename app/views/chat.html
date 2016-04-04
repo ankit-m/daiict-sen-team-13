@@ -1,0 +1,38 @@
+<html>
+
+<body>
+
+  <ul class="collection">
+    <li ng-repeat="member in members" class="collection-item">
+      {{member.emailId}}
+    </li>
+  </ul>
+
+  <ul class="collection">
+    <li ng-repeat="message in chatHistory" class="collection-item">
+      {{message.sender+" "+message.text}}
+
+    </li>
+  </ul>
+
+  <div class="row margin">
+    <div class="input-field col s12">
+      <input ng-model="messageInput" id="messageInput" type="text">
+      <label class="center-align">message</label>
+    </div>
+  </div>
+
+  <div class="btn" ng-click="sentMessage()">send</div>
+
+  <script>
+    /*
+    getRefToSelf.child(user).child('messages').on('child_added', function(snapshot) {
+    console.log(user);
+    var message = snapshot.val();
+    displayChatMessage(message.name, message.text);
+    });
+    */
+  </script>
+</body>
+
+</html>

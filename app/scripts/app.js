@@ -10,7 +10,6 @@
  */
 angular
   .module('daiictSenTeam13App', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -78,6 +77,21 @@ angular
         templateUrl: 'views/createchat.html',
         controller: 'CreatechatCtrl',
         controllerAs: 'createChat'
+      })
+      .when('/resetPassword', {
+        templateUrl: 'views/resetpassword.html',
+        controller: 'ResetpasswordCtrl',
+        controllerAs: 'resetPassword'
+      })
+      .when('/chat', {
+        templateUrl: 'views/chat.html',
+        controller: 'ChatCtrl',
+        controllerAs: 'chat'
+      })
+      .when('/people', {
+        templateUrl: 'views/people.html',
+        controller: 'PeopleCtrl',
+        controllerAs: 'people'
       })
       .otherwise({
         redirectTo: '/'

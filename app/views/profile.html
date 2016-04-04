@@ -2,24 +2,38 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-click="logout()">Logout</a></li>
+      <li><a ng-click="profile.logout()">Logout</a></li>
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
         <img class="circle responsive-img" src="http://lorempixel.com/200/200">
         <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
       </div>
-      <li><a href="#!">Profile</a></li>
-      <li><a href="#!">People</a></li>
-      <li><a href="#!">Chat Rooms</a></li>
-      <li><a href="#!">Jobs</a></li>
+      <li><a ng-click="goTo('profile')">Profile</a></li>
+      <li><a ng-click="goTo('people')">People</a></li>
+      <li><a ng-click="goTo('chatRooms')">Chat Rooms</a></li>
+      <li><a ng-click="goTo('jobs')">Jobs</a></li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
-<br>
 
-<div class="container">
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="loading">
+  <br>
   <h5 class="light">Profile</h5>
   <br>
   <div class="row valign-wrapper">
@@ -35,35 +49,41 @@
   <form class="col s12" style="padding: 0">
     <div class="row">
       <div class="input-field col s12">
-        <input ng-model="chatName" id="chatName" type="text">
-        <label for="chatName">Institute</label>
+        <input ng-model="institute" id="institute" type="text">
+        <label for="institute">Institute</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="description" ng-model="description" class="materialize-textarea"></textarea>
-        <label for="description">Description</label>
+        <textarea id="about" ng-model="about" class="materialize-textarea"></textarea>
+        <label for="about">About</label>
       </div>
     </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <input id="start" ng-model="startTime" name="date" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
-        <label for="start">Start Time</label>
+    <div class="row" style="padding: 0 10.5px 0 10.5px">
+      <h6 class="grey-text">Areas of Interest</h6>
+      <ul class="collection">
+        <li class="collection-item">Alvin
+          <a href="#" class="secondary-content">Remove</a>
+        </li>
+      </ul>
+      <div class="input-field col s12">
+        <input ng-model="chatName" id="chatName" type="text">
+        <label for="chatName">Add New</label>
       </div>
+      <div class="btn right">Add</div>
     </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <select>
-          <option value="1" selected>Monday</option>
-          <option value="2">Tuesday</option>
-          <option value="3">Wednesday</option>
-          <option value="4">Thursday</option>
-          <option value="5">Friday</option>
-          <option value="6">Saturday</option>
-          <option value="7">Sunday</option>
-        </select>
-        <label>Day</label>
+    <div class="row" style="padding: 0 10.5px 0 10.5px">
+      <h6 class="grey-text">Publications</h6>
+      <ul class="collection">
+        <li class="collection-item">Alvin
+          <a href="#" class="secondary-content">Remove</a>
+        </li>
+      </ul>
+      <div class="input-field col s12">
+        <input ng-model="chatName" id="chatName" type="text">
+        <label for="chatName">Add New</label>
       </div>
+      <div class="btn right">Add</div>
     </div>
   </form>
 
