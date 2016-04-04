@@ -88,6 +88,11 @@ angular
         controller: 'ChatCtrl',
         controllerAs: 'chat'
       })
+      .when('/people', {
+        templateUrl: 'views/people.html',
+        controller: 'PeopleCtrl',
+        controllerAs: 'people'
+      })
       .otherwise({
         redirectTo: '/'
       });

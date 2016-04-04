@@ -14,7 +14,7 @@
       var authData = ref.getAuth();
       var self = this;
 
-      $scope.loading = false;
+      $scope.loading = true;
 
       function redirectUser() {
         var userRef = new Firebase('https://sfip.firebaseio.com/users');
@@ -40,6 +40,8 @@
         console.log("Authenticated user with uid:", authData.uid);
         redirectUser();
       }
+
+      $scope.loading = false;
 
       $scope.email = '';
       $scope.password = '';

@@ -12,8 +12,7 @@
     .controller('ChatroomsCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var chatRoomKey = "";
-      var chatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms');
+      var self = this;
 
       $scope.chatHistory = [];
       $scope.members = [];
@@ -53,7 +52,7 @@
         console.error(err);
       });
 
-      $scope.openChatRoom = function(key) {
+      self.openChatRoom = function(key) {
         var addMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + '/members/');
         var count = 0;
         addMemberRef.once('value', function(dataSnapshot) {
@@ -78,7 +77,12 @@
         $location.path('/chat').search({
           'roomId': key
         });
-
       };
+
+      self.logout = function() {
+        ref.unauth();
+        $location.path('/');
+      };
+
     }]);
 })();

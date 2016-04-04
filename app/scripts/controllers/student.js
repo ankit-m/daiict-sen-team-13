@@ -64,11 +64,11 @@
           case 'profile':
             $location.path('/profile');
             break;
-          case 'chatRoom':
-            $location.path('/createChat');
+          case 'chatRooms':
+            $location.path('/chatRooms');
             break;
           case 'jobs':
-            $location.path('/posting');
+            $location.path('/jobs');
             break;
           case 'people':
             $location.path('/people');
