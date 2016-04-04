@@ -89,6 +89,13 @@
                 activated: false
               };
 
+              var profileKey = ref.child('profile').push().key();
+              profileData['/profile/' + profileKey] = {
+                email: $scope.email,
+                firstName: $scope.firstName,
+                lastName: $scope.lastName
+              };
+
               console.log(profileData);
 
               ref.update(profileData, function(error) {
