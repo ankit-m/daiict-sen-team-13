@@ -17,3 +17,29 @@
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
+
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="loading">
+  <br>
+  <h5 class="light">People</h5>
+  <ul class="collection">
+    <li class="collection-item" ng-repeat="person in people">
+      <div>{{person.firstName}} {{person.lastName}}
+        <a ng-click="people.viewProfile()" class="secondary-content">View</a>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -13,7 +13,7 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
-      $scope.loading=true;
+      $scope.loading = true;
       $scope.jobs = {};
 
       $scope.initCollapsible = function() {
@@ -34,33 +34,30 @@
       postingRef.once('value', function(dataSnapshot) {
         $scope.jobs = dataSnapshot.val();
         console.log($scope.jobs);
-        $scope.loading=false;
+        $scope.loading = false;
         $scope.$apply();
 
       }, function(err) {
         console.error(err);
       });
 
-
-         $scope.goTo = function(page) {
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
+            if (authData.password.email.charAt(4) === "1") {
+              $location.path('/createChat');
+            } else {
               $location.path('/chatRooms');
             }
-            
+
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
+            if (authData.password.email.charAt(4) === "1") {
+              $location.path('/posting');
+            } else {
               $location.path('/jobs');
             }
             break;
@@ -72,8 +69,7 @@
         }
       };
 
-
-       $scope.logout = function() {
+      $scope.logout = function() {
         console.log('logout called');
         ref.unauth();
         console.log('logged out');
