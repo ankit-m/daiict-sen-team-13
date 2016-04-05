@@ -16,6 +16,7 @@
 
       $scope.chatHistory = [];
       $scope.members = [];
+      $scope.loading = true;
 
 
       $scope.jobs = {};
@@ -35,24 +36,27 @@
         $location.path('/');
       }
 
+
       $scope.initMaterial = function() {
         $('.modal-trigger').leanModal();
       };
       $scope.initMaterial();
 
       ref.child('chatRooms').once('value', function(dataSnapshot) {
+        $scope.loading = true;
         console.log("gotta say hello");
         $scope.chatRooms = dataSnapshot.val();
         console.log($scope.chatRooms);
         $timeout(function() {
           $scope.$apply();
         });
+        $scope.loading = false;
 
       }, function(err) {
         console.error(err);
       });
 
-      self.openChatRoom = function(key) {
+      $scope.openChatRoom = function(key) {
         var addMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + '/members/');
         var count = 0;
         addMemberRef.once('value', function(dataSnapshot) {
@@ -83,6 +87,37 @@
         ref.unauth();
         $location.path('/');
       };
+      
+       $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/createChat');
+            }
+            else {
+              $location.path('/chatRooms');
+            }
+            
+            break;
+          case 'jobs':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/posting');
+            }
+            else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+
 
     }]);
 })();

@@ -94,7 +94,7 @@
                 email: $scope.email,
                 firstName: $scope.firstName,
                 lastName: $scope.lastName,
-                type: $scope.userType 
+                type: $scope.userType
               };
 
               console.log(profileData);

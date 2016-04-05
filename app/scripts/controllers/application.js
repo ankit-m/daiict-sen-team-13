@@ -16,7 +16,7 @@
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var job = {};
-
+      $scope.loading=true;
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
@@ -45,6 +45,7 @@
             break;
           }
           $scope.$apply();
+          $scope.loading=false;
         }, function(err) {
           console.error(err);
         });
@@ -72,6 +73,38 @@
           }
         });
       };
+
+
+        $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/createChat');
+            }
+            else {
+              $location.path('/chatRooms');
+            }
+            
+            break;
+          case 'jobs':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/posting');
+            }
+            else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+      
 
     }]);
 })();

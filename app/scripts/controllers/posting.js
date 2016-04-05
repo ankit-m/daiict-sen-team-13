@@ -14,6 +14,7 @@
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var self = this;
+      $scope.loading=true;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -36,6 +37,7 @@
           $timeout(function() {
             $scope.$apply();
           });
+          $scope.loading=false;
         }, function(err) {
           console.error(err);
         });
@@ -105,6 +107,37 @@
             Materialize.toast('Deleted Job', 4000);
           }
         });
+      };
+
+
+        $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/createChat');
+            }
+            else {
+              $location.path('/chatRooms');
+            }
+            
+            break;
+          case 'jobs':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/posting');
+            }
+            else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
       };
 
     }]);

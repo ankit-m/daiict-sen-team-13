@@ -28,16 +28,27 @@
       };
       $scope.initMaterial();
 
-      $scope.goTo = function(page) {
+        $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
-          case 'chatRoom':
-            $location.path('/createChat');
+          case 'chatRooms':
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/createChat');
+            }
+            else {
+              $location.path('/chatRooms');
+            }
+            
             break;
           case 'jobs':
-            $location.path('/posting');
+            if(authData.password.email.charAt(4)==="1"){
+               $location.path('/posting');
+            }
+            else {
+              $location.path('/jobs');
+            }
             break;
           case 'people':
             $location.path('/people');

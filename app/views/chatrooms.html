@@ -18,7 +18,25 @@
   </div>
 </nav>
 
-<div class="container">
+
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container" ng-hide="loading">
   <br>
   <h5 class="light">All Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
@@ -28,7 +46,7 @@
       <div class="collapsible-body">
         <p>{{chat.description}}</p>
         <div class="right-align">
-          <a class="modal-trigger" ng-click="chatRooms.openChatRoom(key)">Join</a>
+          <a class="modal-trigger" ng-click="openChatRoom(key)">Join</a>
         </div>
       </div>
     </li>
@@ -36,16 +54,6 @@
 
 
 
-  <div id="popUpRoom" class="modal">
-    <div class="modal-content">
-      <h4>Confirm Application</h4>
-      <p>Are you sure you want to submit this application. This is an irreversible action.</p>
-    </div>
-    <div class="modal-footer">
-      <a ng-click="chatRooms.submitApplication()" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
-      <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    </div>
-  </div>
 
 
 
