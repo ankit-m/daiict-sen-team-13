@@ -14,7 +14,7 @@
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var self = this;
-      $scope.loading=true;
+      $scope.loading = true;
 
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -32,7 +32,7 @@
           console.error(err);
         });
         console.log('getData return');
-        $scope.loading=false;  
+        $scope.loading = false;
       }
       getData();
 
@@ -53,10 +53,12 @@
         $location.path('/');
       };
 
-      self.acceptApplication = function(applicationId){
+      self.acceptApplication = function(applicationId) {
         console.log('accept');
-        ref.child('application').child(jobId).child(applicationId).update({status: 'accept'}, function(error){
-          if(error){
+        ref.child('application').child(jobId).child(applicationId).update({
+          status: 'accept'
+        }, function(error) {
+          if (error) {
             Materialize.toast('Try again', 4000);
           } else {
             Materialize.toast('Accept Notification sent', 4000);
@@ -64,38 +66,29 @@
         });
       };
 
-      self.rejectApplication = function(applicationId){
+      self.rejectApplication = function(applicationId) {
         console.log('reject');
-        ref.child('application').child(jobId).child(applicationId).update({status: 'reject'}, function(error){
-          if(error){
+        ref.child('application').child(jobId).child(applicationId).update({
+          status: 'reject'
+        }, function(error) {
+          if (error) {
             Materialize.toast('Try again', 4000);
           } else {
             Materialize.toast('Reject Notification sent', 4000);
-          } 
+          }
         });
       };
 
-        $scope.goTo = function(page) {
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
-              $location.path('/chatRooms');
-            }
-            
+            $location.path('/createChat');
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
-              $location.path('/jobs');
-            }
+            $location.path('/posting');
             break;
           case 'people':
             $location.path('/people');
@@ -104,9 +97,6 @@
             $location.path('/');
         }
       };
-
-
-
 
     }]);
 })();

@@ -57,27 +57,16 @@
         $location.path('/faculty');
       };
 
-        $scope.goTo = function(page) {
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
-              $location.path('/chatRooms');
-            }
-            
+            $location.path('/createChat');
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
-              $location.path('/jobs');
-            }
+            $location.path('/posting');
             break;
           case 'people':
             $location.path('/people');
@@ -86,9 +75,6 @@
             $location.path('/');
         }
       };
-
-
-
 
     }]);
 })();

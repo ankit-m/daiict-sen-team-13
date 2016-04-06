@@ -16,7 +16,9 @@
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var job = {};
+
       $scope.loading=true;
+
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
@@ -44,6 +46,7 @@
             $scope.jobName = job[index].jobName;
             break;
           }
+          $scope.loading = false;
           $scope.$apply();
           $scope.loading=false;
         }, function(err) {
@@ -60,7 +63,8 @@
           "appliedBy": authData.password.email,
           "contactEmail": $scope.contactEmail,
           "letter": $scope.letter,
-          "attachment": $scope.attachment
+          "attachment": $scope.attachment,
+          "submittedOn":  Firebase.ServerValue.TIMESTAMP
         }, function(error) {
           if (error) {
             Materialize.toast('Server error. Try again later', 4000);
@@ -87,7 +91,7 @@
             else {
               $location.path('/chatRooms');
             }
-            
+
             break;
           case 'jobs':
             if(authData.password.email.charAt(4)==="1"){
@@ -104,7 +108,7 @@
             $location.path('/');
         }
       };
-      
+
 
     }]);
 })();

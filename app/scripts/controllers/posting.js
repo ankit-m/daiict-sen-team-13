@@ -14,7 +14,7 @@
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var self = this;
-      $scope.loading=true;
+      $scope.loading = true;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -37,7 +37,7 @@
           $timeout(function() {
             $scope.$apply();
           });
-          $scope.loading=false;
+          $scope.loading = false;
         }, function(err) {
           console.error(err);
         });
@@ -47,12 +47,14 @@
       getData();
 
       $scope.resetValues = function() {
+        //reset form
         $scope.jobName = '';
         $scope.description = '';
         $scope.contactEmail = '';
         $scope.location = '';
         $scope.startDate = '';
         $scope.endDate = '';
+        $scope.positions = '';
         $timeout(function() {
           $scope.$apply();
         });
@@ -60,19 +62,29 @@
       };
       $scope.resetValues();
 
+      function validate() {
+        // var tempDate = new Date($scope.deadline);
+        // $scope.deadline = tempDate;
+        // console.log(tempDate);
+      }
+
       self.createJob = function() {
+        validate();
         console.log('createJob called');
         postingRef.push({
           "jobName": $scope.jobName,
           "description": $scope.description,
           "contactEmail": $scope.contactEmail,
           "location": $scope.location,
-          "startDate": $scope.startDate,
-          "endDate": $scope.endDate,
-          "postedBy": authData.password.email
+          "startDate": Date($scope.startDate),
+          "endDate": Date($scope.endDate),
+          "postedBy": authData.password.email,
+          "positions": $scope.positions,
+          "deadline": Date($scope.deadline),
+          "postedOn": Date(Firebase.ServerValue.TIMESTAMP)
         }, function(error) {
           if (error) {
-            console.error('Could not create Job');
+            Materialize.toast('Could not create Job', 4000);
           } else {
             Materialize.toast('Job Created', 4000);
             $scope.resetValues();
@@ -82,7 +94,7 @@
         console.log('createJob return');
       };
 
-      self.showAll = function(){
+      self.showAll = function() {
         $location.path('/jobs');
       };
 
@@ -93,15 +105,15 @@
         });
       };
 
-      self.deleteJob = function(jobId){ //atomize this request
+      self.deleteJob = function(jobId) { //atomize this request
         console.log('delete job');
-        ref.child('postings').child(jobId).remove(function(error){
-          if(error){
+        ref.child('postings').child(jobId).remove(function(error) {
+          if (error) {
             Materialize.toast('Could not Delete Job. Try later', 4000);
           }
         });
-        ref.child('application').child(jobId).remove(function(error){
-          if(error){
+        ref.child('application').child(jobId).remove(function(error) {
+          if (error) {
             Materialize.toast('Could not Delete Job. Try later', 4000);
           } else {
             Materialize.toast('Deleted Job', 4000);
@@ -109,28 +121,16 @@
         });
       };
 
-
-        $scope.goTo = function(page) {
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
-              $location.path('/chatRooms');
-            }
-            
+            $location.path('/createChat');
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
-              $location.path('/jobs');
-            }
+            $location.path('/posting');
             break;
           case 'people':
             $location.path('/people');
