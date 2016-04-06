@@ -31,11 +31,11 @@ Post Meeting Action Items :
 
   |                      Action                      |                       Assigned To                |  Deadline  |              
   --------------------------------------------------------------------------------------------------------------------
-  | Risk Monitoring, Mitigation and Management Plan  |                      Jay,Viraj                   | 28/03/2016 |
-  |         Configuration Management Plan            |                       Sheetal                    | 28/03/2016 |
-  |             Quality Assurance Plan               |                     Dhwanil                      | 28/03/2016 |
-  |               Learn about node.js                |                      Everyone                    | 28/03/2016 |              
-  |               Learn about HTML                   | Samriddhi,Dhwanil,Jay,Viraj,Malav,Sakshi,Sheetal | 28/02/2016 |                
+  | Risk Monitoring, Mitigation and Management Plan  |                      Jay,Viraj                   | 28/03/2016 |                
+  |         Configuration Management Plan            |                       Sheetal                    | 28/03/2016 |                
+  |             Quality Assurance Plan               |                     Dhwanil                      | 28/03/2016 |               
+  |               Learn about node.js                |                      Everyone                    | 28/03/2016 |                
+  |               Learn about HTML                   | Samriddhi,Dhwanil,Jay,Viraj,Malav,Sakshi,Sheetal | 28/02/2016 |                 
   |           Make the meeting log on github         |                    Chaudhari Jay                 | 20/02/2016 |                  
   
 Decision Made :
@@ -43,5 +43,5 @@ Decision Made :
 Learn how github and node.js work in Ubuntu. 
 
 Next meeting:
-
+-------------
 28-03-2016
