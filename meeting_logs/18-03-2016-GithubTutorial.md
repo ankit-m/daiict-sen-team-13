@@ -3,7 +3,7 @@ Meeting 18 : GithubTutorial
 
 Date : 18th March 2016                        
 Time : Scheduled - 6:00 P.M.                                    
-                   Started   - 6:00 P.M.                                          
+       Started   - 6:00 P.M.                                          
 Venue : Cep Ground floor                            
 Recorded By : Chaudhari Jay (201301073)                         
 
@@ -14,7 +14,7 @@ how we are going to work on coding phase and github.
 
 Brief Description about the meeting :
 ------------------------------------
-First we discussed about Project Plan Documents.
+First we discussed about Project Plan Documents.                                          
 1. Risk Monitoring, Mitigation and Management Plan                                                                                
 2. Configuration Management Plan                                                                    
 3. Quality Assurance Plan                                                                            
