@@ -93,6 +93,11 @@ angular
         controller: 'PeopleCtrl',
         controllerAs: 'people'
       })
+      .when('/viewProfile', {
+        templateUrl: 'views/viewprofile.html',
+        controller: 'ViewprofileCtrl',
+        controllerAs: 'viewProfile'
+      })
       .otherwise({
         redirectTo: '/'
       });

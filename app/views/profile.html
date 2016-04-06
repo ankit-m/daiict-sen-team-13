@@ -59,6 +59,16 @@
         <label class="active" for="about">About</label>
       </div>
     </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input ng-model="location" ng-blur="profile.updateProfile('location')" id="location" type="text">
+        <label class="active" for="location">Location</label>
+      </div>
+      <div class="input-field col s6">
+        <input ng-model="contact" ng-blur="profile.updateProfile('contact')" id="contact" type="text">
+        <label class="active" for="contact">Contact</label>
+      </div>
+    </div>
     <div class="row" style="padding: 0 10.5px 0 10.5px">
       <h6 class="grey-text">Areas of Interest</h6>
       <ul class="collection">

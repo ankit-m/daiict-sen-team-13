@@ -117,6 +117,28 @@
               }
             });
             break;
+          case 'location':
+            ref.child('profile').child(profileKey).update({
+              location: $scope.location
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not update' + type, 4000);
+              } else {
+                Materialize.toast('Updated ' + type, 4000);
+              }
+            });
+            break;
+          case 'contact':
+            ref.child('profile').child(profileKey).update({
+              contact: $scope.contact
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not update' + type, 4000);
+              } else {
+                Materialize.toast('Updated ' + type, 4000);
+              }
+            });
+            break;
           default:
 
         }

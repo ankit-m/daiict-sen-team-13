@@ -72,54 +72,49 @@
           console.log("count is", count);
           console.log('https://sfip.firebaseio.com/chatRooms/' + key + '/members');
           if (count === 0) {
-
             console.log("oolalala");
             addMemberRef.push({
               "emailId": authData.password.email,
-              "kicked":0
+              "kicked": 0
             });
-           
+
           }
-        
+
           $timeout(function() {
             $scope.$apply();
           });
 
-        //addMemberRef.push(authData.password.email);
-        $location.path('/chat').search({
-          'roomId': key         
-        });
-
-
+          //addMemberRef.push(authData.password.email);
+          $location.path('/chat').search({
+            'roomId': key
+          });
 
         });
-        
+
       };
 
       $scope.logout = function() {
         ref.unauth();
         $location.path('/');
       };
-      
-       $scope.goTo = function(page) {
+
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
+            if (authData.password.email.charAt(4) === "1") {
+              $location.path('/createChat');
+            } else {
               $location.path('/chatRooms');
             }
-            
+
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
+            if (authData.password.email.charAt(4) === "1") {
+              $location.path('/posting');
+            } else {
               $location.path('/jobs');
             }
             break;
