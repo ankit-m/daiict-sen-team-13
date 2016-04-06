@@ -93,7 +93,8 @@
               profileData['/profile/' + profileKey] = {
                 email: $scope.email,
                 firstName: $scope.firstName,
-                lastName: $scope.lastName
+                lastName: $scope.lastName,
+                type: $scope.userType
               };
 
               console.log(profileData);
@@ -115,7 +116,6 @@
           });
         }
         console.log('signup return');
-        
       };
     }]);
 })();

@@ -11,6 +11,7 @@
     .controller('ProfileCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
+      var profileKey = '';
       var self = this;
 
       $scope.loading = true;
@@ -21,18 +22,25 @@
         $location.path('/');
       }
 
-      function getData(){
-        ref.child('postings').orderByChild('email').equalTo(authData.password.email).on('value', function(dataSnapshot) {
-          if(dataSnapshot.val() === null){
-            // resetValues();
-          } else {
-
+      function getData() {
+        ref.child('profile').orderByChild('email').equalTo(authData.password.email).on('value', function(dataSnapshot) {
+          console.log(dataSnapshot.val());
+          var temp = dataSnapshot.val();
+          for (var key in temp) {
+            $scope.firstName = temp[key].firstName;
+            $scope.lastName = temp[key].lastName;
+            $scope.type = temp[key].type;
+            $scope.institute = temp[key].institute;
+            $scope.about = temp[key].about;
+            $scope.interests = temp[key].interests;
+            $scope.publications = temp[key].publications;
+            profileKey = key;
+            break;
           }
-          $scope.loading = false;
           $timeout(function() {
             $scope.$apply();
           });
-          $scope.loading=false;
+          $scope.loading = false;
         }, function(err) {
           console.error(err);
         });
@@ -54,37 +62,65 @@
         $location.path('/');
       };
 
-
-         $scope.goTo = function(page) {
-        switch (page) {
-          case 'profile':
-            $location.path('/profile');
+      self.updateProfile = function(type) {
+        console.log('called', type);
+        switch (type) {
+          case 'institute':
+            ref.child('profile').child(profileKey).update({
+              institute: $scope.institute
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not update' + type, 4000);
+              } else {
+                Materialize.toast('Updated ' + type, 4000);
+              }
+            });
             break;
-          case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
-              $location.path('/chatRooms');
-            }
-            
+          case 'about':
+            ref.child('profile').child(profileKey).update({
+              about: $scope.about
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not update' + type, 4000);
+              } else {
+                Materialize.toast('Updated ' + type, 4000);
+              }
+            });
             break;
-          case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
-              $location.path('/jobs');
-            }
+          case 'interest':
+            ref.child('profile').child(profileKey).child('interests').push({
+              interest: $scope.interest
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not add' + type, 4000);
+              } else {
+                $scope.interest = '';
+                $timeout(function() {
+                  $scope.$apply();
+                });
+                Materialize.toast('Added ' + type, 4000);
+              }
+            });
             break;
-          case 'people':
-            $location.path('/people');
+          case 'publication':
+            ref.child('profile').child(profileKey).child('publications').push({
+              publication: $scope.publication
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not add' + type, 4000);
+              } else {
+                $scope.publication = '';
+                $timeout(function() {
+                  $scope.$apply();
+                });
+                Materialize.toast('Added ' + type, 4000);
+              }
+            });
             break;
           default:
-            $location.path('/');
+
         }
       };
-      
 
     }]);
 })();

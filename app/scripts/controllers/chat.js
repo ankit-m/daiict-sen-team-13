@@ -13,9 +13,10 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var key = $routeParams.roomId;
-
+      $scope.loading=true;
       $scope.chatHistory = [];
       $scope.members = [];
+      var clicked;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -49,21 +50,26 @@
       };
       $scope.initCollapsible();
 
-      var chatRoomMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
-
-      chatRoomMemberRef.on('value', function(dataSnapshot) {
-        $scope.members = dataSnapshot.val();
-        $timeout(function() {
-          $scope.$apply();
-        });
-      });
 
 
       var myChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/messages/");
       //console.log("get data called abcde");
       myChatRoomRef.on('value', function(dataSnapshot) {
-        console.log(dataSnapshot.val());
+        //console.log(dataSnapshot.val());
         $scope.chatHistory = dataSnapshot.val();
+        $scope.loading=false;
+        $timeout(function() {
+          $scope.$apply();
+        });
+
+      });
+
+
+
+      var chatRoomMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
+
+      chatRoomMemberRef.on('value', function(dataSnapshot) {
+        $scope.members = dataSnapshot.val();
         $timeout(function() {
           $scope.$apply();
         });
@@ -100,12 +106,45 @@
               "sender": authData.password.email,
               "text": $scope.messageInput
             });
+             $scope.messageInput = "";
             $timeout(function() {
               $scope.$apply();
             });
           }
         }
       };
+
+
+      $scope.leaveThisRoom=function(){
+
+        $location.path('/chatRooms');  
+      };
+
+      $scope.$on('$routeChangeStart', function(next, current) { 
+        
+
+        
+         var removeMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
+         removeMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
+        //console.log(authData.password.email);
+        console.log("Chutiyapa")
+
+         dataSnapshot.forEach(function(data) {
+           // console.log(data.key());
+            removeMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/"+data.key()+"/");
+            
+        });
+
+
+
+        });
+        removeMemberRef.remove();
+
+
+
+       });
+
+
 
 
         $scope.goTo = function(page) {
