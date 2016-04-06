@@ -57,7 +57,7 @@
       });
 
       $scope.openChatRoom = function(key) {
-        var addMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + '/members/');
+        var addMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + '/members');
         var count = 0;
         addMemberRef.once('value', function(dataSnapshot) {
           dataSnapshot.forEach(function(memberSnapshot) {
@@ -70,20 +70,33 @@
           });
 
           console.log("count is", count);
+          console.log('https://sfip.firebaseio.com/chatRooms/' + key + '/members');
           if (count === 0) {
+
+            console.log("oolalala");
             addMemberRef.push({
-              "emailId": authData.password.email
+              "emailId": authData.password.email,
+              "kicked":0
             });
+           
           }
-        });
+        
+          $timeout(function() {
+            $scope.$apply();
+          });
 
         //addMemberRef.push(authData.password.email);
         $location.path('/chat').search({
-          'roomId': key
+          'roomId': key         
         });
+
+
+
+        });
+        
       };
 
-      self.logout = function() {
+      $scope.logout = function() {
         ref.unauth();
         $location.path('/');
       };
