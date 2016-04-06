@@ -18,7 +18,6 @@ First we discussed about Project Plan Documents.
 1. Risk Monitoring, Mitigation and Management Plan                                                                                
 2. Configuration Management Plan                                                                    
 3. Quality Assurance Plan                                                                            
-After that  
 And Later group member Ankit told how we are going to work in coding phase.
 He also gave us a preview of module of website that he already made.
 
