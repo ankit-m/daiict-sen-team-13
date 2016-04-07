@@ -6,7 +6,7 @@
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
-        <!-- <img class="circle responsive-img" src="http://lorempixel.com/200/200"> -->
+        <img class="circle responsive-img" src="http://lorempixel.com/200/200">
         <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
       </div>
       <li><a href="#!">Profile</a></li>
@@ -36,10 +36,10 @@
 <div class="row container" ng-hide="loading">
   <h5 class="light">Active Jobs</h5>
   <ul class="collection">
-    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item" ng-click="posting.viewJob(jobId)">
+    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item pointer" ng-click="posting.viewJob(jobId)">
       {{job.jobName}}
       <!-- Add confirmation dialog -->
-      <div class="secondary-content red-text" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">Delete</div>
+      <div class="secondary-content red-text pointer" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">Delete</div>
     </a>
   </ul>
   <a class="btn right" ng-click="posting.showAll()">Show all Jobs</a>
@@ -91,7 +91,7 @@
     </div>
   </form>
   <div class="right-align">
-    <div class="btn" ng-click="resetValues()">{{deadline | date}}</div>
+    <div class="btn" ng-click="resetValues()">Reset</div>
     <div class="btn" ng-click="posting.createJob()">Create</div>
   </div>
 </div>

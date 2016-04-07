@@ -14,7 +14,9 @@
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var self = this;
+
       $scope.loading = true;
+      // $location.search('jobId', null);
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);

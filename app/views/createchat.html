@@ -9,7 +9,7 @@
         <img class="circle responsive-img" src="http://lorempixel.com/200/200">
         <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
       </div>
-       <li><a ng-click="goTo('profile')">Profile</a></li>
+      <li><a ng-click="goTo('profile')">Profile</a></li>
       <li><a ng-click="goTo('people')">People</a></li>
       <li><a ng-click="goTo('chatRooms')">Chat Rooms</a></li>
       <li><a ng-click="goTo('jobs')">Jobs</a></li>
@@ -26,6 +26,10 @@
       <div class="input-field col s6">
         <input ng-model="chatName" id="chatName" type="text">
         <label for="chatName">Name of Chat Room</label>
+      </div>
+      <div class="input-field col s6">
+        <input ng-model="slots" id="slots" type="number">
+        <label for="slots">Number of Slots</label>
       </div>
     </div>
     <div class="row">

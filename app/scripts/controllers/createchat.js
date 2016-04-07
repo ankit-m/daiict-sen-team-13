@@ -44,7 +44,8 @@
           "createdBy": authData.password.email,
           "startTime": $scope.startTime,
           "description": $scope.chatDescription,
-          "active": true
+          "slots": $scope.slots,
+          "active": false
         }, function(error) {
           if (error) {
             Materialize.toast('Could not create ChatRoom. Please try again', 4000);

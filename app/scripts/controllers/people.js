@@ -15,6 +15,7 @@
       var self = this;
 
       $scope.jobs = {};
+      $scope.allUsers = {};
       $scope.loading = true;
 
       $scope.goTo = function(page) {
@@ -47,8 +48,8 @@
 
       function getData() {
         ref.child('profile').once('value', function(dataSnapshot) {
-          $scope.people = dataSnapshot.val();
-          console.log($scope.people);
+          $scope.allUsers = dataSnapshot.val();
+          console.log($scope.allUsers);
           $scope.loading = false;
           $timeout(function() {
             $scope.$apply();
@@ -62,8 +63,10 @@
       }
       getData();
 
-      self.viewProfile = function() {
-        console.log('view Profile');
+      self.viewProfile = function(email) {
+        $location.path('/viewProfile').search({
+          'profileId': email
+        });
       };
 
     }]);

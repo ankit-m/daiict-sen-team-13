@@ -36,9 +36,9 @@
   <br>
   <h5 class="light">People</h5>
   <ul class="collection">
-    <li class="collection-item" ng-repeat="person in people">
+    <li class="collection-item" ng-repeat="(key, person) in allUsers">
       <div>{{person.firstName}} {{person.lastName}}
-        <a ng-click="people.viewProfile()" class="secondary-content">View</a>
+        <a ng-click="people.viewProfile(person.email)" class="secondary-content pointer">View</a>
       </div>
     </li>
   </ul>
