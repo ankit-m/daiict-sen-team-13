@@ -109,7 +109,6 @@
         }
       };
 
-
       $scope.leaveThisRoom = function() {
         $location.path('/chatRooms');
       };

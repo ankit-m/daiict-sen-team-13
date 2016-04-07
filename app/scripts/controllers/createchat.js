@@ -38,24 +38,24 @@
       //@reviewer: Ankit
       self.createChatRoom = function() {
         console.log('createChatRoom called');
-
-        ref.child('chatRooms').push({
-          "chatRoomName": $scope.chatName,
-          "createdBy": authData.password.email,
-          "startTime": $scope.startTime,
-          "description": $scope.chatDescription,
-          "slots": $scope.slots,
-          "active": false
-        }, function(error) {
-          if (error) {
-            Materialize.toast('Could not create ChatRoom. Please try again', 4000);
-          } else {
-            Materialize.toast('Created ChatRoom', 2000);
-          }
-        });
-
-        console.log('createChatRoom return');
-        $location.path('/faculty');
+        console.log($scope.day);
+        // ref.child('chatRooms').push({
+        //   "chatRoomName": $scope.chatName,
+        //   "createdBy": authData.password.email,
+        //   "startTime": $scope.startTime,
+        //   "description": $scope.chatDescription,
+        //   "slots": $scope.slots,
+        //   "active": false
+        // }, function(error) {
+        //   if (error) {
+        //     Materialize.toast('Could not create ChatRoom. Please try again', 4000);
+        //   } else {
+        //     Materialize.toast('Created ChatRoom', 2000);
+        //   }
+        // });
+        //
+        // console.log('createChatRoom return');
+        // $location.path('/faculty');
       };
 
       $scope.goTo = function(page) {

@@ -18,7 +18,6 @@
       $scope.members = [];
       $scope.loading = true;
 
-
       $scope.jobs = {};
 
       $scope.initCollapsible = function() {
@@ -63,8 +62,13 @@
           }
         });
         if (chatRoom.slots > 0) {
-          //vaidate time
-          return true;
+          var currentDate = new Date();
+          var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
+          if (currentTime > chatRoom.startTime) {
+            return true;
+          } else {
+            return false;
+          }
         } else {
           Materialize.toast('Chat room full. Please try again later', 4000);
           return false;
@@ -84,7 +88,7 @@
             $location.path('/chat').search({
               'roomId': key
             });
-            $timeout(function(){
+            $timeout(function() {
               $scope.$apply();
             });
           }
