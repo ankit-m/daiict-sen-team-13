@@ -15,7 +15,7 @@
       var self = this;
 
       $scope.loading = true;
-
+      
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
