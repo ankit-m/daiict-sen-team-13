@@ -1,6 +1,9 @@
 (function() {
   'use strict';
-  //TODO: date UTC format
+  //TODO: sanitize code
+      //  make UI production ready
+      //  remove all refs and add child()
+      //  structure the code and reduce complexity
   /**
    * @ngdoc function
    * @name daiictSenTeam13App.controller:ChatCtrl
@@ -13,7 +16,7 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var key = $routeParams.roomId;
-      $scope.loading=true;
+      $scope.loading = true;
       $scope.chatHistory = [];
       $scope.members = [];
       var clicked;
@@ -50,24 +53,19 @@
       };
       $scope.initCollapsible();
 
-
-
       var myChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/messages/");
       //console.log("get data called abcde");
       myChatRoomRef.on('value', function(dataSnapshot) {
         //console.log(dataSnapshot.val());
         $scope.chatHistory = dataSnapshot.val();
-        $scope.loading=false;
+        $scope.loading = false;
         $timeout(function() {
           $scope.$apply();
         });
 
       });
 
-
-
       var chatRoomMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
-
       chatRoomMemberRef.on('value', function(dataSnapshot) {
         $scope.members = dataSnapshot.val();
         $timeout(function() {
@@ -82,10 +80,8 @@
           console.log("Enterrrrrrrrrrrrr");
           var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
           tempChatRoomRef.child("messages").push({
-
             "sender": authData.password.email,
             "text": $scope.messageInput
-
           });
           $scope.messageInput = "";
           $timeout(function() {
@@ -100,13 +96,12 @@
           if ($scope.messageInput === "") {
             alert("Enter some message to send before pressing enter.");
           } else {
-            console.log("Enterrrrrrrrrrrrr");
             var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
             tempChatRoomRef.child("messages").push({
               "sender": authData.password.email,
               "text": $scope.messageInput
             });
-             $scope.messageInput = "";
+            $scope.messageInput = "";
             $timeout(function() {
               $scope.$apply();
             });
@@ -115,57 +110,40 @@
       };
 
 
-      $scope.leaveThisRoom=function(){
-
-        $location.path('/chatRooms');  
+      $scope.leaveThisRoom = function() {
+        $location.path('/chatRooms');
       };
 
-      $scope.$on('$routeChangeStart', function(next, current) { 
-        
-
-        
-         var removeMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
-         removeMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
-        //console.log(authData.password.email);
-        console.log("Chutiyapa")
-
-         dataSnapshot.forEach(function(data) {
-           // console.log(data.key());
-            removeMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/"+data.key()+"/");
-            
+      $scope.$on('$routeChangeStart', function() {
+        var removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
+        removeMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
+          dataSnapshot.forEach(function(data) {
+            removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
+            removeMemberRef.remove();
+            //TODO increment counter
+          });
         });
+      });
 
+      //TODO if closes window check
 
-
-        });
-        removeMemberRef.remove();
-
-
-
-       });
-
-
-
-
-        $scope.goTo = function(page) {
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
+            if (authData.password.email.charAt(4) === "1") {
+              $location.path('/createChat');
+            } else {
               $location.path('/chatRooms');
             }
-            
+
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
+            if (authData.password.email.charAt(4) === "1") {
+              $location.path('/posting');
+            } else {
               $location.path('/jobs');
             }
             break;
@@ -176,7 +154,7 @@
             $location.path('/');
         }
       };
-      
+
 
     }]);
 })();

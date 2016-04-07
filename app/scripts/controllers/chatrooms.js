@@ -44,7 +44,6 @@
 
       ref.child('chatRooms').once('value', function(dataSnapshot) {
         $scope.loading = true;
-        console.log("gotta say hello");
         $scope.chatRooms = dataSnapshot.val();
         console.log($scope.chatRooms);
         $timeout(function() {
@@ -56,39 +55,39 @@
         console.error(err);
       });
 
-      $scope.openChatRoom = function(key) {
-        var addMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + '/members');
-        var count = 0;
-        addMemberRef.once('value', function(dataSnapshot) {
-          dataSnapshot.forEach(function(memberSnapshot) {
-            console.log("redirecting one", memberSnapshot.child("emailId").val());
-            if (memberSnapshot.child("emailId").val() === authData.password.email) {
-              //console.log(profileSnapshot.child("firstName").val());
-              count = count + 1;
-            }
-            //console.log(email);
-          });
+      function validate(data, chatRoom) {
+        data.forEach(function(member) {
+          console.log("redirecting one", member.child("emailId").val());
+          if (member.child("emailId").val() === authData.password.email) {
+            return false;
+          }
+        });
+        if (chatRoom.slots > 0) {
+          //vaidate time
+          return true;
+        } else {
+          Materialize.toast('Chat room full. Please try again later', 4000);
+          return false;
+        }
+      }
 
-          console.log("count is", count);
-          console.log('https://sfip.firebaseio.com/chatRooms/' + key + '/members');
-          if (count === 0) {
-            console.log("oolalala");
-            addMemberRef.push({
+      $scope.openChatRoom = function(key, chatRoom) {
+        ref.child('chatRooms').child(key).child('members').once('value', function(data) {
+          if (validate(data, chatRoom)) {
+            ref.child('chatRooms').child(key).child('members').push({
               "emailId": authData.password.email,
               "kicked": 0
             });
-
+            ref.child('chatRooms').child(key).update({
+              'slots': chatRoom.slots - 1
+            }); // add  error check
+            $location.path('/chat').search({
+              'roomId': key
+            });
+            $timeout(function(){
+              $scope.$apply();
+            });
           }
-
-          $timeout(function() {
-            $scope.$apply();
-          });
-
-          //addMemberRef.push(authData.password.email);
-          $location.path('/chat').search({
-            'roomId': key
-          });
-
         });
 
       };
