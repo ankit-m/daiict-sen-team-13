@@ -5,6 +5,7 @@
     "autoprefixer-core": "^5.2.1",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
+    "grunt-build-control": "^0.6.3",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compass": "^1.0.0",
@@ -41,6 +42,7 @@
   },
   "dependencies": {
     "autoprefixer-core": "^5.2.1",
+    "express": "^4.13.4",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.9",
     "grunt-concurrent": "^1.0.1",
@@ -49,8 +51,8 @@
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-connect": "^0.9.0",
     "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-htmlmin": "^0.4.0",
     "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-htmlmin": "^0.4.0",
     "grunt-contrib-imagemin": "^1.0.0",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-contrib-uglify": "^0.7.0",
@@ -78,7 +80,7 @@
   "keywords": [
     "sen"
   ],
-  "author": "rajiv",
+  "author": "ankit",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ankit-m/daiict-sen-team-13/issues"
