@@ -8,7 +8,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout,$rootScope) {
+    .controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var profileKey = '';
@@ -34,6 +34,8 @@
             $scope.about = temp[key].about;
             $scope.interests = temp[key].interests;
             $scope.publications = temp[key].publications;
+            $scope.location = temp[key].location;
+            $scope.contact = temp[key].contact;
             profileKey = key;
             break;
           }
@@ -144,6 +146,15 @@
         }
       };
 
+      self.removeItem = function(key, type) {
+        ref.child('profile').child(profileKey).child(type).child(key).remove();
+      };
+
+      self.viewHomePage=function(){
+        if($rootScope.userType===true)
+        $location.path('/faculty');
+        else $location.path('/student');
+      };
 
       $scope.goTo = function(page) {
         switch (page) {
@@ -151,7 +162,7 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType===true) {
+            if ($rootScope.userType === true) {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
@@ -159,7 +170,7 @@
 
             break;
           case 'jobs':
-            if ($rootScope.userType===true) {
+            if ($rootScope.userType === true) {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -172,7 +183,6 @@
             $location.path('/');
         }
       };
-
 
     }]);
 })();

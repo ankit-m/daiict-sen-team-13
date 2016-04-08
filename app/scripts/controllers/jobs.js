@@ -9,12 +9,14 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('JobsCtrl', ['$scope', '$location', '$rootScope',function($scope, $location,$rootScope) {
+    .controller('JobsCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
+      var self = this;
+
       $scope.loading = true;
-      $scope.jobs = {};
+      $scope.jobPostings = {};
 
       $scope.initCollapsible = function() {
         $(document).ready(function() {
@@ -32,8 +34,8 @@
       }
 
       postingRef.once('value', function(dataSnapshot) {
-        $scope.jobs = dataSnapshot.val();
-        console.log($scope.jobs);
+        $scope.jobPostings = dataSnapshot.val();
+        console.log($scope.jobPostings);
         $scope.loading = false;
         $scope.$apply();
 
@@ -41,22 +43,20 @@
         console.error(err);
       });
 
-      
       $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType===true) {
+            if ($rootScope.userType === true) {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
-
             break;
           case 'jobs':
-            if ($rootScope.userType===true) {
+            if ($rootScope.userType === true) {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -70,12 +70,17 @@
         }
       };
 
-
-      $scope.logout = function() {
+      self.logout = function() {
         console.log('logout called');
         ref.unauth();
         console.log('logged out');
         $location.path('/');
+      };
+
+      self.applyForJob = function(jobId) {
+        $location.path('/application').search({
+          'jobId': jobId
+        });
       };
 
     }]);

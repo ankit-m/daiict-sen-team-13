@@ -2,7 +2,7 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-click="logout()">Logout</a></li>
+      <li><a ng-click="jobs.logout()">Logout</a></li>
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
@@ -36,12 +36,12 @@
   <br>
   <h5 class="light">All Job Openings</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, job) in jobs">
+    <li ng-repeat="(key, job) in jobPostings">
       <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
         <p>{{job.description}}</p>
         <div class="right-align" style="padding: 16px">
-          <a class="btn" ng-if="userType=false">Apply</a>
+          <a class="btn" ng-click="jobs.applyForJob(key)" ng-if="userType=false">Apply</a>
         </div>
       </div>
     </li>

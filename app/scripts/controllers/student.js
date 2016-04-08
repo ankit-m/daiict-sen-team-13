@@ -32,9 +32,6 @@
         ref.child('postings').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.jobs = dataSnapshot.val();
           console.log($scope.jobs);
-          $timeout(function() {
-            $scope.$apply();
-          });
         }, function(err) {
           console.error(err);
         });
@@ -42,6 +39,13 @@
         ref.child('chatRooms').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.chatRooms = dataSnapshot.val();
           console.log($scope.chatRooms);
+        }, function(err) {
+          console.error(err);
+        });
+
+        ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
+          $scope.applications = dataSnapshot.val();
+          console.log($scope.applications);
           $scope.loading = false;
           $timeout(function() {
             $scope.$apply();

@@ -22,14 +22,12 @@
 <div class="container">
   <h5 class="light">Applications</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, application) in applications">
+    <li ng-repeat="(key, application) in applications" ng-show="!application.status">
       <div class="collapsible-header">{{application.contactEmail}}
-        <div class="secondary-content" >
-          <a class="green-text" ng-click="viewJob.acceptApplication(key); $event.stopPropagation()">Accept</a>
-          &nbsp;&nbsp;&nbsp;
+        <div class="secondary-content">
+          <a class="green-text" ng-click="viewJob.acceptApplication(key); $event.stopPropagation()">Accept</a> &nbsp;&nbsp;&nbsp;
           <a class="red-text" ng-click="viewJob.rejectApplication(key); $event.stopPropagation()">Reject</a>
         </div>
-
       </div>
       <div class="collapsible-body">
         <p>{{application.letter}}</p>
@@ -40,8 +38,26 @@
 
   <br>
   <h5 class="light">Accepted</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="(key, application) in applications" ng-show="application.status === 'accept'">
+      <div class="collapsible-header">{{application.contactEmail}}</div>
+      <div class="collapsible-body">
+        <p>{{application.letter}}</p>
+        <p style="padding-top:0"><a href="">Attachment</a></p>
+      </div>
+    </li>
+  </ul>
 
   <br>
   <h5 class="light">Rejected</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="(key, application) in applications" ng-show="application.status === 'reject'">
+      <div class="collapsible-header">{{application.contactEmail}}</div>
+      <div class="collapsible-body">
+        <p>{{application.letter}}</p>
+        <p style="padding-top:0"><a href="">Attachment</a></p>
+      </div>
+    </li>
+  </ul>
 
 </div>

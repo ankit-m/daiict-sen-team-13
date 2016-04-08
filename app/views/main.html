@@ -22,14 +22,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-
     margin: auto;">
     <form>
       <div class="row margin">
         <div class="input-field col s12">
           <i class="mdi-social-person-outline prefix"></i>
           <input ng-model="email" id="email" type="email" class="validate">
-          <label class="center-align">Email</label>
+          <label class="center-align" data-error="Invalid">Email</label>
         </div>
       </div>
       <div class="row margin">
@@ -52,10 +51,10 @@
       </div>
       <div class="row">
         <div class="input-field col s6 m6 l6">
-          <p class="margin medium-small"><a ng-click="goToRegister()">Register</a></p>
+          <p class="margin medium-small pointer"><a ng-click="goToRegister()">Register</a></p>
         </div>
         <div class="input-field col s6 m6 l6">
-          <p class="margin right-align medium-small"><a href="forgot-password.html">Forgot password?</a></p>
+          <p class="margin right-align medium-small pointer"><a href="forgot-password.html">Forgot password?</a></p>
         </div>
       </div>
 
