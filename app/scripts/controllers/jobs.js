@@ -13,8 +13,10 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
+      var self = this;
+
       $scope.loading = true;
-      $scope.jobs = {};
+      $scope.jobPostings = {};
 
       $scope.initCollapsible = function() {
         $(document).ready(function() {
@@ -32,8 +34,8 @@
       }
 
       postingRef.once('value', function(dataSnapshot) {
-        $scope.jobs = dataSnapshot.val();
-        console.log($scope.jobs);
+        $scope.jobPostings = dataSnapshot.val();
+        console.log($scope.jobPostings);
         $scope.loading = false;
         $scope.$apply();
 
@@ -52,7 +54,6 @@
             } else {
               $location.path('/chatRooms');
             }
-
             break;
           case 'jobs':
             if (authData.password.email.charAt(4) === "1") {
@@ -69,11 +70,17 @@
         }
       };
 
-      $scope.logout = function() {
+      self.logout = function() {
         console.log('logout called');
         ref.unauth();
         console.log('logged out');
         $location.path('/');
+      };
+
+      self.applyForJob = function(jobId) {
+        $location.path('/application').search({
+          'jobId': jobId
+        });
       };
 
     }]);
