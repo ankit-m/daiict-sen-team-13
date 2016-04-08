@@ -20,6 +20,9 @@
       $scope.chatHistory = [];
       $scope.members = [];
       var clicked;
+      $scope.kicked=false;
+      $scope.myKicked=0;
+      $scope.leaveRoom=false;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -94,6 +97,9 @@
         });
       });
 
+
+      
+
       $scope.sentMessage = function() {
         if ($scope.messageInput === "") {
           alert("Enter some message to send before pressing enter.");
@@ -132,24 +138,55 @@
         };
 
       $scope.leaveThisRoom=function(){
+        $scope.leaveRoom=true;
+
          var removeMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
          removeMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
+          console.log("Trying to leave room",$scope.leaveRoom);
         //console.log(authData.password.email);
           console.log("Chutiyapa")
           dataSnapshot.forEach(function(data) {
            // console.log(data.key());
             removeMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/"+data.key()+"/"); 
-          });
+            if($scope.leaveRoom===true){
+              removeMemberRef.remove();
+              tempChatRoomRef.update({"slots":$scope.slots+1});
+              console.log("yooooooo");
+              $scope.leaveRoom=false;
+              $location.path('/chatRooms');
+            }
+
+         });
         });
-        removeMemberRef.remove();
-        tempChatRoomRef.update({"slots":$scope.slots+1});
-        console.log("yooooooo");
-        $location.path('/chatRooms');  
+
+          
       };
    
      $window.onbeforeunload =  function(){
        $scope.leaveThisRoom();
      };
+
+     var myMemberRef= new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
+         myMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
+        //console.log(authData.password.email);
+          console.log("Chutiyapa")
+          dataSnapshot.forEach(function(data) {
+           // console.log(data.key());
+            myMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/"+data.key()+"/");          
+              console.log("HEY BRUH");
+              console.log("kicked so many times...",data.val().kicked);
+               myMemberRef.on('child_changed',function(dataSnapshot){
+               console.log("change aave");
+               $location.path('/chatRooms');
+                        
+          });
+        });
+
+
+
+         });
+
+
 
      $scope.kickMember=function(email){
          var removeMemberRef=new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
@@ -166,8 +203,9 @@
         removeMemberRef.update({"kicked":$scope.kicked+1});
         tempChatRoomRef.update({"slots":$scope.slots+1});
         console.log("yooooooo");
-        $location.path('/chatRooms');
+        //$location.path('/chatRooms');
      };
+
 
      $scope.viewMemberProfile=function(email){ 
       console.log("some random text");

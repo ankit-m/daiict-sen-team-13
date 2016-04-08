@@ -85,21 +85,22 @@
             }
             //console.log(email);
           });
-
+            console.log("COUNT IS ",count);
             if(count===0){
+            console.log("Gonna add",authData.password.email);
             ref.child('chatRooms').child(key).child('members').push({
               "emailId": authData.password.email,
               "kicked": 0
             });
-            ref.child('chatRooms').child(key).update({
-              'slots': chatRoom.slots - 1
-            }); // add  error check
           }
-            if($scope.kicked>3){
+
+            if($scope.kicked>=3){
                 
             }
             else {
-
+              ref.child('chatRooms').child(key).update({
+              'slots': chatRoom.slots - 1
+              }); // add  error check
               $location.path('/chat').search({
               'roomId': key
             });
