@@ -23,6 +23,8 @@
       $scope.kicked = false;
       $scope.myKicked = 0;
       $scope.leaveRoom = false;
+      $scope.createdBy = "";
+      $scope.kickMyself = false;
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -56,6 +58,9 @@
       };
       $scope.initCollapsible();
 
+      tempChatRoomRef.child("createdBy").on("value", function(snapshot) {
+        $scope.createdBy = snapshot.val();
+      });
       tempChatRoomRef.child("slots").on('value', function(snapshot) {
         console.log("Slots");
         console.log(snapshot.val());
@@ -91,13 +96,18 @@
 
       chatRoomMemberRef.on('value', function(dataSnapshot) {
         $scope.members = dataSnapshot.val();
+        var member = null;
+        for (var member in $scope.members) {
+          if (authData.password.email === $scope.createdBy && authData.password.email !== $scope.members[member].emailId) {
+            $scope.members[member].showKick = true;
+          } else {
+            $scope.members[member].showKick = false;
+          }
+        }
         $timeout(function() {
           $scope.$apply();
         });
       });
-
-
-
 
       $scope.sentMessage = function() {
         if ($scope.messageInput === "") {
@@ -136,6 +146,7 @@
 
       $scope.leaveThisRoom = function() {
         $scope.leaveRoom = true;
+
         var removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
         removeMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
           console.log("Trying to leave room", $scope.leaveRoom);
@@ -145,18 +156,20 @@
             // console.log(data.key());
             removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
             if ($scope.leaveRoom === true) {
-              removeMemberRef.remove();
-              tempChatRoomRef.update({
-                "slots": $scope.slots + 1
-              });
-              console.log("yooooooo");
-              $scope.leaveRoom = false;
-              $location.path('/chatRooms');
+
             }
 
           });
-        });
 
+
+        });
+        removeMemberRef.remove();
+        tempChatRoomRef.update({
+          "slots": $scope.slots + 1
+        });
+        console.log("yooooooo");
+        $scope.leaveRoom = false;
+        $location.path('/chatRooms');
 
       };
 
@@ -179,20 +192,7 @@
 
           });
         });
-
-        $window.onbeforeunload = function() {
-          $scope.leaveThisRoom();
-        };
-
-        $scope.viewMemberProfile = function(email) {
-          console.log("some random text");
-          $location.path('/viewProfile').search({
-            'profileId': email
-          });
-        }
       });
-
-
 
       $scope.kickMember = function(email) {
         var removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
@@ -216,13 +216,12 @@
         //$location.path('/chatRooms');
       };
 
-
       $scope.viewMemberProfile = function(email) {
         console.log("some random text");
         $location.path('/viewProfile').search({
           'profileId': email
         });
-      };
+      }
 
       $scope.goTo = function(page) {
         switch (page) {
@@ -235,6 +234,7 @@
             } else {
               $location.path('/chatRooms');
             }
+
             break;
           case 'jobs':
             if ($rootScope.userType === true) {
@@ -250,7 +250,5 @@
             $location.path('/');
         }
       };
-
-
     }]);
 })();
