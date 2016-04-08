@@ -42,7 +42,7 @@ module.exports = function(grunt) {
       },
       heroku: {
         options: {
-          remote: 'git@heroku.com:shrouded-bayou-89634.git',
+          remote: 'git@heroku.com:sfip.git',
           branch: 'master',
         }
       }
