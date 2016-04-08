@@ -8,7 +8,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('StudentCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
+    .controller('StudentCtrl', ['$scope', '$location', '$timeout','$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
@@ -21,6 +21,10 @@
         console.log("Authenticated user with uid:", authData);
       } else {
         $location.path('/');
+      }
+
+        if($rootScope.userType===true){
+        $location.path('/faculty');
       }
 
       function getData() {
@@ -63,25 +67,24 @@
       };
       $scope.initMaterial();
 
-       $scope.goTo = function(page) {
+       
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/createChat');
+            } else {
               $location.path('/chatRooms');
             }
 
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/posting');
+            } else {
               $location.path('/jobs');
             }
             break;
@@ -92,6 +95,7 @@
             $location.path('/');
         }
       };
+
 
       self.logout = function() {
         ref.unauth();

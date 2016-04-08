@@ -9,7 +9,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ChatroomsCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
+    .controller('ChatroomsCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
@@ -19,7 +19,7 @@
       $scope.loading = true;
 
       $scope.jobs = {};
-
+      console.log("hey soul sister", $rootScope.userType);
       $scope.initCollapsible = function() {
         $(document).ready(function() {
           $('.collapsible').collapsible({
@@ -74,7 +74,7 @@
             weekday[4] = "Thursday";
             weekday[5] = "Friday";
             weekday[6] = "Saturday";
-            if(weekday[today.getDay()] === chatRoom.days){
+            if (weekday[today.getDay()] === chatRoom.days) {
               return true;
             } else {
               Materialize.toast('Wrong Day. Chat room not open.', 4000);
@@ -108,7 +108,6 @@
             });
           }
         });
-
       };
 
       $scope.logout = function() {
@@ -122,7 +121,7 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if (authData.password.email.charAt(4) === "1") {
+            if ($rootScope.userType === true) {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
@@ -130,7 +129,7 @@
 
             break;
           case 'jobs':
-            if (authData.password.email.charAt(4) === "1") {
+            if ($rootScope.userType === true) {
               $location.path('/posting');
             } else {
               $location.path('/jobs');

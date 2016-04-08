@@ -41,7 +41,7 @@
       <div class="collapsible-body">
         <p>{{job.description}}</p>
         <div class="right-align" style="padding: 16px">
-          <a class="btn" ng-click="jobs.applyForJob(key)">Apply</a>
+          <a class="btn" ng-click="jobs.applyForJob(key)" ng-if="userType=false">Apply</a>
         </div>
       </div>
     </li>

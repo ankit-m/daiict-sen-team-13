@@ -9,7 +9,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('PostingCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
+    .controller('PostingCtrl', ['$scope', '$location', '$timeout','$rootScope', function($scope, $location, $timeout,$rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
@@ -22,6 +22,10 @@
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
+      }
+
+        if($rootScope.userType===false){
+        $location.path('/student');
       }
 
       $scope.initMaterial = function() {
@@ -140,6 +144,11 @@
           default:
             $location.path('/');
         }
+      };
+
+      $scope.logout = function() {
+        ref.unauth();
+        $location.path('/');
       };
 
     }]);

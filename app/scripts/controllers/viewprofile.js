@@ -8,14 +8,14 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ViewprofileCtrl', ['$scope', '$location', '$timeout', '$routeParams', function($scope, $location, $timeout, $routeParams) {
+    .controller('ViewprofileCtrl', ['$scope', '$location', '$timeout', '$routeParams', '$rootScope', function($scope, $location, $timeout, $routeParams, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var email = $routeParams.profileId;
       var self = this;
 
       $scope.loading = true;
-      
+
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
@@ -60,5 +60,32 @@
         $location.path('/');
       };
 
+      $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if ($rootScope.userType === true) {
+              $location.path('/createChat');
+            } else {
+              $location.path('/chatRooms');
+            }
+
+            break;
+          case 'jobs':
+            if ($rootScope.userType === true) {
+              $location.path('/posting');
+            } else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
     }]);
 })();

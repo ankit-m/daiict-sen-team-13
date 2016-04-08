@@ -9,7 +9,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('PeopleCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
+    .controller('PeopleCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
@@ -24,7 +24,7 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if (authData.password.email.charAt(4) === "1") {
+            if ($rootScope.userType === true) {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
@@ -32,7 +32,7 @@
 
             break;
           case 'jobs':
-            if (authData.password.email.charAt(4) === "1") {
+            if ($rootScope.userType === true) {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -68,6 +68,12 @@
           'profileId': email
         });
       };
+
+      self.logout = function() {
+        ref.unauth();
+        $location.path('/');
+      };
+
 
     }]);
 })();

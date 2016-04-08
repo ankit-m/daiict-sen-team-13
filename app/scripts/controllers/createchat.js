@@ -8,15 +8,19 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('CreatechatCtrl', ['$scope', '$location', function($scope, $location) {
+    .controller('CreatechatCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
-
+      console.log("IN a different world", $rootScope.userType);
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
+
       } else {
         $location.path('/');
+      }
+      if ($rootScope.userType === false) {
+        $location.path('/student');
       }
 
       $scope.initMaterial = function() {

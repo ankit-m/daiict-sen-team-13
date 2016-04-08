@@ -8,7 +8,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ProfileCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
+    .controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var profileKey = '';
@@ -149,5 +149,34 @@
       self.removeItem = function(key, type) {
         ref.child('profile').child(profileKey).child(type).child(key).remove();
       };
+
+      $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if ($rootScope.userType === true) {
+              $location.path('/createChat');
+            } else {
+              $location.path('/chatRooms');
+            }
+
+            break;
+          case 'jobs':
+            if ($rootScope.userType === true) {
+              $location.path('/posting');
+            } else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+
     }]);
 })();
