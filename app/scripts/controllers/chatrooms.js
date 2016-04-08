@@ -65,8 +65,23 @@
           var currentDate = new Date();
           var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
           if (currentTime > chatRoom.startTime) {
-            return true;
+            var today = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            if(weekday[today.getDay()] === chatRoom.days){
+              return true;
+            } else {
+              Materialize.toast('Wrong Day. Chat room not open.', 4000);
+              return false;
+            }
           } else {
+            Materialize.toast('Chat room not open yet. Try again later', 4000);
             return false;
           }
         } else {
