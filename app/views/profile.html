@@ -72,8 +72,8 @@
     <div class="row" style="padding: 0 10.5px 0 10.5px">
       <h6 class="grey-text">Areas of Interest</h6>
       <ul class="collection">
-        <li ng-repeat="item in interests" class="collection-item">{{item.interest}}
-          <a href="#" class="secondary-content">Remove</a>
+        <li ng-repeat="(key, item) in interests" class="collection-item">{{item.interest}}
+          <a class="secondary-content pointer" ng-click="profile.removeItem(key, 'interests')">Remove</a>
         </li>
       </ul>
       <div class="input-field col s12">
@@ -85,8 +85,8 @@
     <div class="row" style="padding: 0 10.5px 0 10.5px">
       <h6 class="grey-text">Publications</h6>
       <ul class="collection">
-        <li ng-repeat="item in publications" class="collection-item">{{item.publication}}
-          <a href="#" class="secondary-content">Remove</a>
+        <li ng-repeat="(key, item) in publications" class="collection-item">{{item.publication}}
+          <a class="pointer secondary-content" ng-click="profile.removeItem(key, 'publications')">Remove</a>
         </li>
       </ul>
       <div class="input-field col s12">

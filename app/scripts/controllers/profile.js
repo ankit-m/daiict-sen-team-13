@@ -34,6 +34,8 @@
             $scope.about = temp[key].about;
             $scope.interests = temp[key].interests;
             $scope.publications = temp[key].publications;
+            $scope.location = temp[key].location;
+            $scope.contact = temp[key].contact;
             profileKey = key;
             break;
           }
@@ -144,5 +146,8 @@
         }
       };
 
+      self.removeItem = function(key, type) {
+        ref.child('profile').child(profileKey).child(type).child(key).remove();
+      };
     }]);
 })();
