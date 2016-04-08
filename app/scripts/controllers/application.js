@@ -9,17 +9,17 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', '$window', '$rootScope',
-      function($scope, $location, $routeParams, $window, $rootScope) {
+    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', '$window', '$rootScope', '$timeout',
+      function($scope, $location, $routeParams, $window, $rootScope, $timeout) {
         var ref = new Firebase('https://sfip.firebaseio.com/');
-        var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
         var authData = ref.getAuth();
         var jobId = $routeParams.jobId;
+        var jobName = $routeParams.jobName;
         var job = {};
 
         $scope.loading = true;
 
-        if (authData && jobId) {
+        if (authData && jobId && jobName) {
           console.log("Authenticated user with uid:", authData.uid);
         } else {
           $location.path('/');
@@ -48,7 +48,7 @@
         };
 
         function getData() {
-          postingRef.orderByKey().equalTo(jobId).once('value', function(dataSnapshot) {
+          ref.child('postings').orderByKey().equalTo(jobId).once('value', function(dataSnapshot) {
             job = dataSnapshot.val();
             console.log(job);
             for (var index in job) {
@@ -56,7 +56,9 @@
               break;
             }
             $scope.loading = false;
-            $scope.$apply();
+            $timeout(function() {
+              $scope.$apply();
+            });
             $scope.loading = false;
           }, function(err) {
             console.error(err);
@@ -66,28 +68,30 @@
 
         $scope.submitApplication = function() {
           console.log('submitApplication called');
-          console.log(jobId);
-          var applicationRef = new Firebase('https://sfip.firebaseio.com/applications');
-          applicationRef.push({ //add server validation
+          ref.child('applications').push({ //add server validation
             "appliedBy": authData.password.email,
             "contactEmail": $scope.contactEmail,
             "letter": $scope.letter,
             "attachment": $scope.attachment,
             "submittedOn": Firebase.ServerValue.TIMESTAMP,
-            "jobId": jobId
+            "jobId": jobId,
+            "jobName": jobName
           }, function(error) {
             if (error) {
               Materialize.toast('Server error. Try again later', 4000);
               $window.history.back();
-              $scope.$apply();
+              $timeout(function() {
+                $scope.$apply();
+              });
             } else {
               Materialize.toast('Application Submitted', 4000);
               $window.history.back();
-              $scope.$apply();
+              $timeout(function() {
+                $scope.$apply();
+              });
             }
           });
         };
-
 
         $scope.goTo = function(page) {
           switch (page) {
@@ -100,7 +104,6 @@
               } else {
                 $location.path('/chatRooms');
               }
-
               break;
             case 'jobs':
               if ($rootScope.userType === true) {

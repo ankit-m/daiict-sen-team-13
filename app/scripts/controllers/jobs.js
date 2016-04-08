@@ -77,9 +77,10 @@
         $location.path('/');
       };
 
-      self.applyForJob = function(jobId) {
+      self.applyForJob = function(jobId, jobName) {
         $location.path('/application').search({
-          'jobId': jobId
+          'jobId': jobId,
+          'jobName':jobName
         });
       };
 

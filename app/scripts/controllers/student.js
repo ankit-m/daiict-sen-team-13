@@ -8,7 +8,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('StudentCtrl', ['$scope', '$location', '$timeout','$rootScope', function($scope, $location, $timeout, $rootScope) {
+    .controller('StudentCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
@@ -23,7 +23,7 @@
         $location.path('/');
       }
 
-        if($rootScope.userType===true){
+      if ($rootScope.userType === true) {
         $location.path('/faculty');
       }
 
@@ -46,10 +46,10 @@
         ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
           $scope.applications = dataSnapshot.val();
           console.log($scope.applications);
-          $scope.loading = false;
           $timeout(function() {
             $scope.$apply();
           });
+          $scope.loading = false;
         }, function(err) {
           console.error(err);
         });
@@ -67,14 +67,14 @@
       };
       $scope.initMaterial();
 
-       
+
       $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType===true) {
+            if ($rootScope.userType === true) {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
@@ -82,7 +82,7 @@
 
             break;
           case 'jobs':
-            if ($rootScope.userType===true) {
+            if ($rootScope.userType === true) {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -102,13 +102,21 @@
         $location.path('/');
       };
 
-      self.applyForJob = function(jobId) {
-        $location.path('/application').search({
-          'jobId': jobId
+      self.applyForJob = function(jobId, jobName) {
+        ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).once('value', function(data) {
+          if (data.val() !== null) {
+            Materialize.toast('You have already applied.', 4000);
+          } else {
+            $location.path('/application').search({
+              'jobId': jobId,
+              'jobName': jobName
+            });
+          }
         });
+
       };
 
-      self.joinChatRoom = function(chatRoomId){
+      self.joinChatRoom = function(chatRoomId) {
         //check joining condition
         $location.path('/chat').search({
           'roomId': chatRoomId
