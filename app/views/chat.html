@@ -17,19 +17,12 @@
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
-
 <style>
-
 .inner {
     position: absolute; /*or fixed*/
-    right: 10px;
-     
+    right: 10px;    
 }
-
-
 </style>
-
-
 <div class="preloader-wrapper active container center-div" ng-show="loading">
   <div class="spinner-layer spinner-red-only">
     <div class="circle-clipper left">
@@ -43,51 +36,30 @@
     </div>
   </div>
 </div>
-
 <div id="activeMembers "class="container" ng-hide="loading" ng-keypress="myFunct($event)">
-  
-
-
   <div class="inner">
   <p class="center-align"> <b>Active members</b></p>
   <ul class="collection grey lighten-4" >
     <li ng-repeat="member in members" class="collection-item" id="abcde">
       {{member.emailId}} 
       <a ng-click="viewMemberProfile(member.emailId)" class="secondary-content pointer">View</a>
-      <a ng-click="kickMember(member.emailId)" class="secondary-content pointer">Kick</a>
-    
+      <a ng-if="member.showKick" ng-click="kickMember(member.emailId)" class="secondary-content pointer" >Kick</a>   
     </li>
   </ul>
   </div>
-  
-
-   
   <ul class="collection">
     <li ng-repeat="message in chatHistory"  >
-
      <div ng-class="message.alignment">
-           <font size="3" >{{message.sender+" "+message.text}}</font>
-       
+           <font size="3" >{{message.sender+" "+message.text}}</font>      
      </div>
     </li>
   </ul>
-
-
-
-
   <div class="row margin">
     <div class="input-field col s12">
       <input ng-model="messageInput" id="messageInput" type="text">
       <label class="center-align">message</label>
     </div>
   </div>
-
-
   <div class="btn" ng-click="sentMessage()">Send</div>
    <div class="btn" ng-click="leaveThisRoom()">Leave room</div>
-
-
- 
-
-
 </div>
