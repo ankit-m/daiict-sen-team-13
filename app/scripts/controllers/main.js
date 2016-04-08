@@ -56,7 +56,6 @@
         $timeout(function() {
           $scope.$apply();
         });
-        console.log('login called');
         ref.authWithPassword({
           "email": $scope.email,
           "password": $scope.password
@@ -67,7 +66,7 @@
               $scope.$apply();
             });
             $scope.loading = false;
-            console.log("Login Failed!", error);
+            Materialize.toast(error, 4000);
           } else {
             console.log("Authenticated successfully with payload:", authData);
             if (authData.password.isTemporaryPassword) {
@@ -81,7 +80,6 @@
             }
           }
         });
-        console.log('login return');
       };
     }]);
 })();
