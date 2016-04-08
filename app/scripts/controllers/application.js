@@ -58,13 +58,14 @@
       $scope.submitApplication = function() {
         console.log('submitApplication called');
         console.log(jobId);
-        var applicationRef = new Firebase('https://sfip.firebaseio.com/application/' + jobId);
+        var applicationRef = new Firebase('https://sfip.firebaseio.com/applications');
         applicationRef.push({ //add server validation
           "appliedBy": authData.password.email,
           "contactEmail": $scope.contactEmail,
           "letter": $scope.letter,
           "attachment": $scope.attachment,
-          "submittedOn":  Firebase.ServerValue.TIMESTAMP
+          "submittedOn":  Firebase.ServerValue.TIMESTAMP,
+          "jobId": jobId
         }, function(error) {
           if (error) {
             Materialize.toast('Server error. Try again later', 4000);

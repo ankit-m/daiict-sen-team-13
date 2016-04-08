@@ -10,7 +10,7 @@
   angular.module('daiictSenTeam13App')
     .controller('ViewjobCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
-      var applicationRef = new Firebase('https://sfip.firebaseio.com/application');
+      var applicationRef = new Firebase('https://sfip.firebaseio.com/applications');
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var self = this;
@@ -24,7 +24,7 @@
 
       function getData() {
         console.log('getData called');
-        applicationRef.child(jobId).on('value', function(dataSnapshot) {
+        applicationRef.orderByChild('jobId').equalTo(jobId).on('value', function(dataSnapshot) {
           $scope.applications = dataSnapshot.val();
           console.log(dataSnapshot.val());
           $scope.$apply();
@@ -55,7 +55,7 @@
 
       self.acceptApplication = function(applicationId) {
         console.log('accept');
-        ref.child('application').child(jobId).child(applicationId).update({
+        ref.child('applications').child(applicationId).update({
           status: 'accept'
         }, function(error) {
           if (error) {
@@ -68,7 +68,7 @@
 
       self.rejectApplication = function(applicationId) {
         console.log('reject');
-        ref.child('application').child(jobId).child(applicationId).update({
+        ref.child('applications').child(applicationId).update({
           status: 'reject'
         }, function(error) {
           if (error) {
