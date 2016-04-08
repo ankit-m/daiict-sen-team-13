@@ -8,7 +8,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ProfileCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
+    .controller('ProfileCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout,$rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var profileKey = '';
@@ -117,10 +117,62 @@
               }
             });
             break;
+          case 'location':
+            ref.child('profile').child(profileKey).update({
+              location: $scope.location
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not update' + type, 4000);
+              } else {
+                Materialize.toast('Updated ' + type, 4000);
+              }
+            });
+            break;
+          case 'contact':
+            ref.child('profile').child(profileKey).update({
+              contact: $scope.contact
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Could not update' + type, 4000);
+              } else {
+                Materialize.toast('Updated ' + type, 4000);
+              }
+            });
+            break;
           default:
 
         }
       };
+
+
+      $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if ($rootScope.userType===true) {
+              $location.path('/createChat');
+            } else {
+              $location.path('/chatRooms');
+            }
+
+            break;
+          case 'jobs':
+            if ($rootScope.userType===true) {
+              $location.path('/posting');
+            } else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+
 
     }]);
 })();

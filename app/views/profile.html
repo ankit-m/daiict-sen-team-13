@@ -2,7 +2,7 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-click="student.logout()">Logout</a></li>
+      <li><a ng-click="profile.logout()">Logout</a></li>
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
@@ -57,6 +57,16 @@
       <div class="input-field col s12">
         <textarea id="about" ng-model="about" ng-blur="profile.updateProfile('about')" class="materialize-textarea"></textarea>
         <label class="active" for="about">About</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input ng-model="location" ng-blur="profile.updateProfile('location')" id="location" type="text">
+        <label class="active" for="location">Location</label>
+      </div>
+      <div class="input-field col s6">
+        <input ng-model="contact" ng-blur="profile.updateProfile('contact')" id="contact" type="text">
+        <label class="active" for="contact">Contact</label>
       </div>
     </div>
     <div class="row" style="padding: 0 10.5px 0 10.5px">

@@ -2,7 +2,7 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-click="student.logout()">Logout</a></li>
+      <li><a ng-click="people.logout()">Logout</a></li>
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
@@ -17,3 +17,29 @@
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
+
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="loading">
+  <br>
+  <h5 class="light">People</h5>
+  <ul class="collection">
+    <li class="collection-item" ng-repeat="(key, person) in allUsers">
+      <div>{{person.firstName}} {{person.lastName}}
+        <a ng-click="people.viewProfile(person.email)" class="secondary-content pointer">View</a>
+      </div>
+    </li>
+  </ul>
+</div>

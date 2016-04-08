@@ -9,18 +9,24 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', '$window',
-    function($scope, $location, $routeParams, $window) {
+    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', '$window','$rootScope',
+    function($scope, $location, $routeParams, $window, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var job = {};
+
       $scope.loading=true;
+
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
+      }
+
+       if($rootScope.userType===true){
+        $location.path('/faculty');
       }
 
       $scope.initMaterial = function() {
@@ -36,6 +42,11 @@
       };
       $scope.resetValues();
 
+      $scope.logout = function() {
+        ref.unauth();
+        $location.path('/');
+      };
+      
       function getData() {
         postingRef.orderByKey().equalTo(jobId).once('value', function(dataSnapshot) {
           job = dataSnapshot.val();
@@ -44,6 +55,7 @@
             $scope.jobName = job[index].jobName;
             break;
           }
+          $scope.loading = false;
           $scope.$apply();
           $scope.loading=false;
         }, function(err) {
@@ -60,7 +72,8 @@
           "appliedBy": authData.password.email,
           "contactEmail": $scope.contactEmail,
           "letter": $scope.letter,
-          "attachment": $scope.attachment
+          "attachment": $scope.attachment,
+          "submittedOn":  Firebase.ServerValue.TIMESTAMP
         }, function(error) {
           if (error) {
             Materialize.toast('Server error. Try again later', 4000);
@@ -75,25 +88,23 @@
       };
 
 
-        $scope.goTo = function(page) {
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/createChat');
+            } else {
               $location.path('/chatRooms');
             }
-            
+
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/posting');
+            } else {
               $location.path('/jobs');
             }
             break;
@@ -104,7 +115,8 @@
             $location.path('/');
         }
       };
-      
+
+
 
     }]);
 })();

@@ -2,7 +2,7 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-click="student.logout()">Logout</a></li>
+      <li><a ng-click="logout()">Logout</a></li>
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
@@ -18,7 +18,6 @@
   </div>
 </nav>
 
-
 <div class="preloader-wrapper active container center-div" ng-show="loading">
   <div class="spinner-layer spinner-red-only">
     <div class="circle-clipper left">
@@ -33,7 +32,6 @@
   </div>
 </div>
 
-
 <div class="container" ng-hide="loading">
   <br>
   <h5 class="light">All Job Openings</h5>
@@ -43,7 +41,7 @@
       <div class="collapsible-body">
         <p>{{job.description}}</p>
         <div class="right-align" style="padding: 16px">
-          <a class="btn">Apply</a>
+          <a class="btn" ng-if="userType=false">Apply</a>
         </div>
       </div>
     </li>

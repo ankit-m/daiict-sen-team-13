@@ -18,8 +18,7 @@
   </div>
 </nav>
 
-
-<div class="preloader-wrapper active container center-div" ng-show="loading">
+<!-- <div class="preloader-wrapper active container center-div" ng-show="loading">
   <div class="spinner-layer spinner-red-only">
     <div class="circle-clipper left">
       <div class="circle"></div>
@@ -31,29 +30,42 @@
       <div class="circle"></div>
     </div>
   </div>
-</div>
+</div> -->
 
-
-
-<div class="container" ng-hide="loading">
+<div class="container">
   <br>
-  <h5 class="light">All Chat Rooms</h5>
-  <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chat) in chatRooms">
-      <div class="collapsible-header">{{chat.chatRoomName}}</div>
-
-      <div class="collapsible-body">
-        <p>{{chat.description}}</p>
-        <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="openChatRoom(key, chat)">Join</a>
+  <h5 class="light">Profile</h5>
+  <br>
+  <div class="row valign-wrapper">
+    <div class="col s2">
+      <img src="http://lorempixel.com/200/200" alt="" class="circle responsive-img">
+      <!-- notice the "circle" class -->
+    </div>
+    <div class="col s10">
+      <h5>{{firstName}} {{lastName}}</h5>
+      <h6>{{type}}</h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title">About</span>
+          <p class="grey-text" style="margin-bottom: 8px"><b>Institute:</b> {{institute}}</p>
+          <p>{{about}}</p>
         </div>
       </div>
+    </div>
+  </div>
+  <h6 class="grey-text">Areas of Interest</h6>
+  <ul class="collection">
+    <li ng-repeat="item in interests" class="collection-item">{{item.interest}}
     </li>
   </ul>
-
-
-
-
-
-
+  <br>
+  <h6 class="grey-text">Publications</h6>
+  <ul class="collection">
+    <li ng-repeat="item in publications" class="collection-item">{{item.publication}}
+    </li>
+  </ul>
 </div>

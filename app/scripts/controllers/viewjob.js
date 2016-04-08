@@ -8,18 +8,22 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ViewjobCtrl', ['$scope', '$location', '$routeParams', function($scope, $location, $routeParams) {
+    .controller('ViewjobCtrl', ['$scope', '$location', '$routeParams','$rootScope', function($scope, $location, $routeParams,$rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var applicationRef = new Firebase('https://sfip.firebaseio.com/application');
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var self = this;
-      $scope.loading=true;
+      $scope.loading = true;
 
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
+      }
+
+       if($rootScope.userType===false){
+        $location.path('/student');
       }
 
       function getData() {
@@ -32,7 +36,7 @@
           console.error(err);
         });
         console.log('getData return');
-        $scope.loading=false;  
+        $scope.loading = false;
       }
       getData();
 
@@ -53,10 +57,12 @@
         $location.path('/');
       };
 
-      self.acceptApplication = function(applicationId){
+      self.acceptApplication = function(applicationId) {
         console.log('accept');
-        ref.child('application').child(jobId).child(applicationId).update({status: 'accept'}, function(error){
-          if(error){
+        ref.child('application').child(jobId).child(applicationId).update({
+          status: 'accept'
+        }, function(error) {
+          if (error) {
             Materialize.toast('Try again', 4000);
           } else {
             Materialize.toast('Accept Notification sent', 4000);
@@ -64,36 +70,37 @@
         });
       };
 
-      self.rejectApplication = function(applicationId){
+      self.rejectApplication = function(applicationId) {
         console.log('reject');
-        ref.child('application').child(jobId).child(applicationId).update({status: 'reject'}, function(error){
-          if(error){
+        ref.child('application').child(jobId).child(applicationId).update({
+          status: 'reject'
+        }, function(error) {
+          if (error) {
             Materialize.toast('Try again', 4000);
           } else {
             Materialize.toast('Reject Notification sent', 4000);
-          } 
+          }
         });
       };
 
-        $scope.goTo = function(page) {
+     
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/createChat');
+            } else {
               $location.path('/chatRooms');
             }
-            
+
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/posting');
+            } else {
               $location.path('/jobs');
             }
             break;
@@ -104,8 +111,6 @@
             $location.path('/');
         }
       };
-
-
 
 
     }]);

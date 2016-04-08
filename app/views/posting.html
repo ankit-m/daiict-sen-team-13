@@ -6,13 +6,13 @@
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
-        <!-- <img class="circle responsive-img" src="http://lorempixel.com/200/200"> -->
+        <img class="circle responsive-img" src="http://lorempixel.com/200/200">
         <!-- <h6 class="black-text">Ankit Muchhala</h6> -->
       </div>
-      <li><a href="#!">Profile</a></li>
-      <li><a href="#!">People</a></li>
-      <li><a href="#!">Chat Rooms</a></li>
-      <li><a href="#!">Jobs</a></li>
+       <li><a ng-click="goTo('profile')">Profile</a></li>
+        <li><a ng-click="goTo('people')">People</a></li>
+        <li><a ng-click="goTo('chatRooms')">Chat Rooms</a></li>
+        <li><a ng-click="goTo('jobs')">Jobs</a></li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
@@ -33,14 +33,13 @@
   </div>
 </div>
 
-
 <div class="row container" ng-hide="loading">
   <h5 class="light">Active Jobs</h5>
   <ul class="collection">
-    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item" ng-click="posting.viewJob(jobId)">
+    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item pointer" ng-click="posting.viewJob(jobId)">
       {{job.jobName}}
       <!-- Add confirmation dialog -->
-      <div class="secondary-content red-text" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">Delete</div>
+      <div class="secondary-content red-text pointer" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">Delete</div>
     </a>
   </ul>
   <a class="btn right" ng-click="posting.showAll()">Show all Jobs</a>
@@ -53,6 +52,10 @@
         <input ng-model="jobName" id="jobName" type="text">
         <label for="jobName">Job Name</label>
       </div>
+      <div class="input-field col s6">
+        <input ng-model="positions" id="positions" type="number">
+        <label for="positions">Number of Openings</label>
+      </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
@@ -62,8 +65,8 @@
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input id="email" type="email" ng-model="contactEmail">
-        <label for="email">Contact Email</label>
+        <input id="email" type="email" ng-model="contactEmail" class="validate">
+        <label for="email" data-error="Invalid" data-success="Valid" class="center-align">Contact Email</label>
       </div>
     </div>
     <div class="row">
@@ -80,6 +83,10 @@
       <div class="input-field col s6">
         <input ng-model="location" id="location" type="text">
         <label for="location">Location</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="deadline" ng-model="deadline" name="date" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+        <label for="deadline">Last Date for Application</label>
       </div>
     </div>
   </form>

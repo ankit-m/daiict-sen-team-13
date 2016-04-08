@@ -9,7 +9,7 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('ChatroomsCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
+    .controller('ChatroomsCtrl', ['$scope', '$location', '$timeout','$rootScope', function($scope, $location, $timeout,$rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
@@ -20,7 +20,7 @@
 
 
       $scope.jobs = {};
-
+      console.log("hey soul sister",$rootScope.userType);
       $scope.initCollapsible = function() {
         $(document).ready(function() {
           $('.collapsible').collapsible({
@@ -44,7 +44,6 @@
 
       ref.child('chatRooms').once('value', function(dataSnapshot) {
         $scope.loading = true;
-        console.log("gotta say hello");
         $scope.chatRooms = dataSnapshot.val();
         console.log($scope.chatRooms);
         $timeout(function() {
@@ -56,70 +55,85 @@
         console.error(err);
       });
 
-      $scope.openChatRoom = function(key) {
-        var addMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + '/members');
-        var count = 0;
-        addMemberRef.once('value', function(dataSnapshot) {
-          dataSnapshot.forEach(function(memberSnapshot) {
-            console.log("redirecting one", memberSnapshot.child("emailId").val());
+      function validate(data, chatRoom) {
+        data.forEach(function(member) {
+          console.log("redirecting one", member.child("emailId").val());
+          if (member.child("emailId").val() === authData.password.email) {
+            return false;
+          }
+        });
+        if (chatRoom.slots > 0) {
+          //vaidate time
+          return true;
+        } else {
+          Materialize.toast('Chat room full. Please try again later', 4000);
+          return false;
+        }
+      }
+
+      $scope.openChatRoom = function(key, chatRoom) {
+        ref.child('chatRooms').child(key).child('members').once('value', function(data) {
+          if (validate(data, chatRoom)) {
+            var count=0;
+           // ref.child('chatRooms').child(key).child('members').once('value',function(dataSnapshot){
+               data.forEach(function(memberSnapshot) {
+              console.log("redirecting one", memberSnapshot.child("emailId").val());
             if (memberSnapshot.child("emailId").val() === authData.password.email) {
               //console.log(profileSnapshot.child("firstName").val());
               count = count + 1;
+              $scope.kicked=memberSnapshot.child("kicked").val();
             }
             //console.log(email);
           });
 
-          console.log("count is", count);
-          console.log('https://sfip.firebaseio.com/chatRooms/' + key + '/members');
-          if (count === 0) {
-
-            console.log("oolalala");
-            addMemberRef.push({
+            if(count===0){
+            ref.child('chatRooms').child(key).child('members').push({
               "emailId": authData.password.email,
-              "kicked":0
+              "kicked": 0
             });
-           
+            ref.child('chatRooms').child(key).update({
+              'slots': chatRoom.slots - 1
+            }); // add  error check
           }
-        
-          $timeout(function() {
-            $scope.$apply();
-          });
+            if($scope.kicked>3){
+                
+            }
+            else {
 
-        //addMemberRef.push(authData.password.email);
-        $location.path('/chat').search({
-          'roomId': key         
-        });
-
-
-
-        });
-        
+              $location.path('/chat').search({
+              'roomId': key
+            });
+            $timeout(function(){
+              $scope.$apply();
+            });
+            }
+            
+        }
+            });
       };
 
       $scope.logout = function() {
         ref.unauth();
         $location.path('/');
       };
-      
-       $scope.goTo = function(page) {
+
+      $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/createChat');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/createChat');
+            } else {
               $location.path('/chatRooms');
             }
-            
+
             break;
           case 'jobs':
-            if(authData.password.email.charAt(4)==="1"){
-               $location.path('/posting');
-            }
-            else {
+            if ($rootScope.userType===true) {
+              $location.path('/posting');
+            } else {
               $location.path('/jobs');
             }
             break;
