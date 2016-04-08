@@ -434,7 +434,7 @@ module.exports = function(grunt) {
             '*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*',
-            'fonts/*',
+            'font/*',
             'package.json',
             'server.js',
             'Procfile'
