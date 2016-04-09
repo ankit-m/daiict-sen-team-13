@@ -94,7 +94,7 @@
 
       });
 
-      chatRoomMemberRef.on('value', function(dataSnapshot) {
+      chatRoomMemberRef.orderByChild('active').equalTo(1).on('value', function(dataSnapshot) {
         $scope.members = dataSnapshot.val();
         var member = null;
         for (var member in $scope.members) {
@@ -155,10 +155,6 @@
           dataSnapshot.forEach(function(data) {
             // console.log(data.key());
             removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
-            if ($scope.leaveRoom === true) {
-
-            }
-
           });
 
 
@@ -186,11 +182,21 @@
           myMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
           console.log("HEY BRUH");
           console.log("kicked so many times...", data.val().kicked);
-          myMemberRef.on('child_changed', function(dataSnapshot) {
-            console.log("change aave");
-            $location.path('/chatRooms');
-
+          myMemberRef.child("kicked").on('value',function(dataSnapshot){
+            console.log("olalalalaleyo");
           });
+          
+          myMemberRef.on('child_changed', function(dataSnapshot) {
+            if($rootScope.dontRemove===true){
+
+            }
+              else {
+            console.log("change aave");
+            myMemberRef.update({'active':0});
+            $location.path('/chatRooms');
+            $rootScope.dontRemove=false;
+          }
+          }); 
         });
       });
 

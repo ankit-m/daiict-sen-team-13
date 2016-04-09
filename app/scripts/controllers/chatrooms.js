@@ -13,7 +13,7 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
-
+      var memberKey="";
       $scope.chatHistory = [];
       $scope.members = [];
       $scope.loading = true;
@@ -90,24 +90,57 @@
         }
       }
 
+      
       $scope.openChatRoom = function(key, chatRoom) {
         ref.child('chatRooms').child(key).child('members').once('value', function(data) {
           if (validate(data, chatRoom)) {
+            var count=0;
+           // ref.child('chatRooms').child(key).child('members').once('value',function(dataSnapshot){
+               data.forEach(function(memberSnapshot) {
+              console.log("redirecting one", memberSnapshot.child("emailId").val());
+            if (memberSnapshot.child("emailId").val() === authData.password.email) {
+              //console.log(profileSnapshot.child("firstName").val());
+              count = count + 1;
+              $scope.kicked=memberSnapshot.child("kicked").val();
+              memberKey=memberSnapshot.key();
+              console.log("This happens to be the member key ",memberKey);
+            }
+            //console.log(email);
+          });
+            console.log("COUNT IS ",count);
+            if(count===0){
+            console.log("Gonna add",authData.password.email);
             ref.child('chatRooms').child(key).child('members').push({
               "emailId": authData.password.email,
-              "kicked": 0
-            });
-            ref.child('chatRooms').child(key).update({
-              'slots': chatRoom.slots - 1
-            }); // add  error check
-            $location.path('/chat').search({
-              'roomId': key
-            });
-            $timeout(function() {
-              $scope.$apply();
+              "kicked": 0,
+              "active": 1
             });
           }
-        });
+
+            if($scope.kicked>=3){
+                
+            }
+            else {
+              ref.child('chatRooms').child(key).update({
+              'slots': chatRoom.slots - 1
+              }); // add  error check
+              if(count>0){
+                console.log("Hello from the other side dadadada");
+                $rootScope.dontRemove=true;
+                ref.child('chatRooms').child(key).child('members').child(memberKey).update({
+                  'active':1
+                });
+              }
+              $location.path('/chat').search({
+              'roomId': key
+            });
+            $timeout(function(){
+              $scope.$apply();
+            });
+            }
+            
+        }
+            });
       };
 
       $scope.logout = function() {
