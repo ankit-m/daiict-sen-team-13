@@ -90,12 +90,14 @@
         }
       }
 
+
       $scope.openChatRoom = function(key, chatRoom) {
         ref.child('chatRooms').child(key).child('members').once('value', function(data) {
           if (validate(data, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
               "emailId": authData.password.email,
-              "kicked": 0
+              "kicked": 0,
+              "active": 1
             });
             ref.child('chatRooms').child(key).update({
               'slots': chatRoom.slots - 1

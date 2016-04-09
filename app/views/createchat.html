@@ -19,7 +19,42 @@
 </nav>
 <br>
 
-<div class="row container">
+
+
+
+
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row container" ng-hide="loading">
+
+
+  <h5 class="light">Active Chat Rooms</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="(key, chat) in chatRooms">
+      <div  class="collapsible-header">{{chat.chatRoomName}}</div>
+      <div class="collapsible-body">
+        <p>{{chat.description}}</p>
+        <div class="right-align" style="padding:0 16px 16px 16px">
+          <a class="btn" ng-click="createChat.openChatRoom(key, chat)">Join</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <a class="btn right" ng-click="createChat.showAllChatRooms()">Show all Chat Rooms</a>
+<br>
   <h5 class="light">Chat Room Settings</h5>
   <form class="col s12" style="padding: 0">
     <div class="row">

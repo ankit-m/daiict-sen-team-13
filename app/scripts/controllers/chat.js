@@ -94,8 +94,9 @@
 
       });
 
-      chatRoomMemberRef.on('value', function(dataSnapshot) {
+      chatRoomMemberRef.orderByChild('active').equalTo(1).on('value', function(dataSnapshot) {
         $scope.members = dataSnapshot.val();
+
         for (var member in $scope.members) {
           if (authData.password.email === $scope.createdBy && authData.password.email !== $scope.members[member].emailId) {
             $scope.members[member].showKick = true;
@@ -109,8 +110,7 @@
       });
 
       $scope.sentMessage = function() {
-        if ($scope.messageInput === "") {
-        } else {
+        if ($scope.messageInput === "") {} else {
           tempChatRoomRef.child("messages").push({
             "sender": authData.password.email,
             "text": $scope.messageInput
@@ -124,8 +124,7 @@
 
       $scope.myFunct = function(keyEvent) {
         if (keyEvent.which === 13) {
-          if ($scope.messageInput === "") {
-          } else {
+          if ($scope.messageInput === "") {} else {
             var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
             tempChatRoomRef.child("messages").push({
               "sender": authData.password.email,
@@ -166,6 +165,19 @@
           myMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
           myMemberRef.on('child_changed', function(dataSnapshot) {
             $location.path('/chatRooms');
+          });
+
+          myMemberRef.on('child_changed', function(dataSnapshot) {
+            if ($rootScope.dontRemove === true) {
+
+            } else {
+              console.log("change aave");
+              myMemberRef.update({
+                'active': 0
+              });
+              $location.path('/chatRooms');
+              $rootScope.dontRemove = false;
+            }
           });
         });
       });
@@ -220,5 +232,6 @@
           default:
             $location.path('/');
         }
-      };    }]);
+      };
+    }]);
 })();

@@ -19,5 +19,49 @@
 </nav>
 <br>
 
-<div class="container">
+
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row container" ng-hide="loading">
+
+<h5 class="light">Active Jobs</h5>
+  <ul class="collection">
+    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item pointer" ng-click="faculty.viewJob(jobId)">
+      {{job.jobName}}
+      <!-- Add confirmation dialog -->
+      <div class="secondary-content red-text pointer" ng-click="faculty.deleteJob(jobId); $event.stopPropagation()">Delete</div>
+    </a>
+  </ul>
+  <a class="btn right" ng-click="faculty.showAll()">Show all Jobs</a>
+
+
+
+  <br>
+  <h5 class="light">Active Chat Rooms</h5>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="(key, chat) in chatRooms">
+      <div ng-if="chat.myRoom" class="collapsible-header">{{chat.chatRoomName}}</div>
+
+      <div class="collapsible-body">
+        <p>{{chat.description}}</p>
+        <div class="right-align" style="padding:0 16px 16px 16px">
+          <a class="btn" ng-click="faculty.openChatRoom(key, chat)">Join</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <a class="btn right" ng-click="faculty.showAllChatRooms()">Show all Chat Rooms</a>
+
 </div>

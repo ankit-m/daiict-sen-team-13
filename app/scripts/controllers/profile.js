@@ -150,6 +150,14 @@
         ref.child('profile').child(profileKey).child(type).child(key).remove();
       };
 
+      self.viewHomePage = function() {
+        if ($rootScope.userType === true) {
+          $location.path('/faculty');
+        } else {
+          $location.path('/student');
+        }
+      };
+
       $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
