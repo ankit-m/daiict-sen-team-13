@@ -91,27 +91,27 @@
 
       self.createJob = function() {
         validate();
-        // if (validate()) {
-        //   postingRef.push({
-        //     "jobName": $scope.jobName,
-        //     "description": $scope.description,
-        //     "contactEmail": $scope.contactEmail,
-        //     "location": $scope.location,
-        //     "startDate": new Date($scope.startDate),
-        //     "endDate": new Date($scope.endDate),
-        //     "postedBy": authData.password.email,
-        //     "positions": $scope.positions,
-        //     "deadline": new Date($scope.deadline),
-        //     "postedOn": new Date(Firebase.ServerValue.TIMESTAMP)
-        //   }, function(error) {
-        //     if (error) {
-        //       Materialize.toast('Could not create Job. Please try again later.', 4000);
-        //     } else {
-        //       Materialize.toast('Job Created', 4000);
-        //       $scope.resetValues();
-        //     }
-        //   });
-        // }
+        if (validate()) {
+          postingRef.push({
+            "jobName": $scope.jobName,
+            "description": $scope.description,
+            "contactEmail": $scope.contactEmail,
+            "location": $scope.location,
+            "startDate": new Date($scope.startDate),
+            "endDate": new Date($scope.endDate),
+            "postedBy": authData.password.email,
+            "positions": $scope.positions,
+            "deadline": new Date($scope.deadline),
+            "postedOn": new Date(Firebase.ServerValue.TIMESTAMP)
+          }, function(error) {
+            if (error) {
+              Materialize.toast('Could not create Job. Please try again later.', 4000);
+            } else {
+              Materialize.toast('Job Created', 4000);
+              $scope.resetValues();
+            }
+          });
+        }
       };
 
       self.showAll = function() {
