@@ -9,13 +9,21 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('PostingCtrl', ['$scope', '$location', '$timeout','$rootScope', function($scope, $location, $timeout,$rootScope) {
+    .controller('PostingCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var self = this;
 
       $scope.loading = true;
+      $scope.jobName = '';
+      $scope.description = '';
+      $scope.positions = '';
+      $scope.startDate = '';
+      $scope.endDate = '';
+      $scope.deadline = '';
+      $scope.contactEmail = '';
+      $scope.location = '';
       // $location.search('jobId', null);
 
       if (authData) {
@@ -24,7 +32,7 @@
         $location.path('/');
       }
 
-        if($rootScope.userType===false){
+      if ($rootScope.userType === false) {
         $location.path('/student');
       }
 
@@ -53,51 +61,57 @@
       getData();
 
       $scope.resetValues = function() {
-        //reset form
-        $scope.jobName = '';
-        $scope.description = '';
-        $scope.contactEmail = '';
-        $scope.location = '';
-        $scope.startDate = '';
-        $scope.endDate = '';
-        $scope.positions = '';
-        $timeout(function() {
-          $scope.$apply();
-        });
-
+        document.getElementById("postingForm").reset();
+        $('#description').trigger('autoresize');
       };
       $scope.resetValues();
 
       function validate() {
-        // var tempDate = new Date($scope.deadline);
-        // $scope.deadline = tempDate;
-        // console.log(tempDate);
+        if (!/([^\s])/.test($scope.jobName) || !/([^\s])/.test($scope.description) || !/([^\s])/.test($scope.positions) || !/([^\s])/.test($scope.contactEmail)) {
+          Materialize.toast('All fields are required', 4000);
+          return false;
+        }
+        if(!/([^\s])/.test($scope.startDate) || !/([^\s])/.test($scope.endDate) || !/([^\s])/.test($scope.deadline) || !/([^\s])/.test($scope.location)){
+          Materialize.toast('All fields are required', 4000);
+          return false;
+        }
+        if (new Date($scope.startDate) < new Date()){
+          Materialize.toast('Start Date should be greater than today.', 4000);
+        }
+        if (new Date($scope.startDate) > new Date($scope.endDate)){
+          Materialize.toast('Start Date should be lower than End Date', 4000);
+          return false;
+        }
+        if (new Date($scope.deadline) > new Date($scope.startDate)){
+          Materialize.toast('Deadline should be lower than Start Date.', 4000);
+          return false;
+        }
+        return true;
       }
 
       self.createJob = function() {
         validate();
-        console.log('createJob called');
-        postingRef.push({
-          "jobName": $scope.jobName,
-          "description": $scope.description,
-          "contactEmail": $scope.contactEmail,
-          "location": $scope.location,
-          "startDate": Date($scope.startDate),
-          "endDate": Date($scope.endDate),
-          "postedBy": authData.password.email,
-          "positions": $scope.positions,
-          "deadline": Date($scope.deadline),
-          "postedOn": Date(Firebase.ServerValue.TIMESTAMP)
-        }, function(error) {
-          if (error) {
-            Materialize.toast('Could not create Job', 4000);
-          } else {
-            Materialize.toast('Job Created', 4000);
-            $scope.resetValues();
-            console.log('Created Job');
-          }
-        });
-        console.log('createJob return');
+        // if (validate()) {
+        //   postingRef.push({
+        //     "jobName": $scope.jobName,
+        //     "description": $scope.description,
+        //     "contactEmail": $scope.contactEmail,
+        //     "location": $scope.location,
+        //     "startDate": new Date($scope.startDate),
+        //     "endDate": new Date($scope.endDate),
+        //     "postedBy": authData.password.email,
+        //     "positions": $scope.positions,
+        //     "deadline": new Date($scope.deadline),
+        //     "postedOn": new Date(Firebase.ServerValue.TIMESTAMP)
+        //   }, function(error) {
+        //     if (error) {
+        //       Materialize.toast('Could not create Job. Please try again later.', 4000);
+        //     } else {
+        //       Materialize.toast('Job Created', 4000);
+        //       $scope.resetValues();
+        //     }
+        //   });
+        // }
       };
 
       self.showAll = function() {
