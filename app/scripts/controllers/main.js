@@ -9,11 +9,11 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('MainCtrl', ['$scope', '$location', '$timeout', '$rootScope',function($scope, $location, $timeout,$rootScope) {
+    .controller('MainCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
-      $rootScope.userType=null;
+      $rootScope.userType = null;
 
       $scope.loading = true;
 
@@ -26,12 +26,12 @@
           var userObject = snapshot.val();
           for (var key in userObject) {
             if (userObject[key].type === 'professor') {
-              $rootScope.userType=true;
-              console.log("Hello I am faculty",$rootScope.userType);
+              $rootScope.userType = true;
+              console.log("Hello I am faculty", $rootScope.userType);
               $location.path('/faculty');
               $scope.$apply();
             } else if (userObject[key].type === 'student') {
-              $rootScope.userType=false;
+              $rootScope.userType = false;
               $location.path('/student');
               $scope.$apply();
             }

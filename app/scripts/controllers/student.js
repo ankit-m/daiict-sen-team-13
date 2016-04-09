@@ -28,24 +28,20 @@
       }
 
       function getData() {
-        console.log('getData called');
         ref.child('postings').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.jobs = dataSnapshot.val();
-          console.log($scope.jobs);
         }, function(err) {
           console.error(err);
         });
 
         ref.child('chatRooms').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.chatRooms = dataSnapshot.val();
-          console.log($scope.chatRooms);
         }, function(err) {
           console.error(err);
         });
 
         ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
           $scope.applications = dataSnapshot.val();
-          console.log($scope.applications);
           $timeout(function() {
             $scope.$apply();
           });
@@ -53,20 +49,18 @@
         }, function(err) {
           console.error(err);
         });
-        console.log('getData return');
       }
       getData();
 
       $scope.initMaterial = function() {
         $(document).ready(function() {
+          $(".button-collapse").sideNav();
           $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
           });
         });
-        $(".button-collapse").sideNav();
       };
       $scope.initMaterial();
-
 
       $scope.goTo = function(page) {
         switch (page) {
@@ -79,7 +73,6 @@
             } else {
               $location.path('/chatRooms');
             }
-
             break;
           case 'jobs':
             if ($rootScope.userType === true) {
@@ -95,7 +88,6 @@
             $location.path('/');
         }
       };
-
 
       self.logout = function() {
         ref.unauth();

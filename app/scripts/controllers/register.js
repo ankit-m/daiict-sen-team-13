@@ -9,21 +9,17 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('RegisterCtrl', ['$scope', '$location', function($scope, $location) {
+    .controller('RegisterCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
-
-      $scope.email = '';
-      $scope.firstName = '';
-      $scope.lastName = '';
-      $scope.password = 'pass';
-      $scope.userType = 'student';
+      var self = this;
+      var password = 'pass';
 
       function resetValues() {
         $scope.email = '';
         $scope.firstName = '';
         $scope.lastName = '';
-        $scope.password = 'pass';
         $scope.userType = 'student';
+        $scope.institute = '';
       }
       resetValues();
 
@@ -45,40 +41,61 @@
         });
       }
 
-      $scope.signup = function() {
-        console.log('signup called');
-        if ($scope.email.indexOf('daiict.ac.in') < 0) { //verifications add
-          console.error('Invalid email. Use DAIICT email');
+      function validate() {
+        if ($scope.email.indexOf('@daiict.ac.in') < 0) { //verifications add
+          Materialize.toast('Please use DAIICT email address.', 4000);
           resetValues();
+          return false;
+        }
+        console.log(!/([^\s*])/.test($scope.firstName));
+        if (!/([^\s])/.test($scope.firstName) || !/([^\s])/.test($scope.lastName) || !/([^\s])/.test($scope.institute)) {
+          Materialize.toast('All fields are required.', 4000);
+          return false;
         } else {
+          $scope.email = $scope.email.trim();
+          $scope.firstName = $scope.firstName.trim();
+          $scope.lastName = $scope.lastName.trim();
+          $scope.institute = $scope.institute.trim();
+          $timeout(function(){
+            $scope.$apply();
+          });
+          return true;
+        }
+      }
+
+      self.signup = function() {
+        if (validate()) {
+          $scope.loading = true;
           ref.createUser({
             email: $scope.email,
-            password: $scope.password
+            password: password
           }, function(error, userData) {
             if (error) {
               switch (error.code) {
                 case "EMAIL_TAKEN":
-                  console.log("The new user account cannot be created because the email is already in use.");
+                  Materialize.toast("The new user account cannot be created because the email is already in use.", 4000);
                   break;
                 case "INVALID_EMAIL":
-                  console.log("The specified email is not a valid email.");
+                  Materialize.toast("The specified email is not a valid email.", 4000);
                   break;
                 default:
-                  console.log("Error creating user:", error);
+                  Materialize.toast("Error creating user. Try again later", 4000);
+                  $location.path('/');
+                  $timeout(function() {
+                    $scope.$apply();
+                  });
               }
             } else {
               console.log("Successfully created user account with uid:", userData.uid);
 
               var profileData = {};
 
-              // var instituteKey = ref.child('institutions').push().key();
-              // profileData['/institutions/' + instituteKey] = {
-              //   id: 'daiict',
-              //   name: 'Dhirubhai Ambani Institute of Information and Communication Technology',
-              //   location: 'Gandhinagar',
-              //   country: 'India',
-              //   createOn: Firebase.ServerValue.TIMESTAMP
-              // };
+              var instituteKey = ref.child('institutions').push().key();
+              profileData['/institutions/' + instituteKey] = {
+                id: 'daiict',
+                name: 'Dhirubhai Ambani Institute of Information and Communication Technology',
+                createOn: Firebase.ServerValue.TIMESTAMP
+              };
 
               var userKey = ref.child('users').push().key();
               profileData['/users/' + userKey] = {
@@ -105,9 +122,12 @@
                   //remove user
                 } else {
                   console.log('created profile');
+                  $scope.loading = false;
                   $location.path('/');
                   Materialize.toast('Password sent to the email.', 4000);
-                  $scope.$apply();
+                  $timeout(function(){
+                    $scope.$apply();
+                  });
                 }
               });
 
@@ -115,7 +135,6 @@
             }
           });
         }
-        console.log('signup return');
       };
     }]);
 })();

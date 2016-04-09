@@ -9,9 +9,8 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('JobsCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
+    .controller('JobsCtrl', ['$scope', '$location', '$rootScope', '$timeout', function($scope, $location, $rootScope, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
-      var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var self = this;
 
@@ -33,12 +32,13 @@
         $location.path('/');
       }
 
-      postingRef.once('value', function(dataSnapshot) {
+      ref.child('postings').once('value', function(dataSnapshot) {
         $scope.jobPostings = dataSnapshot.val();
         console.log($scope.jobPostings);
         $scope.loading = false;
-        $scope.$apply();
-
+        $timeout(function(){
+          $scope.$apply();
+        });
       }, function(err) {
         console.error(err);
       });
