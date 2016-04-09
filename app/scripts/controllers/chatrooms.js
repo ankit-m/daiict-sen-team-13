@@ -19,15 +19,6 @@
       $scope.loading = true;
 
       $scope.jobs = {};
-      console.log("hey soul sister", $rootScope.userType);
-      $scope.initCollapsible = function() {
-        $(document).ready(function() {
-          $('.collapsible').collapsible({
-            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-          });
-        });
-      };
-      $scope.initCollapsible();
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -35,24 +26,62 @@
         $location.path('/');
       }
 
-
       $scope.initMaterial = function() {
-        $('.modal-trigger').leanModal();
+        $(document).ready(function() {
+          $('.modal-trigger').leanModal();
+          $('.collapsible').collapsible({
+            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+          });
+        });
       };
       $scope.initMaterial();
 
-      ref.child('chatRooms').once('value', function(dataSnapshot) {
-        $scope.loading = true;
-        $scope.chatRooms = dataSnapshot.val();
-        console.log($scope.chatRooms);
-        $timeout(function() {
-          $scope.$apply();
-        });
-        $scope.loading = false;
+      $scope.goTo = function(page) {
+        switch (page) {
+          case 'profile':
+            $location.path('/profile');
+            break;
+          case 'chatRooms':
+            if ($rootScope.userType === true) {
+              $location.path('/createChat');
+            } else {
+              $location.path('/chatRooms');
+            }
 
-      }, function(err) {
-        console.error(err);
-      });
+            break;
+          case 'jobs':
+            if ($rootScope.userType === true) {
+              $location.path('/posting');
+            } else {
+              $location.path('/jobs');
+            }
+            break;
+          case 'people':
+            $location.path('/people');
+            break;
+          default:
+            $location.path('/');
+        }
+      };
+
+      $scope.logout = function() {
+        ref.unauth();
+        $location.path('/');
+      };
+
+      function getData() {
+        ref.child('chatRooms').once('value', function(dataSnapshot) {
+          $scope.chatRooms = dataSnapshot.val();
+          console.log($scope.chatRooms);
+          $timeout(function() {
+            $scope.$apply();
+          });
+          $scope.loading = false;
+        }, function() {
+          Materialize.toast('Cannot get Chat Rooms. Try again later', 4000);
+        });
+      }
+      getData();
 
       function validate(data, chatRoom) {
         data.forEach(function(member) {
@@ -90,8 +119,7 @@
         }
       }
 
-
-      $scope.openChatRoom = function(key, chatRoom) {
+      self.openChatRoom = function(key, chatRoom) {
         ref.child('chatRooms').child(key).child('members').once('value', function(data) {
           if (validate(data, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
@@ -111,40 +139,6 @@
           }
         });
       };
-
-      $scope.logout = function() {
-        ref.unauth();
-        $location.path('/');
-      };
-
-      $scope.goTo = function(page) {
-        switch (page) {
-          case 'profile':
-            $location.path('/profile');
-            break;
-          case 'chatRooms':
-            if ($rootScope.userType === true) {
-              $location.path('/createChat');
-            } else {
-              $location.path('/chatRooms');
-            }
-
-            break;
-          case 'jobs':
-            if ($rootScope.userType === true) {
-              $location.path('/posting');
-            } else {
-              $location.path('/jobs');
-            }
-            break;
-          case 'people':
-            $location.path('/people');
-            break;
-          default:
-            $location.path('/');
-        }
-      };
-
 
     }]);
 })();

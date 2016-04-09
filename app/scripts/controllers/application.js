@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-  //TODO: date UTC format
   /**
    * @ngdoc function
    * @name daiictSenTeam13App.controller:ApplicationCtrl
@@ -18,6 +17,10 @@
         var job = {};
 
         $scope.loading = true;
+        $scope.jobName = '';
+        $scope.letter = '';
+        $scope.contactEmail = '';
+        $scope.attachment = '';
 
         if (authData && jobId && jobName) {
           console.log("Authenticated user with uid:", authData.uid);
@@ -35,10 +38,8 @@
         $scope.initMaterial();
 
         $scope.resetValues = function() {
-          $scope.jobName = '';
-          $scope.letter = '';
-          $scope.contactEmail = '';
-          $scope.attachment = '';
+          document.getElementById("applicationForm").reset();
+          $('#letter').trigger('autoresize');
         };
         $scope.resetValues();
 
@@ -66,31 +67,40 @@
         }
         getData();
 
+        function validate() {
+          if (!/([^\s])/.test($scope.letter) || !/([^\s])/.test($scope.contactEmail) || !/([^\s])/.test($scope.attachment)) {
+            Materialize.toast('All fields are required', 4000);
+            return false;
+          }
+          return true;
+        }
+
         $scope.submitApplication = function() {
-          console.log('submitApplication called');
-          ref.child('applications').push({ //add server validation
-            "appliedBy": authData.password.email,
-            "contactEmail": $scope.contactEmail,
-            "letter": $scope.letter,
-            "attachment": $scope.attachment,
-            "submittedOn": Firebase.ServerValue.TIMESTAMP,
-            "jobId": jobId,
-            "jobName": jobName
-          }, function(error) {
-            if (error) {
-              Materialize.toast('Server error. Try again later', 4000);
-              $window.history.back();
-              $timeout(function() {
-                $scope.$apply();
-              });
-            } else {
-              Materialize.toast('Application Submitted', 4000);
-              $window.history.back();
-              $timeout(function() {
-                $scope.$apply();
-              });
-            }
-          });
+          if (validate()) {
+            ref.child('applications').push({ //add server validation
+              "appliedBy": authData.password.email,
+              "contactEmail": $scope.contactEmail,
+              "letter": $scope.letter,
+              "attachment": $scope.attachment,
+              "submittedOn": Firebase.ServerValue.TIMESTAMP,
+              "jobId": jobId,
+              "jobName": jobName
+            }, function(error) {
+              if (error) {
+                Materialize.toast('Server error. Try again later', 4000);
+                $window.history.back();
+                $timeout(function() {
+                  $scope.$apply();
+                });
+              } else {
+                Materialize.toast('Application Submitted', 4000);
+                $window.history.back();
+                $timeout(function() {
+                  $scope.$apply();
+                });
+              }
+            });
+          }
         };
 
         $scope.goTo = function(page) {

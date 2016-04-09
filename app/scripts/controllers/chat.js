@@ -16,12 +16,11 @@
       var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
       var chatRoomMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
       var myChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/messages/");
-
       $scope.loading = true;
       $scope.chatHistory = [];
       $scope.members = [];
+      var clicked;
       $scope.kicked = false;
-      $scope.myKicked = 0;
       $scope.leaveRoom = false;
       $scope.createdBy = "";
       $scope.kickMyself = false;
@@ -73,19 +72,18 @@
       });
 
       myChatRoomRef.on('value', function(dataSnapshot) {
-        //console.log(dataSnapshot.val());
         $scope.chatHistory = dataSnapshot.val();
-        console.log("CHAT HISTORY", $scope.chatHistory);
+        console.log("CHAT HISTORY", $scope.chatHistory)
         var message = null;
         for (message in $scope.chatHistory) {
-          if ($scope.chatHistory[message].sender === authData.password.email) {
-            $scope.chatHistory[message].sender = "You:";
-            $scope.chatHistory[message].alignment = "right-align";
+          if ($scope.chatHistory[message].sender == authData.password.email) {
+            $scope.chatHistory[message].sender = "You:"
+            $scope.chatHistory[message].alignment = "right-align"
           } else {
-            $scope.chatHistory[message].sender += ":";
-            $scope.chatHistory[message].alignment = "left-align";
+            $scope.chatHistory[message].sender += ":"
+            $scope.chatHistory[message].alignment = "left-align"
           }
-          console.log($scope.chatHistory[message].alignment);
+          console.log($scope.chatHistory[message].alignment)
         }
         $scope.loading = false;
         $timeout(function() {
@@ -94,9 +92,9 @@
 
       });
 
-      chatRoomMemberRef.orderByChild('active').equalTo(1).on('value', function(dataSnapshot) {
+      chatRoomMemberRef.orderByChild("active").equalTo(1).on('value', function(dataSnapshot) {
         $scope.members = dataSnapshot.val();
-
+        var member = null;
         for (var member in $scope.members) {
           if (authData.password.email === $scope.createdBy && authData.password.email !== $scope.members[member].emailId) {
             $scope.members[member].showKick = true;
@@ -110,7 +108,10 @@
       });
 
       $scope.sentMessage = function() {
-        if ($scope.messageInput === "") {} else {
+        if ($scope.messageInput === "") {
+          alert("Enter some message to send before pressing enter.");
+        } else {
+          console.log("Enterrrrrrrrrrrrr");
           tempChatRoomRef.child("messages").push({
             "sender": authData.password.email,
             "text": $scope.messageInput
@@ -124,7 +125,10 @@
 
       $scope.myFunct = function(keyEvent) {
         if (keyEvent.which === 13) {
-          if ($scope.messageInput === "") {} else {
+          if ($scope.messageInput === "") {
+            alert("Enter some message to send before pressing enter.");
+          } else {
+            console.log("Enterrrrrrrrrrrrr");
             var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
             tempChatRoomRef.child("messages").push({
               "sender": authData.password.email,
@@ -142,7 +146,6 @@
         $scope.leaveRoom = true;
         var removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
         removeMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
-          console.log("Trying to leave room", $scope.leaveRoom);
           dataSnapshot.forEach(function(data) {
             removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
           });
@@ -151,33 +154,24 @@
         tempChatRoomRef.update({
           "slots": $scope.slots + 1
         });
+        console.log("yooooooo");
         $scope.leaveRoom = false;
         $location.path('/chatRooms');
       };
 
-      // $window.onbeforeunload = function() {
-      //   $scope.leaveThisRoom();
-      // };
+      $window.onbeforeunload = function() {
+        $scope.leaveThisRoom();
+      };
 
       var myMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
       myMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
         dataSnapshot.forEach(function(data) {
           myMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
           myMemberRef.on('child_changed', function(dataSnapshot) {
+            myMemberRef.update({
+              "active": 0
+            });
             $location.path('/chatRooms');
-          });
-
-          myMemberRef.on('child_changed', function(dataSnapshot) {
-            if ($rootScope.dontRemove === true) {
-
-            } else {
-              console.log("change aave");
-              myMemberRef.update({
-                'active': 0
-              });
-              $location.path('/chatRooms');
-              $rootScope.dontRemove = false;
-            }
           });
         });
       });
@@ -188,7 +182,6 @@
           dataSnapshot.forEach(function(data) {
             removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
             $scope.kicked = data.val().kicked;
-            console.log("kick data", $scope.kicked);
           });
         });
         removeMemberRef.update({
@@ -204,7 +197,7 @@
         $location.path('/viewProfile').search({
           'profileId': email
         });
-      };
+      }
 
       $scope.goTo = function(page) {
         switch (page) {
