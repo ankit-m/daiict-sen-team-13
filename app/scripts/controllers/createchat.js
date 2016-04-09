@@ -8,11 +8,13 @@
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('CreatechatCtrl', ['$scope', '$location', '$rootScope','$timeout', function($scope, $location, $rootScope,$timeout) {
+    .controller('CreatechatCtrl', ['$scope', '$location', '$rootScope', '$timeout', function($scope, $location, $rootScope, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
-      $scope.loading=true;
+
+      $scope.loading = true;
+      $scope.day = 'Monday';
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -34,25 +36,31 @@
       };
       $scope.initMaterial();
 
-      self.logout = function() {
+      $scope.logout = function() {
         console.log('logout called');
         ref.unauth();
         console.log('logged out');
         $location.path('/');
       };
 
-      //@author: Rajiv
-      //@reviewer: Ankit
-
-      ref.child('chatRooms').orderByChild('createdBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
-        $scope.loading = true;
-        $scope.chatRooms = dataSnapshot.val();
-        console.log($scope.chatRooms);
-        $timeout(function() {
-          $scope.$apply();
+      function getData() {
+        ref.child('chatRooms').orderByChild('createdBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
+          $scope.loading = true;
+          $scope.chatRooms = dataSnapshot.val();
+          console.log($scope.chatRooms);
+          $timeout(function() {
+            $scope.$apply();
+          });
+          $scope.loading = false;
         });
-        $scope.loading = false;
-      });
+      }
+      getData();
+
+      self.resetValues = function(){
+        document.getElementById("createChatForm").reset();
+        document.getElementById("Monday").checked = true;
+        $('#chatDescription').trigger('autoresize');
+      };
 
       self.createChatRoom = function() {
         console.log('createChatRoom called');
@@ -66,21 +74,15 @@
           "active": false
         }, function(error) {
           if (error) {
-            Materialize.toast('Could not create ChatRoom. Please try again', 4000);
+            Materialize.toast('Could not create Chat Room. Please try again', 4000);
           } else {
-            Materialize.toast('Created ChatRoom', 2000);
+            Materialize.toast('Created Chat Room', 4000);
+            self.resetValues();
           }
         });
-
-        console.log('createChatRoom return');
-        $location.path('/faculty');
       };
 
-      self.showAllChatRooms=function(){
-        $location.path('/chatRooms');
-      };
-
-      self.showAllChatRooms=function(){
+      self.showAllChatRooms = function() {
         $location.path('/chatRooms');
       };
 
@@ -120,7 +122,7 @@
         }
       }
 
-        self.openChatRoom = function(key, chatRoom) {
+      self.openChatRoom = function(key, chatRoom) {
         ref.child('chatRooms').child(key).child('members').once('value', function(data) {
           if (validate(data, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
@@ -141,7 +143,7 @@
 
       };
 
-      self.deleteChatRoom = function(chatRoomId){
+      self.deleteChatRoom = function(chatRoomId) {
         ref.child('chatRooms').child(chatRoomId).remove(function(error) {
           if (error) {
             Materialize.toast('Could not Delete Chat Room. Try later', 4000);

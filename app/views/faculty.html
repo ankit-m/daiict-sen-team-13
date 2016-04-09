@@ -47,17 +47,18 @@
   <a class="btn right" ng-click="faculty.showAll()">Show all Jobs</a>
 
 
-
   <br>
   <h5 class="light">Active Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chat) in chatRooms">
-      <div ng-if="chat.myRoom" class="collapsible-header">{{chat.chatRoomName}}</div>
-
+    <li ng-repeat="(chatRoomId, chat) in chatRooms">
+      <div class="collapsible-header">
+        {{chat.chatRoomName}}
+        <div class="secondary-content red-text pointer" ng-click="faculty.deleteChatRoom(chatRoomId); $event.stopPropagation()">Delete</div>
+      </div>
       <div class="collapsible-body">
         <p>{{chat.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="faculty.openChatRoom(key, chat)">Join</a>
+          <a class="btn" ng-click="faculty.openChatRoom(key)">Open Room</a>
         </div>
       </div>
     </li>

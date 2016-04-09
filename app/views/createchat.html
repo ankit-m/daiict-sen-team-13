@@ -52,7 +52,7 @@
   <a class="btn right" ng-click="createChat.showAllChatRooms()">all Chat Rooms</a>
   <br>
   <h5 class="light">Chat Room Settings</h5>
-  <form class="col s12" style="padding: 0">
+  <form class="col s12" style="padding: 0" id="createChatForm">
     <div class="row">
       <div class="input-field col s6">
         <input ng-model="chatName" id="chatName" type="text">
@@ -76,14 +76,26 @@
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s6">
-        <input ng-model="day" id="day" type="text">
-        <label for="day">Days</label>
+      <div class="col s12">
+        <input name="days" ng-model="day" type="radio" id="Monday" class="with-gap" value="Monday"/>
+        <label for="Monday">Monday</label><br>
+        <input name="days" ng-model="day" type="radio" id="Tuesday" class="with-gap" value="Tuesday"/>
+        <label for="Tuesday">Tuesday</label><br>
+        <input name="days" ng-model="day" type="radio" id="Wednesday" class="with-gap" value="Wednesday"/>
+        <label for="Wednesday">Wednesday</label><br>
+        <input name="days" ng-model="day" type="radio" id="Thursday" class="with-gap" value="Thursday"/>
+        <label for="Thursday">Thursday</label><br>
+        <input name="days" ng-model="day" type="radio" id="Friday" class="with-gap" value="Friday"/>
+        <label for="Friday">Friday</label><br>
+        <input name="days" ng-model="day" type="radio" id="Saturday" class="with-gap" value="Saturday"/>
+        <label for="Saturday">Saturday</label><br>
+        <input name="days" ng-model="day" type="radio" id="Sunday" class="with-gap" value="Sunday"/>
+        <label for="Sunday">Sunday</label>
       </div>
     </div>
   </form>
   <div class="right-align">
-    <div class="btn" ng-click="resetValues()">Reset</div>
+    <div class="btn" ng-click="createChat.resetValues()">Reset</div>
     <div class="btn" ng-click="createChat.createChatRoom()">Create</div>
   </div>
 </div>
