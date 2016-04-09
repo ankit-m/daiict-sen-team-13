@@ -141,6 +141,16 @@
 
       };
 
+      self.deleteChatRoom = function(chatRoomId){
+        ref.child('chatRooms').child(chatRoomId).remove(function(error) {
+          if (error) {
+            Materialize.toast('Could not Delete Chat Room. Try later', 4000);
+          } else {
+            Materialize.toast('Deleted Chat Room', 4000);
+          }
+        });
+      };
+
       self.viewMemberProfile = function(email) {
         console.log("some random text");
         $location.path('/viewProfile').search({
