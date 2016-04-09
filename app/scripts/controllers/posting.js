@@ -77,6 +77,7 @@
         }
         if (new Date($scope.startDate) < new Date()){
           Materialize.toast('Start Date should be greater than today.', 4000);
+          return false;
         }
         if (new Date($scope.startDate) > new Date($scope.endDate)){
           Materialize.toast('Start Date should be lower than End Date', 4000);
@@ -90,7 +91,6 @@
       }
 
       self.createJob = function() {
-        validate();
         if (validate()) {
           postingRef.push({
             "jobName": $scope.jobName,
