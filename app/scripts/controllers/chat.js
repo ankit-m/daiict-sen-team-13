@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-  //TODO: date UTC format
   /**
    * @ngdoc function
    * @name daiictSenTeam13App.controller:ChatCtrl
@@ -13,13 +12,12 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var key = $routeParams.roomId;
+      var userKey = '';
       var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
-      var chatRoomMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
-      var myChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/messages/");
+
       $scope.loading = true;
       $scope.chatHistory = [];
       $scope.members = [];
-      var clicked;
       $scope.kicked = false;
       $scope.leaveRoom = false;
       $scope.createdBy = "";
@@ -36,82 +34,62 @@
           $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
           });
+          $(".button-collapse").sideNav();
         });
-        $(".button-collapse").sideNav();
       };
       $scope.initMaterial();
 
       $scope.logout = function() {
-        console.log('logout called');
         ref.unauth();
-        console.log('logged out');
         $location.path('/');
       };
 
-      $scope.initCollapsible = function() {
-        $(document).ready(function() {
-          $('.collapsible').collapsible({
-            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+      function getData() {
+        ref.child('chatRooms').child(key).on('value', function(data) {
+          $scope.createdBy = data.val().createdBy;
+          $scope.slots = data.val().slots;
+          $scope.chatHistory = data.val().messages;
+          $scope.members = data.val().members;
+
+          for (var message in $scope.chatHistory) {
+            if ($scope.chatHistory[message].sender === authData.password.email) {
+              $scope.chatHistory[message].sender = "You:";
+              $scope.chatHistory[message].alignment = "right-align";
+            } else {
+              $scope.chatHistory[message].sender += ":";
+              $scope.chatHistory[message].alignment = "left-align";
+            }
+          }
+
+          for (var member in $scope.members) {
+            if ($scope.members[member].active === 1 && authData.password.email === $scope.createdBy && authData.password.email !== $scope.members[member].emailId) {
+              $scope.members[member].showKick = true;
+            } else if ($scope.members[member].emailId === authData.password.email){
+              userKey = member;
+            } else {
+              $scope.members[member].showKick = false;
+            }
+          }
+
+          $scope.loading = false;
+          $timeout(function() {
+            $scope.$apply();
           });
         });
-      };
-      $scope.initCollapsible();
+      }
+      getData();
 
-      tempChatRoomRef.child("createdBy").on("value", function(snapshot) {
-        $scope.createdBy = snapshot.val();
-      });
-      tempChatRoomRef.child("slots").on('value', function(snapshot) {
-        console.log("Slots");
-        console.log(snapshot.val());
-        $scope.slots = snapshot.val();
-      });
-
-      chatRoomMemberRef.on("child_removed", function(snapshot) {
-        var deletedMember = snapshot.val();
-        console.log("The user'" + deletedMember.emailId + "' has been deleted");
-      });
-
-      myChatRoomRef.on('value', function(dataSnapshot) {
-        $scope.chatHistory = dataSnapshot.val();
-        console.log("CHAT HISTORY", $scope.chatHistory)
-        var message = null;
-        for (message in $scope.chatHistory) {
-          if ($scope.chatHistory[message].sender == authData.password.email) {
-            $scope.chatHistory[message].sender = "You:"
-            $scope.chatHistory[message].alignment = "right-align"
-          } else {
-            $scope.chatHistory[message].sender += ":"
-            $scope.chatHistory[message].alignment = "left-align"
+      ref.child('chatRooms').child(key).child('members').on('child_removed', function(dataSnapshot){
+          if(dataSnapshot.val().emailId === authData.password.email){
+            $location.path('/chatRooms');
+            $timeout(function(){
+              $scope.$apply();
+            });
           }
-          console.log($scope.chatHistory[message].alignment)
-        }
-        $scope.loading = false;
-        $timeout(function() {
-          $scope.$apply();
-        });
-
-      });
-
-      chatRoomMemberRef.orderByChild("active").equalTo(1).on('value', function(dataSnapshot) {
-        $scope.members = dataSnapshot.val();
-        var member = null;
-        for (var member in $scope.members) {
-          if (authData.password.email === $scope.createdBy && authData.password.email !== $scope.members[member].emailId) {
-            $scope.members[member].showKick = true;
-          } else {
-            $scope.members[member].showKick = false;
-          }
-        }
-        $timeout(function() {
-          $scope.$apply();
-        });
       });
 
       $scope.sentMessage = function() {
-        if ($scope.messageInput === "") {
-          alert("Enter some message to send before pressing enter.");
-        } else {
-          console.log("Enterrrrrrrrrrrrr");
+        if ($scope.messageInput !== "") {
           tempChatRoomRef.child("messages").push({
             "sender": authData.password.email,
             "text": $scope.messageInput
@@ -125,10 +103,7 @@
 
       $scope.myFunct = function(keyEvent) {
         if (keyEvent.which === 13) {
-          if ($scope.messageInput === "") {
-            alert("Enter some message to send before pressing enter.");
-          } else {
-            console.log("Enterrrrrrrrrrrrr");
+          if ($scope.messageInput !== "") {
             var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
             tempChatRoomRef.child("messages").push({
               "sender": authData.password.email,
@@ -143,61 +118,60 @@
       };
 
       $scope.leaveThisRoom = function() {
-        $scope.leaveRoom = true;
-        var removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
-        removeMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
-          dataSnapshot.forEach(function(data) {
-            removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
-          });
-        });
-        removeMemberRef.remove();
-        tempChatRoomRef.update({
-          "slots": $scope.slots + 1
-        });
-        console.log("yooooooo");
-        $scope.leaveRoom = false;
-        $location.path('/chatRooms');
-      };
-
-      $window.onbeforeunload = function() {
-        $scope.leaveThisRoom();
-      };
-
-      var myMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
-      myMemberRef.orderByChild('emailId').equalTo(authData.password.email).on("value", function(dataSnapshot) {
-        dataSnapshot.forEach(function(data) {
-          myMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
-          myMemberRef.on('child_changed', function(dataSnapshot) {
-            myMemberRef.update({
-              "active": 0
+        ref.child('chatRooms').child(key).child('members').child(userKey).remove(function(error){
+          if(error){
+            Materialize.toast('Cannot Leave Room. Server Error.', 4000);
+          } else {
+            ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
+              return remainingSlots + 1;
+            }, function(error, committed) {
+              if (error) {
+                //server error
+              } else if (!committed) {
+                //slots taken
+                //rollback
+              } else {
+                Materialize.toast('Left Chat Room.', 4000);
+                $timeout(function(){
+                  $scope.$apply();
+                });
+              }
             });
-            $location.path('/chatRooms');
-          });
+          }
         });
-      });
+      };
 
-      $scope.kickMember = function(email) {
-        var removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/");
-        removeMemberRef.orderByChild('emailId').equalTo(email).on("value", function(dataSnapshot) {
-          dataSnapshot.forEach(function(data) {
-            removeMemberRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/members/" + data.key() + "/");
-            $scope.kicked = data.val().kicked;
-          });
-        });
-        removeMemberRef.update({
-          "kicked": $scope.kicked + 1
-        });
-        tempChatRoomRef.update({
-          "slots": $scope.slots + 1
+      // $window.onbeforeunload = function() {
+      //   $scope.leaveThisRoom();
+      // };
+
+      $scope.kickMember = function(memberkey) {
+        ref.child('chatRooms').child(key).child('members').child(memberkey).remove(function(error) {
+          if (error) {
+            Materialize.toast('Cannot Delete Member', 4000);
+          } else {
+            ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
+              return remainingSlots + 1;
+            }, function(error, committed) {
+              if (error) {
+                //server error
+              } else if (!committed) {
+                //slots taken
+                //rollback
+              } else {
+                Materialize.toast('Kicked Member', 2000);
+                $scope.$apply();
+              }
+            });
+          }
         });
       };
 
       $scope.viewMemberProfile = function(email) {
-        console.log("some random text");
         $location.path('/viewProfile').search({
           'profileId': email
         });
-      }
+      };
 
       $scope.goTo = function(page) {
         switch (page) {
@@ -210,7 +184,6 @@
             } else {
               $location.path('/chatRooms');
             }
-
             break;
           case 'jobs':
             if ($rootScope.userType === true) {

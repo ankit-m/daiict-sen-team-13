@@ -33,14 +33,13 @@
 </div>
 
 <div class="container" ng-hide="loading" ng-keypress="myFunct($event)">
-  <div style="position: absolute; right:40px">
+  <div style="position: absolute; right:40px" class="hide-on-med-and-down">
     <p class="center-align"> <b>Active members</b></p>
     <ul class="collection grey lighten-4">
-      <li ng-repeat="member in members" class="collection-item">
+      <a ng-repeat="(key, member) in members" class="collection-item pointer" ng-click="viewMemberProfile(member.emailId)">
         {{member.emailId}}
-        <a ng-click="viewMemberProfile(member.emailId)" class="secondary-content pointer">View</a>
-        <a ng-if="member.showKick" ng-click="kickMember(member.emailId)" class="secondary-content pointer">Kick</a>
-      </li>
+        <div ng-if="member.showKick" ng-click="kickMember(key); $event.stopPropagation();" class="secondary-content pointer red-text">&nbsp;&nbsp;&nbsp;Kick</div>
+      </a>
     </ul>
   </div>
   <div class="chat-box">

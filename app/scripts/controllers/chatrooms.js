@@ -47,7 +47,6 @@
             } else {
               $location.path('/chatRooms');
             }
-
             break;
           case 'jobs':
             if ($rootScope.userType === true) {
@@ -83,13 +82,15 @@
       }
       getData();
 
-      function validate(data, chatRoom) {
-        data.forEach(function(member) {
-          console.log("redirecting one", member.child("emailId").val());
-          if (member.child("emailId").val() === authData.password.email) {
-            return false;
+      function validate(members, chatRoom) {
+        for (var member in members){
+          if(member.emailId === authData.password.email){
+            if(member.child.kicked === 1){
+              console.log('kicked');
+              return false;
+            }
           }
-        });
+        }
         if (chatRoom.slots > 0) {
           var currentDate = new Date();
           var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
@@ -117,24 +118,39 @@
           Materialize.toast('Chat room full. Please try again later', 4000);
           return false;
         }
+        return true;
       }
 
-      self.openChatRoom = function(key, chatRoom) {
-        ref.child('chatRooms').child(key).child('members').once('value', function(data) {
-          if (validate(data, chatRoom)) {
+      $scope.openChatRoom = function(key, chatRoom) {
+        console.log('ok');
+        ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
+          if ($rootScope.userType === true || validate(dataSnapshot.val().members, chatRoom)){
             ref.child('chatRooms').child(key).child('members').push({
-              "emailId": authData.password.email,
-              "kicked": 0,
-              "active": 1
-            });
-            ref.child('chatRooms').child(key).update({
-              'slots': chatRoom.slots - 1
-            }); // add  error check
-            $location.path('/chat').search({
-              'roomId': key
-            });
-            $timeout(function() {
-              $scope.$apply();
+              'emailId': authData.password.email,
+              'kicked': 0,
+              'active': 1
+            }, function(error){
+              if(error){
+                console.log(error);
+              } else {
+                ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
+                  return remainingSlots - 1;
+                }, function(error, committed){
+                  if (error){
+                    //server error
+                  } else if (!committed){
+                    //slots taken
+                    //rollback
+                  } else {
+                    $location.path('/chat').search({
+                      'roomId': key
+                    });
+                    $timeout(function() {
+                      $scope.$apply();
+                    });
+                  }
+                });
+              }
             });
           }
         });

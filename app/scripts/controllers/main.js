@@ -27,7 +27,6 @@
           for (var key in userObject) {
             if (userObject[key].type === 'professor') {
               $rootScope.userType = true;
-              console.log("Hello I am faculty", $rootScope.userType);
               $location.path('/faculty');
               $scope.$apply();
             } else if (userObject[key].type === 'student') {

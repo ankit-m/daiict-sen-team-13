@@ -86,24 +86,42 @@
       };
 
       self.openChatRoom = function(key) {
-        ref.child('chatRooms').child(key).update({
-          'active': true
-        }); // add  error check
-        $location.path('/chat').search({
-          'roomId': key
-        });
-        $timeout(function() {
-          $scope.$apply();
+        ref.child('chatRooms').child(key).child('members').push({
+          'emailId': authData.password.email,
+          'kicked': 0,
+          'active': 1
+        }, function(error){
+          if(error){
+            console.log(error);
+          } else {
+            ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
+              return remainingSlots - 1;
+            }, function(error, committed){
+              if (error){
+                //server error
+              } else if (!committed){
+                //slots taken
+                //rollback
+              } else {
+                $location.path('/chat').search({
+                  'roomId': key
+                });
+                $timeout(function() {
+                  $scope.$apply();
+                });
+              }
+            });
+          }
         });
       };
 
-      self.deleteChatRoom = function(chatRoomId){
+      self.deleteChatRoom = function(chatRoomId) {
         ref.child('chatRooms').child(chatRoomId).remove(function(error) {
           if (error) {
             Materialize.toast('Could not Delete Chat Room. Try later', 4000);
           } else {
             Materialize.toast('Deleted Chat Room', 4000);
-            $timeout(function(){
+            $timeout(function() {
               $scope.$apply();
             });
           }

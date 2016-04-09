@@ -122,25 +122,34 @@
         }
       }
 
-      self.openChatRoom = function(key, chatRoom) {
-        ref.child('chatRooms').child(key).child('members').once('value', function(data) {
-          if (validate(data, chatRoom)) {
-            ref.child('chatRooms').child(key).child('members').push({
-              "emailId": authData.password.email,
-              "kicked": 0
-            });
-            ref.child('chatRooms').child(key).update({
-              'slots': chatRoom.slots - 1
-            }); // add  error check
-            $location.path('/chat').search({
-              'roomId': key
-            });
-            $timeout(function() {
-              $scope.$apply();
+      self.openChatRoom = function(key) {
+        ref.child('chatRooms').child(key).child('members').push({
+          'emailId': authData.password.email,
+          'kicked': 0,
+          'active': 1
+        }, function(error){
+          if(error){
+            console.log(error);
+          } else {
+            ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
+              return remainingSlots - 1;
+            }, function(error, committed){
+              if (error){
+                //server error
+              } else if (!committed){
+                //slots taken
+                //rollback
+              } else {
+                $location.path('/chat').search({
+                  'roomId': key
+                });
+                $timeout(function() {
+                  $scope.$apply();
+                });
+              }
             });
           }
         });
-
       };
 
       self.deleteChatRoom = function(chatRoomId) {
