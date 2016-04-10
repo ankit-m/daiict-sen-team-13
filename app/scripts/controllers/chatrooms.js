@@ -121,6 +121,7 @@
       }
 
       $scope.openChatRoom = function(key, chatRoom) {
+        $scope.loading = true;
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
           if (validate(dataSnapshot.val().members, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
@@ -129,6 +130,7 @@
               'active': 1
             }, function(error) {
               if (error) {
+                $scope.loading = false;
                 console.log(error);
               } else if ($rootScope.userType !== true) {
                 ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
@@ -138,8 +140,10 @@
                   return remainingSlots - 1;
                 }, function(error, committed) {
                   if (error) {
+                    $scope.loading = false;
                     //server error
                   } else if (!committed) {
+                    $scope.loading = false;
                     //slots taken
                     //rollback
                   } else {

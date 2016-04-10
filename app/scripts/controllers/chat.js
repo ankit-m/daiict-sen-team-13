@@ -71,7 +71,6 @@
             }
           }
 
-          Materialize.toast('If you refresh the page, you will be removed from the Chat Room', 4000);
           $scope.loading = false;
           $timeout(function() {
             $scope.$apply();
@@ -82,6 +81,7 @@
 
       ref.child('chatRooms').child(key).child('members').on('child_removed', function(dataSnapshot) {
         if (dataSnapshot.val().emailId === authData.password.email) {
+          Materialize.toast('You were kicked', 4000);
           $location.path('/chatRooms');
           $timeout(function() {
             $scope.$apply();

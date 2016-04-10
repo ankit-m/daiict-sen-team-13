@@ -146,6 +146,7 @@
 
 
       self.openChatRoom = function(key, chatRoom) {
+        $scope.loading(true);
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
           if (validate(dataSnapshot.val().members, chatRoom)){
             ref.child('chatRooms').child(key).child('members').push({
@@ -155,6 +156,7 @@
             }, function(error){
               if(error){
                 console.log(error);
+                $scope.loading = false;
               } else {
                 ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
                   if (remainingSlots === 0){
