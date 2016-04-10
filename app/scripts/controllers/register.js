@@ -54,7 +54,6 @@
           resetValues();
           return false;
         }
-        console.log(!/([^\s*])/.test($scope.firstName));
         if (!/([^\s])/.test($scope.firstName) || !/([^\s])/.test($scope.lastName) || !/([^\s])/.test($scope.institute)) {
           Materialize.toast('All fields are required.', 4000);
           return false;
@@ -76,7 +75,7 @@
           ref.createUser({
             email: $scope.email,
             password: password
-          }, function(error, userData) {
+          }, function(error) {
             if (error) {
               switch (error.code) {
                 case "EMAIL_TAKEN":
@@ -95,12 +94,12 @@
             } else {
               var profileData = {};
 
-              var instituteKey = ref.child('institutions').push().key();
-              profileData['/institutions/' + instituteKey] = {
-                id: 'daiict',
-                name: 'Dhirubhai Ambani Institute of Information and Communication Technology',
-                createOn: Firebase.ServerValue.TIMESTAMP
-              };
+              // var instituteKey = ref.child('institutions').push().key();
+              // profileData['/institutions/' + instituteKey] = {
+              //   id: 'daiict',
+              //   name: 'Dhirubhai Ambani Institute of Information and Communication Technology',
+              //   createOn: Firebase.ServerValue.TIMESTAMP
+              // };
 
               var userKey = ref.child('users').push().key();
               profileData['/users/' + userKey] = {
@@ -124,7 +123,6 @@
                   Materialize.toast('Cannot create profile', 4000);
                   //TODO remove user
                 } else {
-                  console.log('created profile');
                   $scope.loading = false;
                   $location.path('/');
                   Materialize.toast('Password sent to the email.', 4000);

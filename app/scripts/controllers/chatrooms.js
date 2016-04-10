@@ -132,6 +132,9 @@
                 console.log(error);
               } else {
                 ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
+                  if(remainingSlots === 0){
+                    return;
+                  }
                   return remainingSlots - 1;
                 }, function(error, committed){
                   if (error){

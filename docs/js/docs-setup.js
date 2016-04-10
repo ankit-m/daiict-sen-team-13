@@ -155,6 +155,15 @@ NG_DOCS={
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "ViewprofileCtrl",
       "keywords": "api controller daiictsenteam13app viewprofilectrl"
+    },
+    {
+      "section": "api",
+      "id": "daiictSenTeam13App.filter:searchJobs",
+      "shortName": "searchJobs",
+      "type": "filter",
+      "moduleName": "daiictSenTeam13App",
+      "shortDescription": "searchJobs",
+      "keywords": "api daiictsenteam13app filter searchjobs"
     }
   ],
   "apis": {
