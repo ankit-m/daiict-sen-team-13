@@ -64,13 +64,14 @@
           for (var member in $scope.members) {
             if ($scope.members[member].active === 1 && authData.password.email === $scope.createdBy && authData.password.email !== $scope.members[member].emailId) {
               $scope.members[member].showKick = true;
-            } else if ($scope.members[member].emailId === authData.password.email){
+            } else if ($scope.members[member].emailId === authData.password.email) {
               userKey = member;
             } else {
               $scope.members[member].showKick = false;
             }
           }
 
+          Materialize.toast('If you refresh the page, you will be removed from the Chat Room', 4000);
           $scope.loading = false;
           $timeout(function() {
             $scope.$apply();
@@ -79,13 +80,13 @@
       }
       getData();
 
-      ref.child('chatRooms').child(key).child('members').on('child_removed', function(dataSnapshot){
-          if(dataSnapshot.val().emailId === authData.password.email){
-            $location.path('/chatRooms');
-            $timeout(function(){
-              $scope.$apply();
-            });
-          }
+      ref.child('chatRooms').child(key).child('members').on('child_removed', function(dataSnapshot) {
+        if (dataSnapshot.val().emailId === authData.password.email) {
+          $location.path('/chatRooms');
+          $timeout(function() {
+            $scope.$apply();
+          });
+        }
       });
 
       $scope.sentMessage = function() {
@@ -118,10 +119,10 @@
       };
 
       $scope.leaveThisRoom = function() {
-        ref.child('chatRooms').child(key).child('members').child(userKey).remove(function(error){
-          if(error){
+        ref.child('chatRooms').child(key).child('members').child(userKey).remove(function(error) {
+          if (error) {
             Materialize.toast('Cannot Leave Room. Server Error.', 4000);
-          } else {
+          } else if ($rootScope.userType !== true) {
             ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
               return remainingSlots + 1;
             }, function(error, committed) {
@@ -132,18 +133,22 @@
                 //rollback
               } else {
                 Materialize.toast('Left Chat Room.', 4000);
-                $timeout(function(){
+                $timeout(function() {
                   $scope.$apply();
                 });
               }
+            });
+          } else {
+            $timeout(function() {
+              $scope.$apply();
             });
           }
         });
       };
 
-      // $window.onbeforeunload = function() {
-      //   $scope.leaveThisRoom();
-      // };
+      $window.onbeforeunload = function() {
+        $scope.leaveThisRoom();
+      };
 
       $scope.kickMember = function(memberkey) {
         ref.child('chatRooms').child(key).child('members').child(memberkey).remove(function(error) {

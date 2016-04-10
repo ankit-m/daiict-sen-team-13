@@ -111,10 +111,7 @@
       function validate(members, chatRoom) {
         for (var member in members){
           if(member.emailId === authData.password.email){
-            if(member.child.kicked === 1){
-              console.log('kicked');
-              return false;
-            }
+            return false;
           }
         }
         if (chatRoom.slots > 0) {
@@ -150,7 +147,7 @@
 
       self.openChatRoom = function(key, chatRoom) {
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
-          if ($rootScope.userType === true || validate(dataSnapshot.val().members, chatRoom)){
+          if (validate(dataSnapshot.val().members, chatRoom)){
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,

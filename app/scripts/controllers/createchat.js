@@ -82,66 +82,25 @@
         });
       };
 
-      self.showAllChatRooms = function() {
-        $location.path('/chatRooms');
-      };
-
-      function validate(data, chatRoom) {
-        data.forEach(function(member) {
-          console.log("redirecting one", member.child("emailId").val());
-          if (member.child("emailId").val() === authData.password.email) {
+      function validate(members){
+        for (var member in members){
+          if(member.emailId === authData.password.email){
             return false;
           }
-        });
-        if (chatRoom.slots > 0) {
-          var currentDate = new Date();
-          var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
-          if (currentTime > chatRoom.startTime) {
-            var today = new Date();
-            var weekday = new Array(7);
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
-            if (weekday[today.getDay()] === chatRoom.days) {
-              return true;
-            } else {
-              Materialize.toast('Wrong Day. Chat room not open.', 4000);
-              return false;
-            }
-          } else {
-            Materialize.toast('Chat room not open yet. Try again later', 4000);
-            return false;
-          }
-        } else {
-          Materialize.toast('Chat room full. Please try again later', 4000);
-          return false;
         }
+        return true;
       }
 
       self.openChatRoom = function(key) {
-        ref.child('chatRooms').child(key).child('members').push({
-          'emailId': authData.password.email,
-          'kicked': 0,
-          'active': 1
-        }, function(error){
-          if(error){
-            console.log(error);
-          } else {
-            ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
-              if(remainingSlots === 0){
-                return; //rollback
-              }
-              return remainingSlots - 1;
-            }, function(error, committed){
-              if (error){
-                //server error
-              } else if (!committed){
-                //slots taken
-                //rollback
+        ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
+          if (validate(dataSnapshot.val().members)){
+            ref.child('chatRooms').child(key).child('members').push({
+              'emailId': authData.password.email,
+              'kicked': 0,
+              'active': 1
+            }, function(error){
+              if(error){
+                console.log(error);
               } else {
                 $location.path('/chat').search({
                   'roomId': key
@@ -154,7 +113,7 @@
           }
         });
       };
-
+      
       self.deleteChatRoom = function(chatRoomId) {
         ref.child('chatRooms').child(chatRoomId).remove(function(error) {
           if (error) {

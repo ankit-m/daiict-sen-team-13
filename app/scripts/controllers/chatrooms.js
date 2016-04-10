@@ -82,13 +82,13 @@
       getData();
 
       function validate(members, chatRoom) {
-        for (var member in members){
-          if(member.emailId === authData.password.email){
-            if(member.child.kicked === 1){
-              console.log('kicked');
-              return false;
-            }
+        for (var member in members) {
+          if (member.emailId === authData.password.email) {
+            return false;
           }
+        }
+        if ($scope.userType === true) {
+          return true;
         }
         if (chatRoom.slots > 0) {
           var currentDate = new Date();
@@ -121,25 +121,25 @@
       }
 
       $scope.openChatRoom = function(key, chatRoom) {
-        ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
-          if ($rootScope.userType === true || validate(dataSnapshot.val().members, chatRoom)){
+        ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
+          if (validate(dataSnapshot.val().members, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,
               'active': 1
-            }, function(error){
-              if(error){
+            }, function(error) {
+              if (error) {
                 console.log(error);
-              } else {
-                ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
-                  if(remainingSlots === 0){
+              } else if ($rootScope.userType !== true) {
+                ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
+                  if (remainingSlots === 0) {
                     return;
                   }
                   return remainingSlots - 1;
-                }, function(error, committed){
-                  if (error){
+                }, function(error, committed) {
+                  if (error) {
                     //server error
-                  } else if (!committed){
+                  } else if (!committed) {
                     //slots taken
                     //rollback
                   } else {
@@ -150,6 +150,13 @@
                       $scope.$apply();
                     });
                   }
+                });
+              } else {
+                $location.path('/chat').search({
+                  'roomId': key
+                });
+                $timeout(function() {
+                  $scope.$apply();
                 });
               }
             });
