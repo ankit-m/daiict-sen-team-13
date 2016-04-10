@@ -34,9 +34,15 @@
 
 <div class="container" ng-hide="loading">
   <br>
-  <h5 class="light">All Job Openings</h5>
+  <div class="row" style="margin: 8px 0 0 0 ">
+    <h5 class="light col s6" style="margin-bottom: 0">All Job Openings</h5>
+    <div class="input-field col s6" style="margin: 0">
+      <input ng-model="search" id="search" type="text">
+      <label for="search">Search </label>
+    </div>
+  </div>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, job) in jobPostings">
+    <li ng-repeat="(key, job) in jobPostings | searchJobs:search">
       <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
         <p>{{job.description}}</p>

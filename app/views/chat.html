@@ -33,6 +33,7 @@
 </div>
 
 <div class="container" ng-hide="loading" ng-keypress="myFunct($event)">
+  <br>
   <div style="position: absolute; right:40px" class="hide-on-med-and-down">
     <p class="center-align"> <b>Active members</b></p>
     <ul class="collection grey lighten-4">
@@ -42,8 +43,15 @@
       </a>
     </ul>
   </div>
+  <div class="row" style="margin: 8px 0 0 0 ">
+    <h5 class="light col s6" style="margin-bottom: 0">Chat</h5>
+    <div class="input-field col s6" style="margin: 0">
+      <input ng-model="search" id="search" type="text">
+      <label for="search">Search </label>
+    </div>
+  </div>
   <div class="chat-box">
-    <div ng-repeat="message in chatHistory">
+    <div ng-repeat="message in chatHistory | searchChat:search">
       <div ng-class="message.alignment">
         <small class="chat-bubble grey lighten-3"><span class="grey-text">{{message.sender}}</span>&nbsp;{{message.text}}</small>
       </div>

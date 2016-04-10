@@ -1,6 +1,5 @@
 // bower:scss
-@import "Materialize/sass/materialize.scss";
-// endbower
+@import "Materialize/sass/materialize.scss"; // endbower
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -12,9 +11,9 @@ body {
   overflow-y: scroll;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
+.footer,
 .header,
-.marketing,
-.footer {
+.marketing {
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -56,15 +55,15 @@ body {
   }
 }
 /*For fixed sidenav*/
+footer,
 header,
-main,
-footer {
+main {
   padding-left: 240px;
 }
 @media only screen and (max-width : 992px) {
+  footer,
   header,
-  main,
-  footer {
+  main {
     padding-left: 0;
   }
 }
@@ -77,9 +76,9 @@ footer {
     max-width: 730px;
   }
   /* Remove the padding we set earlier */
+  .footer,
   .header,
-  .marketing,
-  .footer {
+  .marketing {
     padding-left: 0;
     padding-right: 0;
   }
