@@ -18,6 +18,8 @@
       $scope.allUsers = {};
       $scope.loading = true;
 
+
+
       $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
@@ -76,4 +78,29 @@
 
 
     }]);
+  
+
+   angular.module('daiictSenTeam13App').filter('customPeople', function() {
+  return function(input, search) {
+    if (!input) return input;
+    if (!search) return input;
+    var expected = ('' + search).toLowerCase();
+    var result = {};
+    angular.forEach(input, function(value,key) {
+      //console.log("These are interests length",value.interests);
+      var actual = ('' + value.firstName).toLowerCase();
+      var actual2=('' + value.institute).toLowerCase();
+      var actual3=('' + value.lastName).toLowerCase();
+      var actual4=('' + value.email).toLowerCase();         
+      //interests and publications?
+
+      if (actual.indexOf(expected) !== -1 || actual2.indexOf(expected) !== -1 || actual3.indexOf(expected) !== -1 || actual4.indexOf(expected) !== -1  ) {
+        result[key] = value;
+      }
+    });
+    return result;
+  }
+});
+
+
 })();

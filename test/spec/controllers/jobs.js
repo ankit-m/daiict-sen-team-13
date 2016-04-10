@@ -17,7 +17,4 @@ describe('Controller: JobsCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(JobsCtrl.awesomeThings.length).toBe(3);
-  });
 });

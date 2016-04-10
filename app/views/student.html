@@ -34,9 +34,14 @@
 
 <div class="container" ng-hide="loading">
   <br>
+   <div class="input-field col s6">
+   <input ng-model="searchText" type="text">
+   <label for="searchText">Search by Name, Description, Location, Job Poster</label>
+  </div>
+  <br>
   <h5 class="light">Job Postings</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, job) in jobs">
+    <li ng-repeat="(key, job) in jobs | customJobList:searchText">
       <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
         <p>{{job.description}}</p>
@@ -48,9 +53,14 @@
   </ul>
 
   <br>
+  <div class="input-field col s6">
+   <input ng-model="searchChatRoom" type="text">
+   <label for="searchChatRoom">Search by Name, Description, Day, Start time(24 hr.)</label>
+  </div>
+  <br>
   <h5 class="light">Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chatRoom) in chatRooms">
+    <li ng-repeat="(key, chatRoom) in chatRooms | customChatRooms:searchChatRoom">
       <div class="collapsible-header">{{chatRoom.chatRoomName}}</div>
       <div class="collapsible-body">
         <p>{{chatRoom.description}}</p>

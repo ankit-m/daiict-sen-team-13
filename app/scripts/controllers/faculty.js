@@ -245,4 +245,38 @@
 
 
     }]);
+
+  angular.module('daiictSenTeam13App').filter('customJob', function() {
+  return function(input, search) {
+    if (!input) return input;
+    if (!search) return input;
+    var expected = ('' + search).toLowerCase();
+    var result = {};
+    angular.forEach(input, function(value,key) {
+      var actual = ('' + value.jobName).toLowerCase();
+      if (actual.indexOf(expected) !== -1){
+        result[key] = value;
+      }
+    });
+    return result;
+    }
+    });
+
+    angular.module('daiictSenTeam13App').filter('customChatRoom', function() {
+    return function(input, search) {
+    if (!input) return input;
+    if (!search) return input;
+    var expected = ('' + search).toLowerCase();
+    var result = {};
+    angular.forEach(input, function(value,key) {
+      var actual = ('' + value.chatRoomName).toLowerCase();
+      var actual2= ('' + value.description).toLowerCase();
+      if (actual.indexOf(expected) !== -1 || actual2.indexOf(expected) !== -1 ){
+        result[key] = value;
+      }
+    });
+    return result;
+    }
+    });
+
 })();

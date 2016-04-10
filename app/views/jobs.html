@@ -34,9 +34,14 @@
 
 <div class="container" ng-hide="loading">
   <br>
+  <div class="input-field col s6">
+   <input ng-model="searchText" type="text">
+   <label for="searchText">Search by Name, Description, Location, Job Poster emailID</label>
+  </div>
+  <br>
   <h5 class="light">All Job Openings</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, job) in jobPostings">
+    <li ng-repeat="(key, job) in jobPostings | customJobList:searchText">
       <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
         <p>{{job.description}}</p>

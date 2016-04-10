@@ -18,6 +18,7 @@
   </div>
 </nav>
 
+
 <div class="preloader-wrapper active container center-div" ng-show="loading">
   <div class="spinner-layer spinner-red-only">
     <div class="circle-clipper left">
@@ -34,10 +35,18 @@
 
 <div class="container" ng-hide="loading">
   <br>
+
+  <div class="input-field col s6">
+   <input ng-model="searchText" type="text">
+   <label for="searchText">Search by Name, Institute, EmailID</label>
+  </div>
+<br>
+
+  <br>
   <h5 class="light">People</h5>
   <ul class="collection">
-    <li class="collection-item" ng-repeat="(key, person) in allUsers">
-      <div>{{person.firstName}} {{person.lastName}}
+    <li class="collection-item" ng-repeat="(key, person) in allUsers | customPeople:searchText">
+      <div >{{person.firstName}} {{person.lastName}}
         <a ng-click="people.viewProfile(person.email)" class="secondary-content pointer">View</a>
       </div>
     </li>

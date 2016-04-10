@@ -37,9 +37,14 @@
 
 <div class="container" ng-hide="loading">
   <br>
+  <div class="input-field col s6">
+   <input ng-model="searchText" type="text">
+   <label for="searchText">Search by Name, Description, Day, Start time(24 hr.)</label>
+  </div>
+<br>
   <h5 class="light">All Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chat) in chatRooms">
+    <li ng-repeat="(key, chat) in chatRooms | customChatRooms:searchText">
       <div class="collapsible-header">{{chat.chatRoomName}}</div>
 
       <div class="collapsible-body">

@@ -47,8 +47,14 @@
     </li>
   </ul>
   </div>
+  <br>
+  <div class="input-field col s6">
+   <input ng-model="searchText" type="text">
+   <label for="searchText">Search by Sender or Message</label>
+  </div>
+  <br>
   <ul class="collection">
-    <li ng-repeat="message in chatHistory"  >
+    <li ng-repeat="message in chatHistory | customMessages:searchText"  >
      <div ng-class="message.alignment">
            <font size="3" >{{message.sender+" "+message.text}}</font>      
      </div>
