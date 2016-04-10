@@ -28,14 +28,21 @@
       }
 
       function getData() {
+        $scope.loading = true;
         ref.child('postings').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.jobs = dataSnapshot.val();
+          $timeout(function() {
+            $scope.$apply();
+          });
         }, function(err) {
           console.error(err);
         });
 
         ref.child('chatRooms').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.chatRooms = dataSnapshot.val();
+          $timeout(function() {
+            $scope.$apply();
+          });
         }, function(err) {
           console.error(err);
         });
@@ -99,9 +106,14 @@
 
       self.applyForJob = function(jobId, jobName) {
         ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).once('value', function(data) {
-          if (data.val() !== null) {
-            Materialize.toast('You have already applied.', 4000);
-          } else {
+          var applied = false;
+          for (var application in data.val()) {
+            if (data.val()[application].jobId === jobId) {
+              applied = true;
+              Materialize.toast('You have already applied.', 4000);
+            }
+          }
+          if (applied === false) {
             $location.path('/application').search({
               'jobId': jobId,
               'jobName': jobName
@@ -149,7 +161,7 @@
 
 
       self.openChatRoom = function(key, chatRoom) {
-        $scope.loading(true);
+        $scope.loading = true;
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
           if (validate(dataSnapshot.val().members, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
@@ -185,6 +197,7 @@
             });
           }
         });
+        $scope.loading = false;
       };
 
     }]);

@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper container">
-    <a href="#" class="brand-logo">SFIP</a>
+    <a ng-click="goTo('home')" class="pointer brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a ng-click="student.logout()">Logout</a></li>
     </ul>
@@ -13,6 +13,7 @@
       <li><a ng-click="goTo('people')">People</a></li>
       <li><a ng-click="goTo('chatRooms')">Chat Rooms</a></li>
       <li><a ng-click="goTo('jobs')">Jobs</a></li>
+      <li><a class="hide-on-large-only" ng-click="logout">Logout</a></li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
@@ -63,11 +64,11 @@
 
   <br>
   <h5 class="light">Your Job Applications</h5>
-  <ul class="collection">
-    <a ng-repeat="(appId,app) in applications" class="collection-item pointer black-text" ng-click="">
+  <ul class="collection z-depth-1">
+    <div ng-repeat="(appId,app) in applications" class="collection-item black-text" ng-click="">
       {{app.jobName}}
       <div class="secondary-content grey-text pointer" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">{{app.status ? app.status : 'pending'}}</div>
-    </a>
+    </div>
   </ul>
   </ul>
 </div>

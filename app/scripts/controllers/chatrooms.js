@@ -174,6 +174,7 @@
             });
           }
         });
+        $scope.loading = false;
       };
 
     }]);

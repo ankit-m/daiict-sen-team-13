@@ -81,7 +81,6 @@
 
       ref.child('chatRooms').child(key).child('members').on('child_removed', function(dataSnapshot) {
         if (dataSnapshot.val().emailId === authData.password.email) {
-          Materialize.toast('You were kicked', 4000);
           $location.path('/chatRooms');
           $timeout(function() {
             $scope.$apply();

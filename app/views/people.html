@@ -1,8 +1,8 @@
 <nav>
   <div class="nav-wrapper container">
-    <a href="#" class="brand-logo">SFIP</a>
+    <a ng-click="goTo('home')" class="pointer brand-logo">SFIP</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-click="people.logout()">Logout</a></li>
+      <li><a ng-click="student.logout()">Logout</a></li>
     </ul>
     <ul id="slide-out" class="side-nav fixed">
       <div class="sidenav-profile center-align">
@@ -13,6 +13,7 @@
       <li><a ng-click="goTo('people')">People</a></li>
       <li><a ng-click="goTo('chatRooms')">Chat Rooms</a></li>
       <li><a ng-click="goTo('jobs')">Jobs</a></li>
+      <li><a class="hide-on-large-only" ng-click="logout">Logout</a></li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
