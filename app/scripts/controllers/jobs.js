@@ -35,7 +35,7 @@
         $scope.jobPostings = dataSnapshot.val();
         console.log($scope.jobPostings);
         $scope.loading = false;
-        $timeout(function(){
+        $timeout(function() {
           $scope.$apply();
         });
       }, function(err) {
@@ -44,6 +44,13 @@
 
       $scope.goTo = function(page) {
         switch (page) {
+          case 'home':
+            if ($rootScope.userType === true) {
+              $location.path('/faculty');
+            } else {
+              $location.path('/student');
+            }
+            break;
           case 'profile':
             $location.path('/profile');
             break;
@@ -79,7 +86,7 @@
       self.applyForJob = function(jobId, jobName) {
         $location.path('/application').search({
           'jobId': jobId,
-          'jobName':jobName
+          'jobName': jobName
         });
       };
 

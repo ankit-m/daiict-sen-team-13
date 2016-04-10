@@ -70,19 +70,19 @@
           Materialize.toast('All fields are required', 4000);
           return false;
         }
-        if(!/([^\s])/.test($scope.startDate) || !/([^\s])/.test($scope.endDate) || !/([^\s])/.test($scope.deadline) || !/([^\s])/.test($scope.location)){
+        if (!/([^\s])/.test($scope.startDate) || !/([^\s])/.test($scope.endDate) || !/([^\s])/.test($scope.deadline) || !/([^\s])/.test($scope.location)) {
           Materialize.toast('All fields are required', 4000);
           return false;
         }
-        if (new Date($scope.startDate) < new Date()){
+        if (new Date($scope.startDate) < new Date()) {
           Materialize.toast('Start Date should be greater than today.', 4000);
           return false;
         }
-        if (new Date($scope.startDate) > new Date($scope.endDate)){
+        if (new Date($scope.startDate) > new Date($scope.endDate)) {
           Materialize.toast('Start Date should be lower than End Date', 4000);
           return false;
         }
-        if (new Date($scope.deadline) > new Date($scope.startDate)){
+        if (new Date($scope.deadline) > new Date($scope.startDate)) {
           Materialize.toast('Deadline should be lower than Start Date.', 4000);
           return false;
         }
@@ -142,6 +142,9 @@
 
       $scope.goTo = function(page) {
         switch (page) {
+          case 'home':
+            $location.path('/faculty');
+            break;
           case 'profile':
             $location.path('/profile');
             break;

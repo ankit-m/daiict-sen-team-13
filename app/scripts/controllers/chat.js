@@ -180,6 +180,13 @@
 
       $scope.goTo = function(page) {
         switch (page) {
+          case 'home':
+            if ($rootScope.userType === true) {
+              $location.path('/faculty');
+            } else {
+              $location.path('/student');
+            }
+            break;
           case 'profile':
             $location.path('/profile');
             break;

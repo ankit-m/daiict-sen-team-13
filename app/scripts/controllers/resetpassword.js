@@ -23,7 +23,7 @@
           Materialize.toast('All fields are required', 4000);
           return false;
         }
-        if ($scope.newPassword === $scope.confirmNew){
+        if ($scope.newPassword === $scope.confirmNew) {
           Materialize.toast('Passwords did not match', 4000);
           return false;
         }

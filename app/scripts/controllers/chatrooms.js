@@ -31,12 +31,20 @@
           $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
           });
+          $(".button-collapse").sideNav();
         });
       };
       $scope.initMaterial();
 
       $scope.goTo = function(page) {
         switch (page) {
+          case 'home':
+            if ($rootScope.userType === true) {
+              $location.path('/faculty');
+            } else {
+              $location.path('/student');
+            }
+            break;
           case 'profile':
             $location.path('/profile');
             break;

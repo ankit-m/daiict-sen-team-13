@@ -64,6 +64,9 @@
 
       $scope.goTo = function(page) {
         switch (page) {
+          case 'home':
+            $location.path('/student');
+            break;
           case 'profile':
             $location.path('/profile');
             break;
@@ -109,8 +112,8 @@
       };
 
       function validate(members, chatRoom) {
-        for (var member in members){
-          if(member.emailId === authData.password.email){
+        for (var member in members) {
+          if (member.emailId === authData.password.email) {
             return false;
           }
         }
@@ -147,26 +150,26 @@
 
       self.openChatRoom = function(key, chatRoom) {
         $scope.loading(true);
-        ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
-          if (validate(dataSnapshot.val().members, chatRoom)){
+        ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
+          if (validate(dataSnapshot.val().members, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,
               'active': 1
-            }, function(error){
-              if(error){
+            }, function(error) {
+              if (error) {
                 console.log(error);
                 $scope.loading = false;
               } else {
-                ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
-                  if (remainingSlots === 0){
+                ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
+                  if (remainingSlots === 0) {
                     return;
                   }
                   return remainingSlots - 1;
-                }, function(error, committed){
-                  if (error){
+                }, function(error, committed) {
+                  if (error) {
                     //server error
-                  } else if (!committed){
+                  } else if (!committed) {
                     //slots taken
                     //rollback
                   } else {

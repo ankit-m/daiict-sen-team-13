@@ -75,7 +75,7 @@
        * Redirects user to reset password page.
        * @returns {undefined} Does not return anything.
        */
-      self.goToReset = function(){
+      self.goToReset = function() {
         $location.path('/resetPassword');
       };
 

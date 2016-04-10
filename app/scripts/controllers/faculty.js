@@ -59,6 +59,9 @@
 
       $scope.goTo = function(page) {
         switch (page) {
+          case 'home':
+            $location.path('/faculty');
+            break;
           case 'profile':
             $location.path('/profile');
             break;
@@ -85,9 +88,9 @@
         $location.path('/chatRooms');
       };
 
-      function validate(members){
-        for (var member in members){
-          if(member.emailId === authData.password.email){
+      function validate(members) {
+        for (var member in members) {
+          if (member.emailId === authData.password.email) {
             return false;
           }
         }
@@ -95,14 +98,14 @@
       }
 
       self.openChatRoom = function(key) {
-        ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
-          if (validate(dataSnapshot.val().members)){
+        ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
+          if (validate(dataSnapshot.val().members)) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,
               'active': 1
-            }, function(error){
-              if(error){
+            }, function(error) {
+              if (error) {
                 console.log(error);
               } else {
                 $location.path('/chat').search({

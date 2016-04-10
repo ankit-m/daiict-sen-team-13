@@ -85,6 +85,9 @@
 
       $scope.goTo = function(page) {
         switch (page) {
+          case 'home':
+            $location.path('/faculty');
+            break;
           case 'profile':
             $location.path('/profile');
             break;
