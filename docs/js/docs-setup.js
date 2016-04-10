@@ -158,12 +158,39 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "daiictSenTeam13App.filter:searchChat",
+      "shortName": "searchChat",
+      "type": "filter",
+      "moduleName": "daiictSenTeam13App",
+      "shortDescription": "searchChat",
+      "keywords": "api daiictsenteam13app filter searchchat"
+    },
+    {
+      "section": "api",
+      "id": "daiictSenTeam13App.filter:searchChatRoom",
+      "shortName": "searchChatRoom",
+      "type": "filter",
+      "moduleName": "daiictSenTeam13App",
+      "shortDescription": "searchChatRoom",
+      "keywords": "api daiictsenteam13app filter searchchatroom"
+    },
+    {
+      "section": "api",
       "id": "daiictSenTeam13App.filter:searchJobs",
       "shortName": "searchJobs",
       "type": "filter",
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "searchJobs",
       "keywords": "api daiictsenteam13app filter searchjobs"
+    },
+    {
+      "section": "api",
+      "id": "daiictSenTeam13App.filter:searchPeople",
+      "shortName": "searchPeople",
+      "type": "filter",
+      "moduleName": "daiictSenTeam13App",
+      "shortDescription": "searchPeople",
+      "keywords": "api daiictsenteam13app filter searchpeople"
     }
   ],
   "apis": {
