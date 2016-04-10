@@ -5,7 +5,6 @@
    * @ngdoc controller
    * @name daiictSenTeam13App.controller:RegisterCtrl
    * @description
-   * # RegisterCtrl
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
@@ -23,6 +22,16 @@
       }
       resetValues();
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:RegisterCtrl#sendPassword
+       * @methodOf daiictSenTeam13App.controller:RegisterCtrl
+       * @param {string} email Email address with which the user registered.
+       * @description
+       * Sends an email to reset the passworf for given email address. In case
+       * of an error, raises appropriate toasts.
+       * @returns {undefined} Does not return anything.
+       */
       function sendPassword(email) {
         ref.resetPassword({
           email: email
@@ -30,13 +39,11 @@
           if (error) {
             switch (error.code) {
               case "INVALID_USER":
-                console.log("The specified user account does not exist.");
+                Materialize.toast("The specified user account does not exist.", 4000);
                 break;
               default:
-                console.log("Error resetting password:", error);
+                Materialize.toast("Error resetting password:" + error, 4000);
             }
-          } else {
-            console.log("Password reset email sent successfully!");
           }
         });
       }
@@ -56,7 +63,7 @@
           $scope.firstName = $scope.firstName.trim();
           $scope.lastName = $scope.lastName.trim();
           $scope.institute = $scope.institute.trim();
-          $timeout(function(){
+          $timeout(function() {
             $scope.$apply();
           });
           return true;
@@ -86,8 +93,6 @@
                   });
               }
             } else {
-              console.log("Successfully created user account with uid:", userData.uid);
-
               var profileData = {};
 
               var instituteKey = ref.child('institutions').push().key();
@@ -114,23 +119,20 @@
                 type: $scope.userType
               };
 
-              console.log(profileData);
-
               ref.update(profileData, function(error) {
                 if (error) {
-                  console.error('Cannot create profile');
-                  //remove user
+                  Materialize.toast('Cannot create profile', 4000);
+                  //TODO remove user
                 } else {
                   console.log('created profile');
                   $scope.loading = false;
                   $location.path('/');
                   Materialize.toast('Password sent to the email.', 4000);
-                  $timeout(function(){
+                  $timeout(function() {
                     $scope.$apply();
                   });
                 }
               });
-
               sendPassword($scope.email);
             }
           });

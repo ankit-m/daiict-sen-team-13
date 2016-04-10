@@ -50,6 +50,9 @@ module.exports = function(grunt) {
     // Watches files for changes and runs tasks based on the changed files
 
     ngdocs: {
+      options:{
+        html5mode: false
+      },
       all: ['<%= yeoman.app %>/scripts/{,*/}*.js']
     },
 
@@ -536,6 +539,10 @@ module.exports = function(grunt) {
     'newer:jshint',
     'newer:jscs',
     'test',
-    'build'
+    'build',
+    'clean',
+    'html2js',
+    'ngdocs',
+    'connect'
   ]);
 };

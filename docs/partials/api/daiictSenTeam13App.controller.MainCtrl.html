@@ -1,10 +1,37 @@
-<a href="https://github.com/ankit-m/daiict-sen-team-13/edit/master/app/scripts/controllers/main.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/ce2dd37/app/scripts/controllers/main.js#L11" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">MainCtrl</code>
+<a href="https://github.com/ankit-m/daiict-sen-team-13/edit/master/app/scripts/controllers/main.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/e1ced3b/app/scripts/controllers/main.js#L11" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">MainCtrl</code>
 <div><span class="hint">controller in module <code ng:non-bindable="">daiictSenTeam13App</code>
 </span>
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
-<div class="description"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-page"><h3 id="description_mainctrl">MainCtrl</h3>
-<p>Controller of the daiictSenTeam13App</p>
+<div class="description"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-page"><p>Controller for the route <code>/</code>. It checks authenticates the user
+and redirects to the appropriate page.</p>
 </div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/e1ced3b/app/scripts/controllers/main.js#L66" class="view-source icon-eye-open"> </a><h3 id="methods_gotoregister">goToRegister()</h3>
+<div class="gotoregister"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-gotoregister-page"><p>Redirects user to registration page.</p>
+</div><h5 id="methods_gotoregister_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-gotoregister-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/e1ced3b/app/scripts/controllers/main.js#L78" class="view-source icon-eye-open"> </a><h3 id="methods_gotoreset">goToReset()</h3>
+<div class="gotoreset"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-gotoreset-page"><p>Redirects user to reset password page.</p>
+</div><h5 id="methods_gotoreset_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-gotoreset-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/e1ced3b/app/scripts/controllers/main.js#L92" class="view-source icon-eye-open"> </a><h3 id="methods_login">login()</h3>
+<div class="login"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-login-page"><p>Gets the email and password from scope. Makes a login request to Firebase.
+If successful, checks for temporary password or calls <code>redirectUser</code>.
+In case of login error, raises appropriate toats.</p>
+</div><h5 id="methods_login_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-login-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/e1ced3b/app/scripts/controllers/main.js#L33" class="view-source icon-eye-open"> </a><h3 id="methods_redirectuser">redirectUser()</h3>
+<div class="redirectuser"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-redirectuser-page"><p>Fetches the authentication data from local storage of the browser.
+Identifies the type of user i.e. faculty or student by making an API
+call to <code>/users</code>. Also sets attaches <code>userType</code> variable to <code>$rootScope</code>.</p>
+</div><h5 id="methods_redirectuser_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-mainctrl-redirectuser-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
 </div>

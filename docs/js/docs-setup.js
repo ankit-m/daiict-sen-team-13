@@ -72,8 +72,8 @@ NG_DOCS={
       "shortName": "MainCtrl",
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
-      "shortDescription": "MainCtrl",
-      "keywords": "api controller daiictsenteam13app mainctrl"
+      "shortDescription": "Controller for the route /. It checks authenticates the user",
+      "keywords": "$rootscope api appropriate attaches authenticates authentication browser call calls case checks controller daiictsenteam13app data email error faculty fetches firebase function gotoregister gotoreset identifies local login making password raises redirects redirectuser registration request reset return route scope sets storage student successful temporary toats type user usertype variable"
     },
     {
       "section": "api",
@@ -108,8 +108,8 @@ NG_DOCS={
       "shortName": "RegisterCtrl",
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
-      "shortDescription": "RegisterCtrl",
-      "keywords": "api controller daiictsenteam13app registerctrl"
+      "shortDescription": "Controller of the daiictSenTeam13App",
+      "keywords": "address api appropriate case controller daiictsenteam13app email error function passworf raises registered reset return sendpassword sends toasts user"
     },
     {
       "section": "api",
