@@ -122,7 +122,6 @@
       }
 
       $scope.openChatRoom = function(key, chatRoom) {
-        console.log('ok');
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
           if ($rootScope.userType === true || validate(dataSnapshot.val().members, chatRoom)){
             ref.child('chatRooms').child(key).child('members').push({

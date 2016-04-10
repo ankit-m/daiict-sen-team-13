@@ -54,6 +54,10 @@
         $location.path('/register');
       };
 
+      self.goToReset = function(){
+        $location.path('/resetPassword');
+      };
+
       self.login = function() {
         $scope.loading = true;
         $timeout(function() {

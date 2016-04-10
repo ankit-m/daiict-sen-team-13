@@ -108,10 +108,77 @@
 
       };
 
-      self.joinChatRoom = function(chatRoomId) {
-        //check joining condition
-        $location.path('/chat').search({
-          'roomId': chatRoomId
+      function validate(members, chatRoom) {
+        for (var member in members){
+          if(member.emailId === authData.password.email){
+            if(member.child.kicked === 1){
+              console.log('kicked');
+              return false;
+            }
+          }
+        }
+        if (chatRoom.slots > 0) {
+          var currentDate = new Date();
+          var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
+          if (currentTime > chatRoom.startTime) {
+            var today = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            if (weekday[today.getDay()] === chatRoom.days) {
+              return true;
+            } else {
+              Materialize.toast('Wrong Day. Chat room not open.', 4000);
+              return false;
+            }
+          } else {
+            Materialize.toast('Chat room not open yet. Try again later', 4000);
+            return false;
+          }
+        } else {
+          Materialize.toast('Chat room full. Please try again later', 4000);
+          return false;
+        }
+        return true;
+      }
+
+
+      self.openChatRoom = function(key, chatRoom) {
+        ref.child('chatRooms').child(key).once('value', function(dataSnapshot){
+          if ($rootScope.userType === true || validate(dataSnapshot.val().members, chatRoom)){
+            ref.child('chatRooms').child(key).child('members').push({
+              'emailId': authData.password.email,
+              'kicked': 0,
+              'active': 1
+            }, function(error){
+              if(error){
+                console.log(error);
+              } else {
+                ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
+                  return remainingSlots - 1;
+                }, function(error, committed){
+                  if (error){
+                    //server error
+                  } else if (!committed){
+                    //slots taken
+                    //rollback
+                  } else {
+                    $location.path('/chat').search({
+                      'roomId': key
+                    });
+                    $timeout(function() {
+                      $scope.$apply();
+                    });
+                  }
+                });
+              }
+            });
+          }
         });
       };
 

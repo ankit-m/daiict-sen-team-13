@@ -68,7 +68,7 @@
         getData();
 
         function validate() {
-          if (!/([^\s])/.test($scope.letter) || !/([^\s])/.test($scope.contactEmail) || !/([^\s])/.test($scope.attachment)) {
+          if (!/([^\s])/.test($scope.letter) || !/([^\s])/.test($scope.contactEmail)) {
             Materialize.toast('All fields are required', 4000);
             return false;
           }
