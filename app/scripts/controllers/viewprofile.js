@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   /**
-   * @ngdoc function
+   * @ngdoc controller
    * @name daiictSenTeam13App.controller:ViewprofileCtrl
    * @description
    * # ViewprofileCtrl
@@ -71,7 +71,6 @@
             } else {
               $location.path('/chatRooms');
             }
-
             break;
           case 'jobs':
             if ($rootScope.userType === true) {

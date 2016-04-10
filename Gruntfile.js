@@ -48,6 +48,11 @@ module.exports = function(grunt) {
       }
     },
     // Watches files for changes and runs tasks based on the changed files
+
+    ngdocs: {
+      all: ['<%= yeoman.app %>/scripts/{,*/}*.js']
+    },
+
     watch: {
       bower: {
         files: ['bower.json'],
@@ -478,6 +483,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-ngdocs');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function(target) {
     if (target === 'dist') {

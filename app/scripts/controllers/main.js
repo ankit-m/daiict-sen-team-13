@@ -2,7 +2,7 @@
   'use strict';
 
   /**
-   * @ngdoc function
+   * @ngdoc controller
    * @name daiictSenTeam13App.controller:MainCtrl
    * @description
    * # MainCtrl

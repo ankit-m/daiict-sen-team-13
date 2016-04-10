@@ -1,8 +1,7 @@
 (function() {
   'use strict';
-  //TODO: date UTC format
   /**
-   * @ngdoc function
+   * @ngdoc controller
    * @name daiictSenTeam13App.controller:PostingCtrl
    * @description
    * # PostingCtrl

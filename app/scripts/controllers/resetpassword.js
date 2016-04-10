@@ -2,11 +2,12 @@
   'use strict';
 
   /**
-   * @ngdoc function
+   * @ngdoc controller
    * @name daiictSenTeam13App.controller:ResetpasswordCtrl
    * @description
-   * # ResetpasswordCtrl
-   * Controller of the daiictSenTeam13App
+   *
+   * Controller for ResetpasswordCtrl and there is
+   * something and also.
    */
   angular.module('daiictSenTeam13App')
     .controller('ResetpasswordCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
@@ -29,7 +30,6 @@
         return true;
       }
 
-      //TODO verify passwords
       $scope.changePass = function() {
         if (validate()) {
           ref.changePassword({
