@@ -32,6 +32,14 @@
           $location.path('/faculty');
         }
 
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#initMaterial
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Initialises the Matrialise modules.
+         * @returns {undefined} Does not return anything.
+         */
         $scope.initMaterial = function() {
           $(document).ready(function() {
             $(".button-collapse").sideNav({
@@ -42,17 +50,45 @@
         };
         $scope.initMaterial();
 
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#resetValues
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Resets all the input fields that were filled by the student who is
+         * attempting to apply for a job.
+         * @returns {undefined} Does not return anything.
+         */
         $scope.resetValues = function() {
           document.getElementById("applicationForm").reset();
           $('#letter').trigger('autoresize');
         };
         $scope.resetValues();
 
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#logout
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Ends the user's session and logs him out.
+         * @returns {undefined} Does not return anything.
+         */
         $scope.logout = function() {
           ref.unauth();
           $location.path('/');
         };
 
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#getData
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Function called when /application page loads. The unique jobId of the
+         * job for which student wants to apply is passed to this view as a
+         * route parameter. The name of the job is retrieved based on this jobId
+         * and stored in a scope variable for displaying in the view.
+         * @returns {undefined} Does not return anything.
+         */
         function getData() {
           ref.child('postings').orderByKey().equalTo(jobId).once('value', function(dataSnapshot) {
             job = dataSnapshot.val();
@@ -72,6 +108,15 @@
         }
         getData();
 
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#validate
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Validation function called when user tries to submit application for
+         * the job selected. Only if all fields are filled in, validate will return true.
+         * @returns {boolean} Whether data is valid or not
+         */
         function validate() {
           if (!/([^\s])/.test($scope.letter) || !/([^\s])/.test($scope.contactEmail)) {
             Materialize.toast('All fields are required', 4000);
@@ -80,6 +125,19 @@
           return true;
         }
 
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#submitApplication
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * This function is called when the student clicks on submit application. The
+         * validate function is called and if it returns true, an application for the
+         * given job is stored in the database, including informaton such as who applied
+         * contact email of the member who applied, the cover letter, date submitted on,
+         * jobId, job name etc. On error, a toast message is displayed prompting to try
+         * again later. Else, application is submitted successfully.
+         * @returns {undefined} Does not return anything.
+         */
         $scope.submitApplication = function() {
           if (validate()) {
             ref.child('applications').push({ //add server validation
@@ -108,6 +166,26 @@
           }
         };
 
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#goTo
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @param {string} page String that is passed according to
+         * the option clicked by the user in the navigation drawer
+         * displayed to the left of the screen.
+         * @description
+         * This function is used to redirect the user to either of
+         * the 4 pages, that are profile page, chatRooms page,
+         * jobs page or people page, based on what he/she has
+         * clicked on in the navigation bar displayed in the left
+         * of the screen. Note the following
+         * 1. A professor is redirected to '/createChat' on clicking
+         * "Chat Rooms" in the nav bar whereas a student is redirected
+         * to '/chatRooms'.
+         * 2. A professor is redirected to '/posting' on clicking
+         * 'Jobs' whereas a student is redirected to '/jobs'.
+         * @returns {undefined} Does not return anything.
+         */
         $scope.goTo = function(page) {
           switch (page) {
             case 'home':

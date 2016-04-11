@@ -15,6 +15,15 @@
 
       $location.url($location.path());
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:RegisterCtrl#resetValues
+       * @methodOf daiictSenTeam13App.controller:RegisterCtrl
+       * @description
+       * Resets all the input fields that were filled by the user who
+       * is attempting to register on the portal.
+       * @returns {undefined} Does not return anything.
+       */
       function resetValues() {
         $scope.email = '';
         $scope.firstName = '';
@@ -50,6 +59,21 @@
         });
       }
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:RegisterCtrl#validate
+       * @methodOf daiictSenTeam13App.controller:RegisterCtrl
+       * @description
+       * Validation function to check inputs given by user who is attempting
+       * to register. Validation checks performed are:
+       * 1. Email address should be of the domain "daiict.ac.in" else a toast
+       *    is displayed asking user to use only that domain's address.
+       * 2. All fields must be filled else a toast message is displayed alerting
+       *    the user that all fields are necessary.
+       * If validation test passes, 'true' is returned to the signup function
+       * else false is returned.
+       * @returns {undefined} Does not return anything.
+       */
       function validate() {
         if ($scope.email.indexOf('@daiict.ac.in') < 0) { //verifications add
           Materialize.toast('Please use DAIICT email address.', 4000);
@@ -71,6 +95,24 @@
         }
       }
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:RegisterCtrl#signup
+       * @methodOf daiictSenTeam13App.controller:RegisterCtrl
+       * @description
+       * Function called when user clicks on sign up in the /register
+       * view. It first checks if all input fields are valid using the
+       * validate function of this controller. If validate function
+       * returns true, the following checks are performed:
+       * 1. If emailId has already been used for registration
+       * 2. If given email address is in a valid email address format.
+       * If either of the above two conditions occur, an error toast message
+       * is displayed and the new user is not created. Else, a new user is
+       * created and the profile data is stored in the database following which
+       * a confirmation email is sent to the registered user with a temporary
+       * password for him to login and confirm his email address and account.
+       * @returns {undefined} Does not return anything.
+       */
       self.signup = function() {
         if (validate()) {
           $scope.loading = true;

@@ -27,6 +27,17 @@
         $location.path('/student');
       }
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#getData
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @description
+       * Thus function is called on /viewJob.html page load. The jobId route
+       * parameter passed is used to look up the corresponding job's applications
+       * in the database and stored in a scope variable so that a professor can
+       * view all applications for that corresponding job.
+       * @returns {undefined} Does not return anything.
+       */
       function getData() {
         console.log('getData called');
         applicationRef.orderByChild('jobId').equalTo(jobId).on('value', function(dataSnapshot) {
@@ -41,6 +52,14 @@
       }
       getData();
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#initMaterial
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @description
+       * Initialises the Matrialise modules.
+       * @returns {undefined} Does not return anything.
+       */
       $scope.initMaterial = function() {
         $(document).ready(function() {
           $(".button-collapse").sideNav({
@@ -53,6 +72,14 @@
       };
       $scope.initMaterial();
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#logout
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @description
+       * Ends the user's session and logs him out.
+       * @returns {undefined} Does not return anything.
+       */
       $scope.logout = function() {
         console.log('logout called');
         ref.unauth();
@@ -60,6 +87,22 @@
         $location.path('/');
       };
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#acceptApplication
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @param {string} applicationId Unique key in the database to identify
+       * an application for a given job.
+       * @description
+       * This function is called when a professor clicks on accept application
+       * on a particular application for a particualr job. When the professor
+       * clicks on accept, the corresponding application's application id is
+       * passed as a parameter to this function. The application's status is
+       * updated as "accept" in the database after searching for the application
+       * in the database. An error toast message is generated if updation fails.
+       * Else, a toast with the message 'Accept Notification sent' is displayed.
+       * @returns {undefined} Does not return anything.
+       */
       self.acceptApplication = function(applicationId) {
         console.log('accept');
         ref.child('applications').child(applicationId).update({
@@ -73,6 +116,22 @@
         });
       };
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#rejectApplication
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @param {string} applicationId Unique key in the database to identify
+       * an application for a given job.
+       * @description
+       * This function is called when a professor clicks on reject application
+       * on a particular application for a particualr job. When the professor
+       * clicks on reject, the corresponding application's application id is
+       * passed as a parameter to this function. The application's status is
+       * updated as "reject" in the database after searching for the application
+       * in the database. An error toast message is generated if updation fails.
+       * Else, a toast with the message 'Reject Notification sent' is displayed.
+       * @returns {undefined} Does not return anything.
+       */
       self.rejectApplication = function(applicationId) {
         console.log('reject');
         ref.child('applications').child(applicationId).update({
@@ -86,6 +145,28 @@
         });
       };
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#goTo
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @param {string} page String that is passed according to
+       * the option clicked by the user in the navigation drawer
+       * displayed to the left of the screen. 'profile' if the
+       * profile option was clicked, 'chatRooms' if the chat rooms
+       * option was clicked etc.
+       * @description
+       * This function is used to redirect the user to either of
+       * the 4 pages, that are profile page, chatRooms page,
+       * jobs page or people page, based on what he/she has
+       * clicked on in the navigation bar displayed in the left
+       * of the screen. Note the following
+       * 1. A professor is redirected to '/createChat' on clicking
+       * "Chat Rooms" in the nav bar whereas a student is redirected
+       * to '/chatRooms'.
+       * 2. A professor is redirected to '/posting' on clicking
+       * 'Jobs' whereas a student is redirected to '/jobs'.
+       * @returns {undefined} Does not return anything.
+       */
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
