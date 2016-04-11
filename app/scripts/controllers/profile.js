@@ -25,7 +25,7 @@
 
       $scope.initMaterial = function() {
           $(".button-collapse").sideNav({
-            closeOnClick: $(window).width() > 991 ? false : true
+            'closeOnClick': $(window).width() > 991 ? false : true
           });
           $('select').material_select();
       };
