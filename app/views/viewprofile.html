@@ -33,7 +33,21 @@
   </div>
 </div> -->
 
-<div class="container">
+<div class="preloader-wrapper active container center-div" ng-show="loading">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div class="container" ng-hide="loading">
   <br>
   <h5 class="light">Profile</h5>
   <br>
@@ -52,7 +66,9 @@
       <div class="card">
         <div class="card-content black-text">
           <span class="card-title">About</span>
+          <p class="grey-text" style="margin-bottom: 8px"><b>Email:</b> {{email}}</p>
           <p class="grey-text" style="margin-bottom: 8px"><b>Institute:</b> {{institute}}</p>
+          <p class="grey-text" style="margin-bottom: 8px"><b>Location:</b> {{location}}</p>
           <p>{{about}}</p>
         </div>
       </div>
@@ -69,4 +85,16 @@
     <li ng-repeat="item in publications" class="collection-item">{{item.publication}}
     </li>
   </ul>
+   <h6 class="grey-text">Projects</h6>
+  <ul class="collapsible" data-collapsible="accordion">
+      <li ng-repeat="item in projects ">
+        <div class="collapsible-header">{{item.projectName}}
+        </div>
+        <div class="collapsible-body">
+          <p>{{item.projectDescription}}</p>
+        <div class="right-align" style="padding:0 16px 16px 16px">
+        </div>
+        </div>
+        </li>
+      </ul>  
 </div>

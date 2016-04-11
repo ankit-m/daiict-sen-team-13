@@ -96,6 +96,33 @@
       </div>
       <div class="btn right" ng-click="profile.updateProfile('publication')">Add</div>
     </div>
+    <div class="row" style="padding: 0 10.5px 0 10.5px">
+      <h6 class="grey-text">Projects</h6>
+      <br>
+      <ul class="collapsible" data-collapsible="accordion">
+      <li ng-repeat="(key, item) in projects ">
+        <div class="collapsible-header">{{item.projectName}}
+        <a class="pointer secondary-content" ng-click="profile.removeItem(key, 'projects')">Remove</a>
+        </div>
+        <div class="collapsible-body">
+          <p>{{item.projectDescription}}</p>
+        <div class="right-align" style="padding:0 16px 16px 16px">
+        </div>
+        </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="input-field col s12">
+        <input ng-model="projectName" id="projectName" type="text">
+        <label for="projectName">Project Name</label>
+    </div>
+    <div class="input-field col s12">
+      <input ng-model="projectDescription" id="projectDescription" type="text">
+      <label for="projectDescription">Project Description</label>
+   </div>
+   <div class="btn right" ng-click="profile.updateProfile('project')">Add</div>
+  </div>
   </form>
 
 </div>
