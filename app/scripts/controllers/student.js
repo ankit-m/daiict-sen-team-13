@@ -54,6 +54,7 @@
 
         ref.child('chatRooms').limitToFirst(4).once('value', function(dataSnapshot) {
           $scope.chatRooms = dataSnapshot.val();
+          console.log($scope.chatRooms);
           $timeout(function() {
             $scope.$apply();
           });
@@ -234,6 +235,12 @@
           if (member.emailId === authData.password.email) {
             return false;
           }
+        }
+        if (chatRoom.active === false){
+          Materialize.toast('No faculty has opened the Chat Room yet. Try again later.', 4000);
+          return false;
+        } else {
+          return true;
         }
         if (chatRoom.slots > 0) {
           var currentDate = new Date();

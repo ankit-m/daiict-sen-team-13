@@ -220,12 +220,21 @@
               if (error) {
                 console.log(error);
               } else {
-                $location.path('/chat').search({
-                  'roomId': key
+                ref.child('chatRooms').child(key).update({
+                  active: true
+                }, function(error) {
+                  if (error) {
+                    console.log(error);
+                  } else {
+                    $location.path('/chat').search({
+                      'roomId': key
+                    });
+                    $timeout(function() {
+                      $scope.$apply();
+                    });
+                  }
                 });
-                $timeout(function() {
-                  $scope.$apply();
-                });
+
               }
             });
           }

@@ -17,9 +17,11 @@
       $scope.members = [];
       $scope.loading = true;
       $scope.jobs = {};
+      $scope.userEmail = '';
       $location.url($location.path());
 
       if (authData) {
+        $scope.userEmail = authData.password.email;
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
@@ -179,6 +181,12 @@
         if ($scope.userType === true && chatRoom.createdBy === authData.password.email) {
           return true;
         }
+        if (chatRoom.active === false){
+          Materialize.toast('No faculty has opened the Chat Room yet. Try again later.', 4000);
+          return false;
+        } else {
+          return true;
+        }
         if (chatRoom.slots > 0) {
           var currentDate = new Date();
           var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
@@ -241,7 +249,7 @@
               if (error) {
                 $scope.loading = false;
                 console.log(error);
-              } else if ($rootScope.userType !== true) {
+              } else if ($rootScope.userType === false) {
                 ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
                   if (remainingSlots === 0) {
                     return;
