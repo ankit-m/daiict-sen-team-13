@@ -35,7 +35,7 @@
         $scope.initMaterial = function() {
           $(document).ready(function() {
             $(".button-collapse").sideNav({
-              closeOnClick: true
+              closeOnClick: $(window).width() > 991 ? false : true
             });
             $('.modal-trigger').leanModal();
           });

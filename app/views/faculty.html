@@ -39,13 +39,13 @@
 
 <h5 class="light">Active Jobs</h5>
   <ul class="collection">
-    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item pointer" ng-click="faculty.viewJob(jobId)">
+    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item pointer black-text" ng-click="faculty.viewJob(jobId)">
       {{job.jobName}}
       <!-- Add confirmation dialog -->
       <div class="secondary-content red-text pointer" ng-click="faculty.deleteJob(jobId); $event.stopPropagation()">Delete</div>
     </a>
   </ul>
-  <a class="btn right" ng-click="faculty.showAll()">Show all Jobs</a>
+  <a class="btn right" ng-click="faculty.showAll()">All Jobs</a>
 
 
   <br>
@@ -64,6 +64,6 @@
       </div>
     </li>
   </ul>
-  <a class="btn right" ng-click="faculty.showAllChatRooms()">Show all Chat Rooms</a>
+  <a class="btn right" ng-click="faculty.showAllChatRooms()">All Chat Rooms</a>
 
 </div>
