@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="card-panel" style="max-width: 400px; height:550px;  position: absolute;
+  <div class="card-panel" style="max-width: 400px; height:520px;  position: absolute;
     top:0;
     bottom: 0;
     left: 0;
@@ -14,24 +14,24 @@
       </div>
       <div class="row margin">
         <div class="input-field col s12">
-          <input ng-model="firstName" id="firstName" type="text">
+          <input ng-model="firstName" id="firstName" type="text" required>
           <label class="center-align">First Name</label>
         </div>
       </div>
       <div class="row margin">
         <div class="input-field col s12">
-          <input ng-model="lastName" id="lastName" type="text">
+          <input ng-model="lastName" id="lastName" type="text" required>
           <label class="center-align">Last Name</label>
         </div>
       </div>
       <div class="row margin">
         <div class="input-field col s12">
-          <input ng-model="institute" id="institute" type="text">
+          <input ng-model="institute" id="institute" type="text" required>
           <label class="center-align">Institute Name</label>
         </div>
       </div>
       <div class="row margin">
-        <div class="input-field col s12 center-align">
+        <div class="col s12 center-align">
           <input name="group1" ng-model="userType" type="radio" id="test1" class="with-gap" value="student"/>
           <label for="test1">Student</label>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12" ng-click="signup()">
+        <div class="input-field col s12" ng-click="register.signup()">
           <a class="btn waves-effect waves-light col s12 red ">Register</a>
         </div>
       </div>

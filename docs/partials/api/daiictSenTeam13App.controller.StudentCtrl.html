@@ -1,0 +1,115 @@
+<a href="https://github.com/ankit-m/daiict-sen-team-13/edit/master/app/scripts/controllers/student.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L10" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">StudentCtrl</code>
+<div><span class="hint">controller in module <code ng:non-bindable="">daiictSenTeam13App</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-page"><h3 id="description_studentctrl">StudentCtrl</h3>
+<p>Controller of the daiictSenTeam13App</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L169" class="view-source icon-eye-open"> </a><h3 id="methods_applyforjob">applyForJob(jobId, jobName)</h3>
+<div class="applyforjob"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-applyforjob-page"><p>This function is called when a student clicks on apply job for any
+of the job from the job list displayed on the &#39;/student&#39; view. It takes
+in as input the jobId and the jobName of that job. It then checks whether
+the given student has already applied for the given job. If that is the
+case, a toast message is displayed saying &quot;You&#39;ve already applied for this
+job.&quot; If the student hasn&#39;t previously applied for the job, he is redirected
+to the /application view where he can upload his resume, statament of purpose.
+jobId and jobName arr the route parameters passed to /application page.</p>
+</div><h5 id="methods_applyforjob_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>jobId</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-applyforjob-page"><p>Unique id which identifies a job
+object entry in the database corresponding to the job which 
+student is trying to apply for.</p>
+</div></td></tr><tr><td>jobName</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-applyforjob-page"><p>Name of the job as stored in the database
+for which student is trying to apply. </p>
+</div></td></tr></tbody></table><h5 id="methods_applyforjob_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-applyforjob-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L43" class="view-source icon-eye-open"> </a><h3 id="methods_getjobsandchatroomdataandapplications">getJobsAndChatRoomDataAndApplications()</h3>
+<div class="getjobsandchatroomdataandapplications"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-getjobsandchatroomdataandapplications-page"><p>Gets a list of the first four jobs, chat rooms and a list of all applications that the
+student has submitted for active jobs. Function is called on &#39;/student&#39; page view load. The
+Function is called on &#39;/student&#39; page view load. The chatRoom object, jobs object and
+applications object are stored in their own scope variables variables so that they can be
+used in the view for displaying.</p>
+</div><h5 id="methods_getjobsandchatroomdataandapplications_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-getjobsandchatroomdataandapplications-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L108" class="view-source icon-eye-open"> </a><h3 id="methods_goto">goTo(page)</h3>
+<div class="goto"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-goto-page"><p>This function is used to redirect the user to either of
+the 4 pages, that are profile page, chatRooms page,
+jobs page or people page, based on what he/she has 
+clicked on in the navigation bar displayed in the left 
+of the screen. Note the following </p>
+<ol>
+<li>A professor is redirected to &#39;/createChat&#39; on clicking 
+&quot;Chat Rooms&quot; in the nav bar whereas a student is redirected
+to &#39;/chatRooms&#39;.</li>
+<li>A professor is redirected to &#39;/posting&#39; on clicking 
+&#39;Jobs&#39; whereas a student is redirected to &#39;/jobs&#39;.</li>
+</ol>
+</div><h5 id="methods_goto_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>page</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-goto-page"><p>String that is passed according to
+the option clicked by the user in the navigation drawer
+displayed to the left of the screen. &#39;profile&#39; if the 
+profile option was clicked, &#39;chatRooms&#39; if the chat rooms
+option was clicked etc.</p>
+</div></td></tr></tbody></table><h5 id="methods_goto_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-goto-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L76" class="view-source icon-eye-open"> </a><h3 id="methods_initmaterial">initMaterial()</h3>
+<div class="initmaterial"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-initmaterial-page"><p>Initialises the Matrialise modules.</p>
+</div><h5 id="methods_initmaterial_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-initmaterial-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L143" class="view-source icon-eye-open"> </a><h3 id="methods_logout">logout()</h3>
+<div class="logout"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-logout-page"><p>Ends the user&#39;s session and logs him out. </p>
+</div><h5 id="methods_logout_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-logout-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L272" class="view-source icon-eye-open"> </a><h3 id="methods_openchatroom">openChatRoom(key, chatRoom)</h3>
+<div class="openchatroom"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-openchatroom-page"><p>This function gets called when a student tries to join some chat room
+from the list of chat rooms displayed on the /student page. First, the
+user is validated according to the validate function described on this page. 
+If validate function returns true, the student is added to the list of active members
+of the corresponding chat room. Databse transactions mechanism is used to 
+ensure that even if two members who may have been validated by the validate
+function due to delay in database updations because of the network, they do not 
+both join the chat room if only one slot is left.</p>
+</div><h5 id="methods_openchatroom_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>key</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-openchatroom-page"><p>Unique key in the database to identify
+the chat room which user is trying to join </p>
+</div></td></tr><tr><td>chatRoom</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-openchatroom-page"><p>chatRoom object which contains data
+corresponding to the chatRoom which user is trying to join</p>
+</div></td></tr></tbody></table><h5 id="methods_openchatroom_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-openchatroom-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/student.js#L214" class="view-source icon-eye-open"> </a><h3 id="methods_validate">validate(members, chatRoom)</h3>
+<div class="validate"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-validate-page"><p>This function is a validating function called when a student
+tries to enter a chat room. The function takes in as inputs
+the chatroom object corresponding to the chat room which the 
+user tries to enter and a list of members that belong to that
+chat room(if any). Validation checks applied are </p>
+<ol>
+<li>If chat room is full, user is not allowed to join and 
+false is returned.</li>
+<li>If chat room is not full, the code then checks if the 
+chat room is open at the given moment based on the chat room&#39;s
+creators preferences of day and time for which he/she wants the
+chat room to be open. </li>
+<li>If current time is greater than the chat room start time:
+and if the current day is same as the day which 
+the creator has set when creating the chat room, the 
+user is allowed to join and the function returns true. 
+Else a toast with the message wrong day is displayed and 
+false is returned by the function.<br>If the current time is lesser than the chat rooom start time 
+a toast with the message chat room not open yet is displayed and 
+the function returns false.</li>
+</ol>
+</div><h5 id="methods_validate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>members</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-validate-page"><p>list of members belonging to the
+chat room which user is trying to join. </p>
+</div></td></tr><tr><td>chatRoom</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-validate-page"><p>chatRoom object which contains data
+corresponding to the chatRoom which user is trying to join</p>
+</div></td></tr></tbody></table><h5 id="methods_validate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-studentctrl-validate-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

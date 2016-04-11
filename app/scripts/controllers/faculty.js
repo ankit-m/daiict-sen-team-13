@@ -1,19 +1,21 @@
 (function() {
   'use strict';
   /**
-   * @ngdoc function
-   * @name daiictSenTeam13App.controller:StudentCtrl
+   * @ngdoc controller
+   * @name daiictSenTeam13App.controller:FacultyCtrl
    * @description
-   * # StudentCtrl
+   * # FacultyCtrl
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('FacultyCtrl', ['$scope', '$location','$rootScope','$timeout',function($scope, $location, $rootScope,$timeout) {
+    .controller('FacultyCtrl', ['$scope', '$location', '$rootScope', '$timeout', function($scope, $location, $rootScope, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      $scope.loading=true;
-      var self=this;
+      var self = this;
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
+
+      $scope.loading = true;
+      $scope.chatRooms = {};
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -21,10 +23,49 @@
         $location.path('/');
       }
 
-       if($rootScope.userType===false){
+      if ($rootScope.userType === false) {
         $location.path('/student');
       }
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#getMyJobsAndChatRoomData
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @description
+       * Gets a list of all the jobs and chat rooms that were created by the 
+       * faculty user. Function is called when faculty.html view is loaded. The 
+       * list of chatRoom objects and createdJobs objects are stored as scope 
+       * variables so that they can be used in the view for displaying.
+       * @returns {undefined} Does not return anything.
+       */
+      function getMyJobsAndChatRoomData() {
+        $scope.loading = true;
+        postingRef.orderByChild('postedBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
+          $scope.createdJobs = dataSnapshot.val();
+          console.log($scope.createdJobs);
+        }, function(err) {
+          console.error(err);
+        });
+
+        ref.child('chatRooms').orderByChild('createdBy').equalTo(authData.password.email).once('value', function(dataSnapshot) {
+          $scope.chatRooms = dataSnapshot.val();
+          console.log($scope.chatRooms);
+          $timeout(function() {
+            $scope.$apply();
+          });
+          $scope.loading = false;
+        });
+      }
+      getMyJobsAndChatRoomData();
+
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#initMaterial
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @description
+       * Initialises the Matrialise modules.
+       * @returns {undefined} Does not return anything.
+       */
       $scope.initMaterial = function() {
         $(document).ready(function() {
           $('.collapsible').collapsible({
@@ -36,6 +77,28 @@
       $scope.initMaterial();
 
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#goTo
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @param {string} page String that is passed according to 
+       * the option clicked by the user in the navigation drawer
+       * displayed to the left of the screen. 'profile' if the 
+       * profile option was clicked, 'chatRooms' if the chat rooms
+       * option was clicked etc.
+       * @description
+       * This function is used to redirect the user to either of
+       * the 4 pages, that are profile page, chatRooms page,
+       * jobs page or people page, based on what he/she has 
+       * clicked on in the navigation bar displayed in the left 
+       * of the screen. Note the following 
+       * 1. A professor is redirected to '/createChat' on clicking 
+       * "Chat Rooms" in the nav bar whereas a student is redirected
+       * to '/chatRooms'.
+       * 2. A professor is redirected to '/posting' on clicking 
+       * 'Jobs' whereas a student is redirected to '/jobs'.
+       * @returns {undefined} Does not return anything.
+       */  
       $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
@@ -55,110 +118,144 @@
         }
       };
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#logout
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @description
+       * Ends the user's session and logs him out. 
+       * @returns {undefined} Does not return anything.
+       */
       $scope.logout = function() {
-        console.log('logout called');
         ref.unauth();
-        console.log('logged out');
         $location.path('/');
       };
 
-       ref.child('chatRooms').once('value', function(dataSnapshot) {
-        $scope.loading = true;
-        $scope.chatRooms = dataSnapshot.val();
-        var chatRoom=null;
-        console.log($scope.chatRooms);
-        for(chatRoom in $scope.chatRooms){
-          if($scope.chatRooms[chatRoom].createdBy===authData.password.email){
-              $scope.chatRooms[chatRoom].myRoom=true;
-          }
-        }
-        $timeout(function() {
-          $scope.$apply();
-        });
-        $scope.loading = false;    
-      });
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#showAllChatRooms
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @description
+       * Function called when user clicks on show all chat rooms button on the
+       * controller's view. The user is redirected to the route /chatRooms.
+       * @returns {undefined} Does not return anything.
+       */
+      self.showAllChatRooms = function() {
+        $location.path('/chatRooms');
+      };
 
 
-        function validate(data, chatRoom) {
-        data.forEach(function(member) {
-          console.log("redirecting one", member.child("emailId").val());
-          if (member.child("emailId").val() === authData.password.email) {
-            return false;
-          }
-        });
-        if (chatRoom.slots > 0) {
-          var currentDate = new Date();
-          var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
-          if (currentTime > chatRoom.startTime) {
-            var today = new Date();
-            var weekday = new Array(7);
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
-            if (weekday[today.getDay()] === chatRoom.days) {
-              return true;
-            } else {
-              Materialize.toast('Wrong Day. Chat room not open.', 4000);
-              return false;
-            }
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#openChatRoom
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @param {string} key Unique key in the database to identify
+       * the chat room which faculty is trying to open
+       * @description
+       * This function gets called when faculty tries to join some chat room
+       * from the list of chat rooms displayed on his '/faculty page'. The list
+       * that is displayed is the list of chat rooms created by him.  The 
+       * faculty user is added to the list of active members of the corresponding
+       * chat room and is redirected to that chat room.
+       * @returns {undefined} Does not return anything.
+       */
+      self.openChatRoom = function(key) {
+        ref.child('chatRooms').child(key).child('members').push({
+          'emailId': authData.password.email,
+          'kicked': 0,
+          'active': 1
+        }, function(error){
+          if(error){
+            console.log(error);
           } else {
-            Materialize.toast('Chat room not open yet. Try again later', 4000);
-            return false;
+            ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots){
+              if(remainingSlots === 0){
+                return;
+              }
+              return remainingSlots - 1;
+            }, function(error, committed){
+              if (error){
+                //server error
+              } else if (!committed){
+                //slots taken
+                //rollback
+              } else {
+                $location.path('/chat').search({
+                  'roomId': key
+                });
+                $timeout(function() {
+                  $scope.$apply();
+                });
+              }
+            });
           }
-        } else {
-          Materialize.toast('Chat room full. Please try again later', 4000);
-          return false;
-        }
-      }
+        });
+      };
 
-        self.openChatRoom = function(key, chatRoom) {
-        ref.child('chatRooms').child(key).child('members').once('value', function(data) {
-          if (validate(data, chatRoom)) {
-            ref.child('chatRooms').child(key).child('members').push({
-              "emailId": authData.password.email,
-              "kicked": 0
-            });
-            ref.child('chatRooms').child(key).update({
-              'slots': chatRoom.slots - 1
-            }); // add  error check
-            $location.path('/chat').search({
-              'roomId': key
-            });
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#deleteChatRoom
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @param {string} chatRoomId Unique id which identifies a chat room 
+       * object entry in the database corresponding to the chatRoom which 
+       * user is trying to delete.
+       * @description
+       * This function is called when user clicks on delete chat room on any
+       * one of the chat room from the list of chat rooms that have been
+       * created by him. The chat room on which the user has clicked is identified
+       * by the unique chat room key that is passed from the view to the function.
+       * The corresponding database entry for thr chat room
+       * is deleted so that that particualr room doesn't exist anymore. On 
+       * successful deletion from database, a toast is displayed with the
+       * message "Deleted Chat Room". On error, the user is informed that 
+       * the corresponding chat room hasn;t been deleted and is prompted to
+       * try later.
+       * @returns {undefined} Does not return anything.
+       */
+      self.deleteChatRoom = function(chatRoomId) {
+        ref.child('chatRooms').child(chatRoomId).remove(function(error) {
+          if (error) {
+            Materialize.toast('Could not Delete Chat Room. Try later', 4000);
+          } else {
+            Materialize.toast('Deleted Chat Room', 4000);
             $timeout(function() {
               $scope.$apply();
             });
           }
         });
-      
       };
 
-      function getData() {
-        console.log('getData called');
-        postingRef.orderByChild('postedBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
-          $scope.createdJobs = dataSnapshot.val();
-          console.log($scope.createdJobs);
-          $timeout(function() {
-            $scope.$apply();
-          });
-          $scope.loading = false;
-        }, function(err) {
-          console.error(err);
-        });
 
-        console.log('getData return');
-      }
-      getData();
-
-     
-
-      self.showAll = function() {
-      $location.path('/jobs');
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#showAllJobs
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @description
+       * This function is called when faculty clicks on show all jobs option 
+       * on his page i.e. /faculty. It redirects the user to the '/jobs' page
+       * where the controller will display a list of all active jobs in th database.
+       * @returns {undefined} Does not return anything.
+       */
+      self.showAllJobs = function() {
+        $location.path('/jobs');
       };
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#viewJob
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @param {string} jobId Unique id which identifies a job 
+       * object entry in the database corresponding to the job which 
+       * faculty is trying to view.
+       * @description
+       * This function is called when faculty clicks on any one of
+       * the job in the list of jobs created by him. It takes in as input the 
+       * unique key for a job in the database i.e. the jobId and redirects the 
+       * user to the /viewJob page with the jobId given as a route parameter
+       * to the route that is being called. The viewJob page will display all
+       * applications for the job, list of accepted and rejected applications.
+       * @returns {undefined} Does not return anything.
+       */
       self.viewJob = function(jobId) {
         console.log(jobId);
         $location.path('/viewJob').search({
@@ -166,6 +263,26 @@
         });
       };
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#deleteJob
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @param {string} jobId Unique id which identifies a job 
+       * object entry in the database corresponding to the job which 
+       * faculty is trying to view.
+       * @description
+       * This function is called when user clicks on delete job on any
+       * one of the jobs from the list of jobs that have been
+       * created by him. The job on which the user has clicked is identified
+       * by the unique jobId that is passed from the view to the function.
+       * The corresponding database entry for the job
+       * is deleted so that that particualr job doesn't exist anymore. On 
+       * successful deletion from database, a toast is displayed with the
+       * message "Deleted Job". On error, the user is informed that 
+       * the corresponding job hasn't been deleted and is prompted to
+       * try later.
+       * @returns {undefined} Does not return anything.
+       */
       self.deleteJob = function(jobId) { //atomize this request
         console.log('delete job');
         ref.child('postings').child(jobId).remove(function(error) {
@@ -182,101 +299,5 @@
         });
       };
 
-      self.showAllChatRooms=function(){
-        $location.path('/chatRooms');
-      };
-
-            function validate(data, chatRoom) {
-        data.forEach(function(member) {
-          console.log("redirecting one", member.child("emailId").val());
-          if (member.child("emailId").val() === authData.password.email) {
-            return false;
-          }
-        });
-        if (chatRoom.slots > 0) {
-          var currentDate = new Date();
-          var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
-          if (currentTime > chatRoom.startTime) {
-            var today = new Date();
-            var weekday = new Array(7);
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
-            if (weekday[today.getDay()] === chatRoom.days) {
-              return true;
-            } else {
-              Materialize.toast('Wrong Day. Chat room not open.', 4000);
-              return false;
-            }
-          } else {
-            Materialize.toast('Chat room not open yet. Try again later', 4000);
-            return false;
-          }
-        } else {
-          Materialize.toast('Chat room full. Please try again later', 4000);
-          return false;
-        }
-      }
-
-        self.openChatRoom = function(key, chatRoom) {
-        ref.child('chatRooms').child(key).child('members').once('value', function(data) {
-          if (validate(data, chatRoom)) {
-            ref.child('chatRooms').child(key).child('members').push({
-              "emailId": authData.password.email,
-              "kicked": 0
-            });
-            ref.child('chatRooms').child(key).update({
-              'slots': chatRoom.slots - 1
-            }); // add  error check
-            $location.path('/chat').search({
-              'roomId': key
-            });
-            $timeout(function() {
-              $scope.$apply();
-            });
-          }
-        });
-      
-      };
-
-
     }]);
-
-  angular.module('daiictSenTeam13App').filter('customJob', function() {
-  return function(input, search) {
-    if (!input) return input;
-    if (!search) return input;
-    var expected = ('' + search).toLowerCase();
-    var result = {};
-    angular.forEach(input, function(value,key) {
-      var actual = ('' + value.jobName).toLowerCase();
-      if (actual.indexOf(expected) !== -1){
-        result[key] = value;
-      }
-    });
-    return result;
-    }
-    });
-
-    angular.module('daiictSenTeam13App').filter('customChatRoom', function() {
-    return function(input, search) {
-    if (!input) return input;
-    if (!search) return input;
-    var expected = ('' + search).toLowerCase();
-    var result = {};
-    angular.forEach(input, function(value,key) {
-      var actual = ('' + value.chatRoomName).toLowerCase();
-      var actual2= ('' + value.description).toLowerCase();
-      if (actual.indexOf(expected) !== -1 || actual2.indexOf(expected) !== -1 ){
-        result[key] = value;
-      }
-    });
-    return result;
-    }
-    });
-
 })();

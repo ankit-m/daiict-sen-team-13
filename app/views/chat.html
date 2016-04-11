@@ -17,12 +17,7 @@
     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   </div>
 </nav>
-<style>
-.inner {
-    position: absolute; /*or fixed*/
-    right: 10px;    
-}
-</style>
+
 <div class="preloader-wrapper active container center-div" ng-show="loading">
   <div class="spinner-layer spinner-red-only">
     <div class="circle-clipper left">
@@ -36,36 +31,30 @@
     </div>
   </div>
 </div>
-<div id="activeMembers "class="container" ng-hide="loading" ng-keypress="myFunct($event)">
-  <div class="inner">
-  <p class="center-align"> <b>Active members</b></p>
-  <ul class="collection grey lighten-4" >
-    <li ng-repeat="member in members" class="collection-item" id="abcde">
-      {{member.emailId}} 
-      <a ng-click="viewMemberProfile(member.emailId)" class="secondary-content pointer">View</a>
-      <a ng-if="member.showKick" ng-click="kickMember(member.emailId)" class="secondary-content pointer" >Kick</a>   
-    </li>
-  </ul>
+
+<div class="container" ng-hide="loading" ng-keypress="onEnterHit($event)">
+  <div style="position: absolute; right:40px" class="hide-on-med-and-down">
+    <p class="center-align"> <b>Active members</b></p>
+    <ul class="collection grey lighten-4">
+      <a ng-repeat="(key, member) in members" class="collection-item pointer" ng-click="viewMemberProfile(member.emailId)">
+        {{member.emailId}}
+        <div ng-if="member.showKick" ng-click="kickMember(key); $event.stopPropagation();" class="secondary-content pointer red-text">&nbsp;&nbsp;&nbsp;Kick</div>
+      </a>
+    </ul>
   </div>
-  <br>
-  <div class="input-field col s6">
-   <input ng-model="searchText" type="text">
-   <label for="searchText">Search by Sender or Message</label>
+  <div class="chat-box">
+    <div ng-repeat="message in chatHistory">
+      <div ng-class="message.alignment">
+        <small class="chat-bubble grey lighten-3"><span class="grey-text">{{message.sender}}</span>&nbsp;{{message.text}}</small>
+      </div>
+    </div>
   </div>
-  <br>
-  <ul class="collection">
-    <li ng-repeat="message in chatHistory | customMessages:searchText"  >
-     <div ng-class="message.alignment">
-           <font size="3" >{{message.sender+" "+message.text}}</font>      
-     </div>
-    </li>
-  </ul>
   <div class="row margin">
     <div class="input-field col s12">
-      <input ng-model="messageInput" id="messageInput" type="text">
+      <input ng-model="messageInput" id="messageInput" type="text" style="margin-bottom: 4px">
       <label class="center-align">message</label>
     </div>
   </div>
   <div class="btn" ng-click="sentMessage()">Send</div>
-   <div class="btn" ng-click="leaveThisRoom()">Leave room</div>
+  <div class="btn" ng-click="leaveThisRoom()">Leave room</div>
 </div>

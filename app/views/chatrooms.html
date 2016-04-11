@@ -37,20 +37,15 @@
 
 <div class="container" ng-hide="loading">
   <br>
-  <div class="input-field col s6">
-   <input ng-model="searchText" type="text">
-   <label for="searchText">Search by Name, Description, Day, Start time(24 hr.)</label>
-  </div>
-<br>
   <h5 class="light">All Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chat) in chatRooms | customChatRooms:searchText">
+    <li ng-repeat="(key, chat) in chatRooms">
       <div class="collapsible-header">{{chat.chatRoomName}}</div>
 
       <div class="collapsible-body">
         <p>{{chat.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="openChatRoom(key, chat)">Join</a>
+          <a class="btn" ng-click="chatRooms.openChatRoom(key, chat)">Join</a>
         </div>
       </div>
     </li>

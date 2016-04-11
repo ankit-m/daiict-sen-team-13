@@ -35,41 +35,30 @@
 </div>
 
 <div class="row container" ng-hide="loading">
-<br>
-<div class="input-field col s6">
-   <input ng-model="searchJob" type="text">
-   <label for="searchJob">Search by Job name</label>
-  </div>
-  <br>
-  <br>
-  <br>
+
 <h5 class="light">Active Jobs</h5>
   <ul class="collection">
-    <a ng-repeat="(jobId,job) in createdJobs| customJob:searchJob" class="collection-item pointer" ng-click="faculty.viewJob(jobId)">
+    <a ng-repeat="(jobId,job) in createdJobs" class="collection-item pointer" ng-click="faculty.viewJob(jobId)">
       {{job.jobName}}
       <!-- Add confirmation dialog -->
       <div class="secondary-content red-text pointer" ng-click="faculty.deleteJob(jobId); $event.stopPropagation()">Delete</div>
     </a>
   </ul>
   <a class="btn right" ng-click="faculty.showAll()">Show all Jobs</a>
-  <br>
-  <br>
-  <div class="input-field col s6">
-   <input ng-model="searchChatRoom" type="text">
-   <label for="searchChatRoom">Search by Name, Description, Day, Start time(24 hr.)</label>
-  </div>
-  <br>
-  <br>
+
+
   <br>
   <h5 class="light">Active Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chat) in chatRooms | customChatRooms:searchChatRoom">
-      <div ng-if="chat.myRoom" class="collapsible-header">{{chat.chatRoomName}}</div>
-
+    <li ng-repeat="(chatRoomId, chat) in chatRooms">
+      <div class="collapsible-header">
+        {{chat.chatRoomName}}
+        <div class="secondary-content red-text pointer" ng-click="faculty.deleteChatRoom(chatRoomId); $event.stopPropagation()">Delete</div>
+      </div>
       <div class="collapsible-body">
         <p>{{chat.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="faculty.openChatRoom(key, chat)">Join</a>
+          <a class="btn" ng-click="faculty.openChatRoom(chatRoomId)">Open Room</a>
         </div>
       </div>
     </li>

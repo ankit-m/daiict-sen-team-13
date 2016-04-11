@@ -1,0 +1,58 @@
+<a href="https://github.com/ankit-m/daiict-sen-team-13/edit/master/app/scripts/controllers/people.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/people.js#L10" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">PeopleCtrl</code>
+<div><span class="hint">controller in module <code ng:non-bindable="">daiictSenTeam13App</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-page"><h3 id="description_peoplectrl">PeopleCtrl</h3>
+<p>Controller of the daiictSenTeam13App</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/people.js#L89" class="view-source icon-eye-open"> </a><h3 id="methods_getdata">getData()</h3>
+<div class="getdata"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-getdata-page"><p>Gets a list of all registered users on the portal. Function is called on 
+&#39;/people&#39; page view load. The people object is stored in a scope
+variables variable so that it can be used in the view for displaying
+all registered users.</p>
+</div><h5 id="methods_getdata_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-getdata-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/people.js#L50" class="view-source icon-eye-open"> </a><h3 id="methods_goto">goTo(page)</h3>
+<div class="goto"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-goto-page"><p>This function is used to redirect the user to either of
+the 4 pages, that are profile page, chatRooms page,
+jobs page or people page, based on what he/she has 
+clicked on in the navigation bar displayed in the left 
+of the screen. Note the following </p>
+<ol>
+<li>A professor is redirected to &#39;/createChat&#39; on clicking 
+&quot;Chat Rooms&quot; in the nav bar whereas a student is redirected
+to &#39;/chatRooms&#39;.</li>
+<li>A professor is redirected to &#39;/posting&#39; on clicking 
+&#39;Jobs&#39; whereas a student is redirected to &#39;/jobs&#39;.</li>
+</ol>
+</div><h5 id="methods_goto_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>page</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-goto-page"><p>String that is passed according to
+the option clicked by the user in the navigation drawer
+displayed to the left of the screen. &#39;profile&#39; if the 
+profile option was clicked, &#39;chatRooms&#39; if the chat rooms
+option was clicked etc.</p>
+</div></td></tr></tbody></table><h5 id="methods_goto_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-goto-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/people.js#L134" class="view-source icon-eye-open"> </a><h3 id="methods_logout">logout()</h3>
+<div class="logout"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-logout-page"><p>Ends the user&#39;s session and logs him out. </p>
+</div><h5 id="methods_logout_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-logout-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ankit-m/daiict-sen-team-13/blob/de8e53e/app/scripts/controllers/people.js#L120" class="view-source icon-eye-open"> </a><h3 id="methods_viewprofile">viewProfile(email)</h3>
+<div class="viewprofile"><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-viewprofile-page"><p>This function gets called when a logged in user clicks on view
+profile for any of the users who is in the &quot;people&quot; list. It takes
+in the email address of the user whose profile the logged in user
+wants to view.The argument is passed as the route parameter when the function 
+redirects the user to the profile page he wishes to view.   </p>
+</div><h5 id="methods_viewprofile_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>email</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-viewprofile-page"><p>It is the email address of the user whose profile
+the logged in user wants to view.</p>
+</div></td></tr></tbody></table><h5 id="methods_viewprofile_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-undefined">undefined</a></td><td><div class="daiictsenteam13app-controller-page daiictsenteam13app-controller-peoplectrl-viewprofile-page"><p>Does not return anything.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

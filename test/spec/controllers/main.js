@@ -17,9 +17,4 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it("loading value",function(){
-
-    expect(scope.gotSomething).toBe(true);
-  });
-
 });

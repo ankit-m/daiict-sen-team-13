@@ -34,38 +34,28 @@
 
 <div class="container" ng-hide="loading">
   <br>
-   <div class="input-field col s6">
-   <input ng-model="searchText" type="text">
-   <label for="searchText">Search by Name, Description, Location, Job Poster</label>
-  </div>
-  <br>
   <h5 class="light">Job Postings</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, job) in jobs | customJobList:searchText">
+    <li ng-repeat="(key, job) in jobs">
       <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
         <p>{{job.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="student.applyForJob(key)">Apply</a>
+          <a class="btn" ng-click="student.applyForJob(key, job.jobName)">Apply</a>
         </div>
       </div>
     </li>
   </ul>
 
   <br>
-  <div class="input-field col s6">
-   <input ng-model="searchChatRoom" type="text">
-   <label for="searchChatRoom">Search by Name, Description, Day, Start time(24 hr.)</label>
-  </div>
-  <br>
   <h5 class="light">Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chatRoom) in chatRooms | customChatRooms:searchChatRoom">
+    <li ng-repeat="(key, chatRoom) in chatRooms">
       <div class="collapsible-header">{{chatRoom.chatRoomName}}</div>
       <div class="collapsible-body">
         <p>{{chatRoom.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="student.joinChatRoom(key)">Join</a>
+          <a class="btn" ng-click="student.openChatRoom(key, chatRoom)">Join</a>
         </div>
       </div>
     </li>
@@ -74,10 +64,9 @@
   <br>
   <h5 class="light">Your Job Applications</h5>
   <ul class="collection">
-    <a ng-repeat="(appId,app) in applications" class="collection-item pointer" ng-click="posting.viewJob(jobId)">
-      {{app.jobId}}
-      <!-- Add confirmation dialog -->
-      <div class="secondary-content grey-text pointer" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">{{app.status ? app.status : 'Pending'}}</div>
+    <a ng-repeat="(appId,app) in applications" class="collection-item pointer black-text" ng-click="">
+      {{app.jobName}}
+      <div class="secondary-content grey-text pointer" ng-click="posting.deleteJob(jobId); $event.stopPropagation()">{{app.status ? app.status : 'pending'}}</div>
     </a>
   </ul>
   </ul>

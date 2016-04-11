@@ -1,31 +1,20 @@
 (function() {
   'use strict';
-  //TODO: date UTC format
   /**
-   * @ngdoc function
+   * @ngdoc controller
    * @name daiictSenTeam13App.controller:JobsCtrl
    * @description
    * # JobsCtrl
    * Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
-    .controller('JobsCtrl', ['$scope', '$location', '$rootScope', function($scope, $location, $rootScope) {
+    .controller('JobsCtrl', ['$scope', '$location', '$rootScope', '$timeout', function($scope, $location, $rootScope, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
-      var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
       var self = this;
 
       $scope.loading = true;
       $scope.jobPostings = {};
-
-      $scope.initCollapsible = function() {
-        $(document).ready(function() {
-          $('.collapsible').collapsible({
-            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-          });
-        });
-      };
-      $scope.initCollapsible();
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -33,16 +22,72 @@
         $location.path('/');
       }
 
-      postingRef.once('value', function(dataSnapshot) {
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:JobsCtrl#initMaterial
+       * @methodOf daiictSenTeam13App.controller:JobsCtrl
+       * @description
+       * Initialises the Matrialise modules.
+       * @returns {undefined} Does not return anything.
+       */
+      $scope.initMaterial = function() {
+        $(document).ready(function() {
+          $('.collapsible').collapsible({
+            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+          });
+          $(".button-collapse").sideNav();
+        });
+      };
+      $scope.initMaterial();
+
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:JobsCtrl#getJobs
+       * @methodOf daiictSenTeam13App.controller:JobsCtrl
+       * @description
+       * Gets a list of all the active jobs. Function is called on '/jobs' page view load
+       * The function is called on '/jobs' page view load. The jobs object is stored in a
+       * scope variables variable so that it can be used in the view for displaying
+       * all active jobs.
+       * 
+       * @returns {undefined} Does not return anything.
+       */
+      function getJobs(){
+        ref.child('postings').once('value', function(dataSnapshot) {
         $scope.jobPostings = dataSnapshot.val();
         console.log($scope.jobPostings);
         $scope.loading = false;
-        $scope.$apply();
-
-      }, function(err) {
-        console.error(err);
-      });
-
+        $timeout(function(){
+          $scope.$apply();
+        });
+        }, function(err) {
+            console.error(err);
+        });  
+      }
+      getJobs();
+      
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:JobsCtrl#goTo
+       * @methodOf daiictSenTeam13App.controller:JobsCtrl
+       * @param {string} page String that is passed according to 
+       * the option clicked by the user in the navigation drawer
+       * displayed to the left of the screen. 'profile' if the 
+       * profile option was clicked, 'chatRooms' if the chat rooms
+       * option was clicked etc.
+       * @description
+       * This function is used to redirect the user to either of
+       * the 4 pages, that are profile page, chatRooms page,
+       * jobs page or people page, based on what he/she has 
+       * clicked on in the navigation bar displayed in the left 
+       * of the screen. Note the following 
+       * 1. A professor is redirected to '/createChat' on clicking 
+       * "Chat Rooms" in the nav bar whereas a student is redirected
+       * to '/chatRooms'.
+       * 2. A professor is redirected to '/posting' on clicking 
+       * 'Jobs' whereas a student is redirected to '/jobs'.
+       * @returns {undefined} Does not return anything.
+       */
       $scope.goTo = function(page) {
         switch (page) {
           case 'profile':
@@ -70,6 +115,14 @@
         }
       };
 
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:JobsCtrl#logout
+       * @methodOf daiictSenTeam13App.controller:JobsCtrl
+       * @description
+       * Ends the user's session and logs him out. 
+       * @returns {undefined} Does not return anything.
+       */
       self.logout = function() {
         console.log('logout called');
         ref.unauth();
@@ -77,33 +130,41 @@
         $location.path('/');
       };
 
-      self.applyForJob = function(jobId) {
-        $location.path('/application').search({
-          'jobId': jobId
+
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:JobsCtrl#applyForJob
+       * @methodOf daiictSenTeam13App.controller:JobsCtrl
+       * @param {string} jobId Unique id which identifies a job 
+       * object entry in the database corresponding to the job which 
+       * student is trying to apply for.
+       * @param {string} jobName Name of the job as stored in the database
+       * for which student is trying to apply. 
+       * @description
+       * This function is called when a student clicks on apply job for any
+       * of the job from the job list displayed on the '/jobs' view. It takes
+       * in as input the jobId and the jobName of that job. It then checks whether
+       * the given student has already applied for the given job. If that is the
+       * case, a toast message is displayed saying "You've already applied for this
+       * job." If the student hasn't previously applied for the job, he is redirected
+       * to the /application view where he can upload his resume, statament of purpose.
+       * jobId and jobName are the route parameters passed to /application page.
+       * 
+       * @returns {undefined} Does not return anything.
+       */
+      self.applyForJob = function(jobId, jobName) {
+        ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).once('value', function(data) {
+          if (data.val() !== null) {
+            Materialize.toast('You have already applied.', 4000);
+          } else {
+            $location.path('/application').search({
+              'jobId': jobId,
+              'jobName': jobName
+            });
+          }
         });
+
       };
 
     }]);
-
-
-    
-  angular.module('daiictSenTeam13App').filter('customJobList', function() {
-  return function(input, search) {
-    if (!input) return input;
-    if (!search) return input;
-    var expected = ('' + search).toLowerCase();
-    var result = {};
-    angular.forEach(input, function(value,key) {
-      var actual = ('' + value.jobName).toLowerCase();
-      var actual2 = ('' + value.description).toLowerCase();
-      var actual3 = ('' + value.location).toLowerCase();
-      var actual4 = ('' + value.postedBy).toLowerCase();
-      if (actual.indexOf(expected) !== -1 || actual2.indexOf(expected) !== -1 || actual3.indexOf(expected) !== -1 || actual4.indexOf(expected) !== -1 ) {
-        result[key] = value;
-      }
-    });
-    return result;
-  }
-});
-
 })();

@@ -17,4 +17,7 @@ describe('Controller: StudentCtrl', function () {
     });
   }));
 
+  it('should attach a list of awesomeThings to the scope', function () {
+    expect(StudentCtrl.awesomeThings.length).toBe(3);
+  });
 });

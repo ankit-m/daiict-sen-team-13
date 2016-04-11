@@ -17,5 +17,7 @@ describe('Controller: ChatroomsCtrl', function () {
     });
   }));
 
-  
+  it('should attach a list of awesomeThings to the scope', function () {
+    expect(ChatroomsCtrl.awesomeThings.length).toBe(3);
+  });
 });
