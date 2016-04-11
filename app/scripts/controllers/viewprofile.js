@@ -48,12 +48,14 @@
 
       $scope.initMaterial = function() {
         $(document).ready(function() {
-          $(".button-collapse").sideNav();
+          $(".button-collapse").sideNav({
+            closeOnClick:true
+          });
         });
       };
       $scope.initMaterial();
 
-      self.logout = function() {
+      $scope.logout = function() {
         console.log('logout called');
         ref.unauth();
         console.log('logged out');

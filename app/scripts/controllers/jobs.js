@@ -16,14 +16,17 @@
       $scope.loading = true;
       $scope.jobPostings = {};
 
-      $scope.initCollapsible = function() {
+      $scope.initMaterial = function() {
         $(document).ready(function() {
+          $(".button-collapse").sideNav({
+            closeOnClick: true
+          });
           $('.collapsible').collapsible({
-            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            accordion: false 
           });
         });
       };
-      $scope.initCollapsible();
+      $scope.initMaterial();
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -76,10 +79,8 @@
         }
       };
 
-      self.logout = function() {
-        console.log('logout called');
+      $scope.logout = function() {
         ref.unauth();
-        console.log('logged out');
         $location.path('/');
       };
 

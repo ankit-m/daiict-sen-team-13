@@ -33,7 +33,12 @@
         }
 
         $scope.initMaterial = function() {
-          $('.modal-trigger').leanModal();
+          $(document).ready(function() {
+            $(".button-collapse").sideNav({
+              closeOnClick: true
+            });
+            $('.modal-trigger').leanModal();
+          });
         };
         $scope.initMaterial();
 

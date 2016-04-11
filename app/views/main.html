@@ -48,10 +48,20 @@
           <p class="margin medium-small pointer"><a ng-click="goToRegister()">Register</a></p>
         </div>
         <div class="input-field col s6 m6 l6">
-          <p class="margin right-align medium-small pointer"><a class="pointer" ng-click="main.goToReset()">Forgot password?</a></p>
+          <p class="margin right-align medium-small pointer"><a class="modal-trigger" href="#modal1">Forgot password?</a></p>
         </div>
       </div>
-
     </form>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Reset Password</h4>
+        <p>The password will be sent to the email address.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="main.resetPassword()">Agree</a>
+      </div>
+    </div>
   </div>
 </div>

@@ -27,11 +27,13 @@
 
       $scope.initMaterial = function() {
         $(document).ready(function() {
+          $(".button-collapse").sideNav({
+            closeOnClick: true
+          });
           $('.modal-trigger').leanModal();
           $('.collapsible').collapsible({
-            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            accordion: false
           });
-          $(".button-collapse").sideNav();
         });
       };
       $scope.initMaterial();

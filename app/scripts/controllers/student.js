@@ -61,7 +61,9 @@
 
       $scope.initMaterial = function() {
         $(document).ready(function() {
-          $(".button-collapse").sideNav();
+          $(".button-collapse").sideNav({
+            closeOnClick: true
+          });
           $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
           });
@@ -99,7 +101,7 @@
         }
       };
 
-      self.logout = function() {
+      $scope.logout = function() {
         ref.unauth();
         $location.path('/');
       };

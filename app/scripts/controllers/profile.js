@@ -21,6 +21,16 @@
       } else {
         $location.path('/');
       }
+      
+      $scope.initMaterial = function() {
+        $(document).ready(function() {
+          $(".button-collapse").sideNav({
+            closeOnClick:true
+          });
+          $('select').material_select();
+        });
+      };
+      $scope.initMaterial();
 
       function getData() {
         ref.child('profile').orderByChild('email').equalTo(authData.password.email).on('value', function(dataSnapshot) {
@@ -49,15 +59,8 @@
       }
       getData();
 
-      $scope.initMaterial = function() {
-        $(document).ready(function() {
-          $(".button-collapse").sideNav();
-          $('select').material_select();
-        });
-      };
-      $scope.initMaterial();
 
-      self.logout = function() {
+      $scope.logout = function() {
         console.log('logout called');
         ref.unauth();
         console.log('logged out');

@@ -16,6 +16,9 @@
 
       $rootScope.userType = null;
       $scope.loading = true;
+      $timeout(function() {
+        $scope.$apply();
+      });
       $scope.loading = false;
       $scope.email = '';
       $scope.password = '';
@@ -39,11 +42,15 @@
             if (userObject[key].type === 'professor') {
               $rootScope.userType = true;
               $location.path('/faculty');
-              $scope.$apply();
+              $timeout(function() {
+                $scope.$apply();
+              });
             } else if (userObject[key].type === 'student') {
               $rootScope.userType = false;
               $location.path('/student');
-              $scope.$apply();
+              $timeout(function() {
+                $scope.$apply();
+              });
             }
             break;
           }
@@ -54,6 +61,42 @@
         console.log("Authenticated user with uid:", authData.uid);
         redirectUser();
       }
+
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:MainCtrl#validate
+       * @methodOf daiictSenTeam13App.controller:MainCtrl
+       * @description
+       * Validates user input on main page.
+       * @returns {undefined} Does not return anything.
+       */
+      function validate() {
+        if (!$scope.email) {
+          Materialize.toast('Enter a valid email', 4000);
+          $scope.password = '';
+          return false;
+        }
+        if (!/([^\s])/.test($scope.email) || !/([^\s])/.test($scope.password)) {
+          Materialize.toast('All fields are required', 4000);
+          return false;
+        }
+        return true;
+      }
+
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:MainCtrl#initMaterial
+       * @methodOf daiictSenTeam13App.controller:MainCtrl
+       * @description
+       * Initializes Materialize components.
+       * @returns {undefined} Does not return anything.
+       */
+      $scope.initMaterial = function() {
+        $(document).ready(function() {
+          $('.modal-trigger').leanModal();
+        });
+      };
+      $scope.initMaterial();
 
       /**
        * @ngdoc function
@@ -72,11 +115,23 @@
        * @name daiictSenTeam13App.controller:MainCtrl#goToReset
        * @methodOf daiictSenTeam13App.controller:MainCtrl
        * @description
-       * Redirects user to reset password page.
+       * Sends the password to user's email.
        * @returns {undefined} Does not return anything.
        */
-      self.goToReset = function() {
-        $location.path('/resetPassword');
+      self.resetPassword = function() {
+        ref.resetPassword({
+          email: $scope.email
+        }, function(error) {
+          if (error) {
+            switch (error.code) {
+              case "INVALID_USER":
+                Materialize.toast("The specified user account does not exist.", 4000);
+                break;
+              default:
+                Materialize.toast("Error resetting password:" + error, 4000);
+            }
+          }
+        });
       };
 
       /**
@@ -90,34 +145,33 @@
        * @returns {undefined} Does not return anything.
        */
       self.login = function() {
-        $scope.loading = true;
-        $timeout(function() {
-          $scope.$apply();
-        });
-        ref.authWithPassword({
-          "email": $scope.email,
-          "password": $scope.password
-        }, function(error, authData) {
-          if (error) {
-            $scope.password = '';
-            $timeout(function() {
-              $scope.$apply();
-            });
-            $scope.loading = false;
-            Materialize.toast(error, 4000);
-          } else {
-            console.log("Authenticated successfully with payload:", authData);
-            if (authData.password.isTemporaryPassword) {
-              $scope.loading = false;
-              $location.path('/resetPassword');
+        if (validate()) {
+          $scope.loading = true;
+          ref.authWithPassword({
+            "email": $scope.email.toString(),
+            "password": $scope.password
+          }, function(error, authData) {
+            if (error) {
+              $scope.password = '';
               $timeout(function() {
                 $scope.$apply();
               });
+              $scope.loading = false;
+              Materialize.toast(error, 4000);
             } else {
-              redirectUser();
+              console.log("Authenticated successfully with payload:", authData);
+              if (authData.password.isTemporaryPassword) {
+                $scope.loading = false;
+                $location.path('/resetPassword');
+                $timeout(function() {
+                  $scope.$apply();
+                });
+              } else {
+                redirectUser();
+              }
             }
-          }
-        });
+          });
+        }
       };
     }]);
 })();

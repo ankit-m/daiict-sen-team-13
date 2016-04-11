@@ -51,6 +51,15 @@
         }
       };
 
+      $scope.initMaterial = function() {
+        $(document).ready(function() {
+          $(".button-collapse").sideNav({
+            closeOnClick: true
+          });
+        });
+      };
+      $scope.initMaterial();
+
       function getData() {
         ref.child('profile').once('value', function(dataSnapshot) {
           $scope.allUsers = dataSnapshot.val();
@@ -74,7 +83,7 @@
         });
       };
 
-      self.logout = function() {
+      $scope.logout = function() {
         ref.unauth();
         $location.path('/');
       };

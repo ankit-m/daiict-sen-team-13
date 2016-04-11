@@ -42,11 +42,13 @@
 
       $scope.initMaterial = function() {
         $(document).ready(function() {
+          $(".button-collapse").sideNav({
+            closeOnClick: true
+          });
           $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
           });
         });
-        $(".button-collapse").sideNav();
       };
       $scope.initMaterial();
 
@@ -97,7 +99,6 @@
             } else {
               $location.path('/chatRooms');
             }
-
             break;
           case 'jobs':
             if ($rootScope.userType === true) {
