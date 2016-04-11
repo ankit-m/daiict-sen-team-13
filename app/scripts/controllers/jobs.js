@@ -15,6 +15,7 @@
 
       $scope.loading = true;
       $scope.jobPostings = {};
+      $location.url($location.path());
 
       $scope.initMaterial = function() {
         $(document).ready(function() {

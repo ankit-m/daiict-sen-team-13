@@ -15,6 +15,7 @@
 
       $scope.loading = true;
       $scope.day = 'Monday';
+      $location.url($location.path());
 
       if (authData && $rootScope.userType) {
         console.log("Authenticated user with uid:", authData.uid);

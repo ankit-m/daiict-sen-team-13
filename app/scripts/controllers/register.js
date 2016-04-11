@@ -13,6 +13,8 @@
       var self = this;
       var password = 'pass';
 
+      $location.url($location.path());
+
       function resetValues() {
         $scope.email = '';
         $scope.firstName = '';

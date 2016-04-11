@@ -22,7 +22,8 @@
       $scope.loading = false;
       $scope.email = '';
       $scope.password = '';
-
+      $location.url($location.path());
+      
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:MainCtrl#redirectUser

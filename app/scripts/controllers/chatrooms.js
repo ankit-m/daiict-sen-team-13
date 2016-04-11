@@ -16,8 +16,8 @@
       $scope.chatHistory = [];
       $scope.members = [];
       $scope.loading = true;
-
       $scope.jobs = {};
+      $location.url($location.path());
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -97,7 +97,7 @@
             return false;
           }
         }
-        if ($scope.userType === true) {
+        if ($scope.userType === true && chatRoom.createdBy === authData.password.email) {
           return true;
         }
         if (chatRoom.slots > 0) {

@@ -15,7 +15,7 @@
 
       $scope.jobs = {};
       $scope.allUsers = {};
-      $scope.loading = true;
+      $location.url($location.path());
 
       $scope.goTo = function(page) {
         switch (page) {

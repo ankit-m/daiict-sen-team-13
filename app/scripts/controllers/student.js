@@ -16,6 +16,7 @@
       $scope.jobs = {};
       $scope.chatRooms = {};
       $scope.loading = true;
+      $location.url($location.path());
 
       if (authData) {
         console.log("Authenticated user with uid:", authData);

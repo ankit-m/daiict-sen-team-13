@@ -17,6 +17,7 @@
       $scope.newPassword = '';
       $scope.confirmNew = '';
       $scope.email = '';
+      $location.url($location.path());
 
       function validate() {
         if (!/([^\s])/.test($scope.email) || !/([^\s])/.test($scope.oldPassword) || !/([^\s])/.test($scope.newPassword) || !/([^\s])/.test($scope.confirmNew)) {

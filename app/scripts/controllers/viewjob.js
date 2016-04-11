@@ -14,6 +14,7 @@
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var self = this;
+
       $scope.loading = true;
 
       if (authData && jobId) {

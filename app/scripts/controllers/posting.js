@@ -23,7 +23,7 @@
       $scope.deadline = '';
       $scope.contactEmail = '';
       $scope.location = '';
-      // $location.search('jobId', null);
+      $location.url($location.path());
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
