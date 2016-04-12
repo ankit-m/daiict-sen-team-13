@@ -25,11 +25,11 @@
       } else {
         $location.path('/');
       }
-      
+
       $scope.initMaterial = function() {
         $(document).ready(function() {
           $(".button-collapse").sideNav({
-            closeOnClick: true
+            closeOnClick: $(window).width() > 991 ? false : true
           });
           $('.modal-trigger').leanModal();
           $('.collapsible').collapsible({
@@ -161,7 +161,7 @@
               }
             });
             }
-            break;  
+            break;
           case 'location':
             ref.child('profile').child(profileKey).update({
               location: $scope.location
