@@ -5,7 +5,7 @@
    * @name daiictSenTeam13App.controller:ChatCtrl
    * @description
    * # ChatCtrl
-   * Controller of the daiictSenTeam13App
+   * Chat Controller of the daiictSenTeam13App
    */
   angular.module('daiictSenTeam13App')
     .controller('ChatCtrl', ['$scope', '$location', '$routeParams', '$timeout', '$window', '$rootScope', function($scope, $location, $routeParams, $timeout, $window, $rootScope) {
