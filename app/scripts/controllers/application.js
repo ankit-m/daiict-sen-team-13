@@ -63,7 +63,7 @@
           document.getElementById("applicationForm").reset();
           $('#letter').trigger('autoresize');
         };
-        $scope.resetValues();
+        // $scope.resetValues();
 
         /**
          * @ngdoc function
@@ -106,7 +106,7 @@
             console.error(err);
           });
         }
-        getData();
+        // getData();
 
         /**
          * @ngdoc function
