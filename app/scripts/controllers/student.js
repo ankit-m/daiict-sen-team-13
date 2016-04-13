@@ -11,7 +11,6 @@
     .controller('StudentCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var self = this;
 
       $scope.jobs = {};
       $scope.chatRooms = {};
@@ -196,7 +195,6 @@
             });
           }
         });
-
       };
 
       /**

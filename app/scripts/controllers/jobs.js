@@ -11,7 +11,6 @@
     .controller('JobsCtrl', ['$scope', '$location', '$rootScope', '$timeout', function($scope, $location, $rootScope, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var self = this;
 
       $scope.loading = true;
       $scope.jobPostings = {};
@@ -160,9 +159,20 @@
        * @returns {undefined} Does not return anything.
        */
       $scope.applyForJob = function(jobId, jobName) {
-        $location.path('/application').search({
-          'jobId': jobId,
-          'jobName': jobName
+        ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).once('value', function(data) {
+          var applied = false;
+          for (var application in data.val()) {
+            if (data.val()[application].jobId === jobId) {
+              applied = true;
+              Materialize.toast('You have already applied.', 4000);
+            }
+          }
+          if (applied === false) {
+            $location.path('/application').search({
+              'jobId': jobId,
+              'jobName': jobName
+            });
+          }
         });
       };
 

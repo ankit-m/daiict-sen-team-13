@@ -71,7 +71,7 @@
   <h5 class="light">Rejected</h5>
   <ul class="collapsible" data-collapsible="accordion">
     <li ng-repeat="(key, application) in applications" ng-show="application.status === 'reject'">
-      <div class="collapsible-header">{{application.contactEmail}}</div>
+      <div class="collapsible-header">{{application.appliedBy}}</div>
       <div class="collapsible-body">
         <p>{{application.letter}}</p>
         <p style="padding-top:0"><a href="">Attachment</a></p>

@@ -196,8 +196,7 @@
         }
       };
 
-      $scope.viewApplicantProfile=function(email){
-        console.log("Hello")
+      $scope.viewApplicantProfile = function(email) {
         $location.path('/viewProfile').search({
           'profileId': email
         });

@@ -12,7 +12,6 @@
     .controller('MainCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var self = this;
 
       $rootScope.userType = null;
       $scope.loading = true;
@@ -135,6 +134,8 @@
               default:
                 Materialize.toast("Error resetting password:" + error, 4000);
             }
+          } else {
+            Materialize.toast('New password sent.', 4000);
           }
         });
       };

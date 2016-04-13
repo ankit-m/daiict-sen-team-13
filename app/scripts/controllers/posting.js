@@ -24,13 +24,13 @@
       $scope.contactEmail = '';
       $scope.location = '';
       $location.url($location.path());
-      
+
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
-      
+
 
       if ($rootScope.userType === false) {
         $location.path('/student');
@@ -153,12 +153,12 @@
             "description": $scope.description,
             "contactEmail": $scope.contactEmail,
             "location": $scope.location,
-            "startDate": new Date($scope.startDate),
-            "endDate": new Date($scope.endDate),
+            "startDate": (new Date($scope.startDate)).getTime(),
+            "endDate": (new Date($scope.endDate)).getTime(),
             "postedBy": authData.password.email,
             "positions": $scope.positions,
-            "deadline": new Date($scope.deadline),
-            "postedOn": new Date(Firebase.ServerValue.TIMESTAMP)
+            "deadline": (new Date($scope.deadline)).getTime(),
+            "postedOn": Firebase.ServerValue.TIMESTAMP
           }, function(error) {
             if (error) {
               Materialize.toast('Could not create Job. Please try again later.', 4000);
