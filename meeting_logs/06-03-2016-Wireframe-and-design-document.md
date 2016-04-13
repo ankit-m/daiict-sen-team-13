@@ -15,4 +15,4 @@ Brief description about the meeting: In this meeting we decided to make all the 
 
 Post meeting actions: Complete the design documents on staruml.io and moqups and write the write-ups for the respective design documents.
 
-Next meeting is scheduled on ??th March, 2016
+Next meeting is scheduled on 8th March, 2016
