@@ -114,8 +114,10 @@
           });
         });
       }
+      
       getData();
 
+      
       ref.child('chatRooms').child(key).child('members').on('child_removed', function(dataSnapshot) {
         if (dataSnapshot.val().emailId === authData.password.email) {
           $location.path('/chatRooms');

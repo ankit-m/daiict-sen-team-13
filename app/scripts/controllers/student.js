@@ -180,7 +180,7 @@
        *
        * @returns {undefined} Does not return anything.
        */
-      self.applyForJob = function(jobId, jobName) {
+      $scope.applyForJob = function(jobId, jobName) {
         ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).once('value', function(data) {
           var applied = false;
           for (var application in data.val()) {
@@ -230,7 +230,7 @@
        * the function returns false.
        * @returns {undefined} Does not return anything.
        */
-      function validate(members, chatRoom) {
+       $scope.validate = function(members, chatRoom) {
         for (var member in members) {
           if (member.emailId === authData.password.email) {
             return false;
@@ -274,7 +274,7 @@
           return false;
         }
         return true;
-      }
+      };
 
       /**
        * @ngdoc function
@@ -295,10 +295,10 @@
        * both join the chat room if only one slot is left.
        * @returns {undefined} Does not return anything.
        */
-      self.openChatRoom = function(key, chatRoom) {
+      $scope.openChatRoom = function(key, chatRoom) {
         $scope.loading = true;
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
-          if (validate(dataSnapshot.val().members, chatRoom)) {
+          if ($scope.validate(dataSnapshot.val().members, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,

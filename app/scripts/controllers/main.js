@@ -75,7 +75,7 @@
        * Validates user input on main page.
        * @returns {undefined} Does not return anything.
        */
-      function validate() {
+        $scope.validate=function() {
         if (!$scope.email) {
           Materialize.toast('Enter a valid email', 4000);
           $scope.password = '';
@@ -86,7 +86,7 @@
           return false;
         }
         return true;
-      }
+      };
 
       /**
        * @ngdoc function
@@ -123,7 +123,7 @@
        * Sends the password to user's email.
        * @returns {undefined} Does not return anything.
        */
-      self.resetPassword = function() {
+      $scope.resetPassword = function() {
         ref.resetPassword({
           email: $scope.email
         }, function(error) {
@@ -149,8 +149,8 @@
        * In case of login error, raises appropriate toats.
        * @returns {undefined} Does not return anything.
        */
-      self.login = function() {
-        if (validate()) {
+      $scope.login = function() {
+        if ($scope.validate()) {
           $scope.loading = true;
           ref.authWithPassword({
             "email": $scope.email.toString(),

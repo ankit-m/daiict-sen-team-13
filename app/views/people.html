@@ -45,7 +45,7 @@
   <ul class="collection">
     <li class="collection-item" ng-repeat="(key, person) in allUsers | searchPeople:search">
       <div>{{person.firstName}} {{person.lastName}}
-        <a ng-click="people.viewProfile(person.email)" class="secondary-content pointer">View</a>
+        <a ng-click="viewProfile(person.email)" class="secondary-content pointer">View</a>
       </div>
     </li>
   </ul>

@@ -14,7 +14,6 @@
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var self = this;
-
       $scope.loading = true;
 
       if (authData && jobId) {
@@ -103,7 +102,7 @@
        * Else, a toast with the message 'Accept Notification sent' is displayed.
        * @returns {undefined} Does not return anything.
        */
-      self.acceptApplication = function(applicationId) {
+      $scope.acceptApplication = function(applicationId) {
         console.log('accept');
         ref.child('applications').child(applicationId).update({
           status: 'accept'
@@ -132,7 +131,7 @@
        * Else, a toast with the message 'Reject Notification sent' is displayed.
        * @returns {undefined} Does not return anything.
        */
-      self.rejectApplication = function(applicationId) {
+      $scope.rejectApplication = function(applicationId) {
         console.log('reject');
         ref.child('applications').child(applicationId).update({
           status: 'reject'
@@ -195,6 +194,13 @@
           default:
             $location.path('/');
         }
+      };
+
+      $scope.viewApplicantProfile=function(email){
+        console.log("Hello")
+        $location.path('/viewProfile').search({
+          'profileId': email
+        });
       };
     }]);
 })();
