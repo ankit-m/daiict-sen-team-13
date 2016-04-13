@@ -19,7 +19,7 @@
       $scope.email = '';
       $location.url($location.path());
 
-      function validate() {
+       $scope.validate = function() {
         if (!/([^\s])/.test($scope.email) || !/([^\s])/.test($scope.oldPassword) || !/([^\s])/.test($scope.newPassword) || !/([^\s])/.test($scope.confirmNew)) {
           Materialize.toast('All fields are required', 4000);
           return false;
@@ -30,10 +30,10 @@
           return false;
         }
         return true;
-      }
+      };
 
       $scope.changePass = function() {
-        if (validate()) {
+        if ($scope.validate()) {
           ref.changePassword({
             email: $scope.email,
             oldPassword: $scope.oldPassword,

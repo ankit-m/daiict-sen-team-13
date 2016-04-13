@@ -74,7 +74,7 @@
        * else false is returned.
        * @returns {undefined} Does not return anything.
        */
-      function validate() {
+      $scope.validate= function() {
         if ($scope.email.indexOf('@daiict.ac.in') < 0) { //verifications add
           Materialize.toast('Please use DAIICT email address.', 4000);
           resetValues();
@@ -93,7 +93,7 @@
           });
           return true;
         }
-      }
+      };
 
       /**
        * @ngdoc function
@@ -113,8 +113,8 @@
        * password for him to login and confirm his email address and account.
        * @returns {undefined} Does not return anything.
        */
-      self.signup = function() {
-        if (validate()) {
+      $scope.signup = function() {
+        if ($scope.validate()) {
           $scope.loading = true;
           ref.createUser({
             email: $scope.email,

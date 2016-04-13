@@ -21,13 +21,13 @@
         $scope.letter = '';
         $scope.contactEmail = '';
         $scope.attachment = '';
-
+        
         if (authData && jobId && jobName) {
           console.log("Authenticated user with uid:", authData.uid);
         } else {
           $location.path('/');
         }
-
+        
         if ($rootScope.userType === true) {
           $location.path('/faculty');
         }

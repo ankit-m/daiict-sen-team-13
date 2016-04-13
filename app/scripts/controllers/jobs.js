@@ -159,7 +159,7 @@
        *
        * @returns {undefined} Does not return anything.
        */
-      self.applyForJob = function(jobId, jobName) {
+      $scope.applyForJob = function(jobId, jobName) {
         $location.path('/application').search({
           'jobId': jobId,
           'jobName': jobName

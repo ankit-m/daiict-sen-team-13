@@ -75,7 +75,7 @@
         $location.path('/');
       };
 
-      self.updateProfile = function(type) {
+      $scope.updateProfile = function(type) {
         console.log('called', type);
         switch (type) {
           case 'institute':
@@ -189,11 +189,11 @@
         }
       };
 
-      self.removeItem = function(key, type) {
+      $scope.removeItem = function(key, type) {
         ref.child('profile').child(profileKey).child(type).child(key).remove();
       };
 
-      self.viewHomePage = function() {
+      $scope.viewHomePage = function() {
         if ($rootScope.userType === true) {
           $location.path('/faculty');
         } else {

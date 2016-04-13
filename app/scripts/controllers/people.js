@@ -132,7 +132,7 @@
        * redirects the user to the profile page he wishes to view.
        * @returns {undefined} Does not return anything.
        */
-      self.viewProfile = function(email) {
+      $scope.viewProfile = function(email) {
         $location.path('/viewProfile').search({
           'profileId': email
         });
