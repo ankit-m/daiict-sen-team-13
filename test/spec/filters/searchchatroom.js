@@ -11,9 +11,4 @@ describe('Filter: searchChatRoom', function () {
     searchChatRoom = $filter('searchChatRoom');
   }));
 
-  it('should return the input prefixed with "searchChatRoom filter:"', function () {
-    var text = 'angularjs';
-    expect(searchChatRoom(text)).toBe('searchChatRoom filter: ' + text);
-  });
-
 });

@@ -63,7 +63,7 @@
           document.getElementById("applicationForm").reset();
           $('#letter').trigger('autoresize');
         };
-        $scope.resetValues();
+        // $scope.resetValues();
 
         /**
          * @ngdoc function
@@ -106,7 +106,7 @@
             console.error(err);
           });
         }
-        getData();
+        // getData();
 
         /**
          * @ngdoc function
@@ -117,13 +117,13 @@
          * the job selected. Only if all fields are filled in, validate will return true.
          * @returns {boolean} Whether data is valid or not
          */
-        function validate() {
+        $scope.validate = function() {
           if (!/([^\s])/.test($scope.letter) || !/([^\s])/.test($scope.contactEmail)) {
             Materialize.toast('All fields are required', 4000);
             return false;
           }
           return true;
-        }
+        };
 
         /**
          * @ngdoc function
@@ -139,7 +139,7 @@
          * @returns {undefined} Does not return anything.
          */
         $scope.submitApplication = function() {
-          if (validate()) {
+          if ($scope.validate()) {
             ref.child('applications').push({ //add server validation
               "appliedBy": authData.password.email,
               "contactEmail": $scope.contactEmail,

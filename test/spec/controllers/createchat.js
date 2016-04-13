@@ -16,8 +16,4 @@ describe('Controller: CreatechatCtrl', function () {
       // place here mocked dependencies
     });
   }));
-
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(CreatechatCtrl.awesomeThings.length).toBe(3);
-  });
 });

@@ -16,8 +16,4 @@ describe('Controller: ChatroomsCtrl', function () {
       // place here mocked dependencies
     });
   }));
-
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(ChatroomsCtrl.awesomeThings.length).toBe(3);
-  });
 });
