@@ -44,11 +44,20 @@
   </div>
   <ul class="collapsible" data-collapsible="accordion">
     <li ng-repeat="(key, job) in jobPostings | searchJobs:search">
-      <div class="collapsible-header">{{job.jobName}}</div>
+      <div class="collapsible-header">{{job.jobName}}  
+      </div>
       <div class="collapsible-body">
+        
+
+        
+
+
+      
+
+
         <p>{{job.description}}</p>
         <div class="right-align" style="padding: 16px">
-          <a class="btn" ng-click="jobs.applyForJob(key, job.jobName)" ng-if="!userType">Apply</a>
+          <a class="btn" ng-click="applyForJob(key, job.jobName)" ng-if="!userType">Apply</a>
         </div>
       </div>
     </li>

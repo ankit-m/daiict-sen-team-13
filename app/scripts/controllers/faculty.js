@@ -17,12 +17,13 @@
       $scope.loading = true;
       $scope.chatRooms = {};
       $location.url($location.path());
-
+      
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
+      
 
       if ($rootScope.userType === false) {
         $location.path('/student');
@@ -145,19 +146,19 @@
        * controller's view. The user is redirected to the route /chatRooms.
        * @returns {undefined} Does not return anything.
        */
-      self.showAllChatRooms = function() {
+      $scope.showAllChatRooms = function() {
         $location.path('/chatRooms');
       };
 
 
-      function validate(members) {
+      $scope.validate = function(members) {
         for (var member in members) {
           if (member.emailId === authData.password.email) {
             return false;
           }
         }
         return true;
-      }
+      };
 
       /**
        * @ngdoc function
@@ -173,9 +174,9 @@
        * chat room and is redirected to that chat room.
        * @returns {undefined} Does not return anything.
        */
-      self.openChatRoom = function(key) {
+      $scope.openChatRoom = function(key) {
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
-          if (validate(dataSnapshot.val().members)) {
+          if ($scope.validate(dataSnapshot.val().members)) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,
@@ -225,7 +226,7 @@
        * try later.
        * @returns {undefined} Does not return anything.
        */
-      self.deleteChatRoom = function(chatRoomId) {
+      $scope.deleteChatRoom = function(chatRoomId) {
         ref.child('chatRooms').child(chatRoomId).remove(function(error) {
           if (error) {
             Materialize.toast('Could not Delete Chat Room. Try later', 4000);
@@ -268,7 +269,7 @@
        * applications for the job, list of accepted and rejected applications.
        * @returns {undefined} Does not return anything.
        */
-      self.viewJob = function(jobId) {
+      $scope.viewJob = function(jobId) {
         console.log(jobId);
         $location.path('/viewJob').search({
           'jobId': jobId
@@ -295,7 +296,7 @@
        * try later.
        * @returns {undefined} Does not return anything.
        */
-      self.deleteJob = function(jobId) { //atomize this request
+      $scope.deleteJob = function(jobId) { //atomize this request
         ref.child('postings').child(jobId).remove(function(error) {
           if (error) {
             Materialize.toast('Could not Delete Job. Try later', 4000);
