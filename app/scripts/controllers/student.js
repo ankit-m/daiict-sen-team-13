@@ -236,16 +236,20 @@
             return false;
           }
         }
-        if (chatRoom.active === false){
+        if (chatRoom.active === false) {
           Materialize.toast('No faculty has opened the Chat Room yet. Try again later.', 4000);
           return false;
         } else {
-          return true;
+          if (chatRoom.slots > 0) {
+            return true;
+          }
+          Materialize.toast('Chat room full. Please try again later', 4000);
+          return false;
         }
         if (chatRoom.slots > 0) {
           var currentDate = new Date();
           var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
-          if (currentTime > chatRoom.startTime) {
+          if (currentTime > chatRoom.startTime && currentTime < chatRoom.endTime) {
             var today = new Date();
             var weekday = new Array(7);
             weekday[0] = "Sunday";

@@ -99,6 +99,22 @@
         $('#chatDescription').trigger('autoresize');
       };
 
+      $scope.validateChatSettings = function(){
+        if (!/([^\s])/.test($scope.chatName) || !/([^\s])/.test($scope.chatDescription) || !/([^\s])/.test($scope.slots) || !/([^\s])/.test($scope.day)) {
+          Materialize.toast('All fields are necessary', 4000);
+          return false;
+        } else {
+          if (!/([^\s])/.test($scope.startTime) || !/([^\s])/.test($scope.endTime)) {
+            Materialize.toast('All time fields are necessary', 4000);
+            return false;
+          } else if ($scope.startTime >= $scope.endTime) {
+            Materialize.toast('Start time should be less that End Time', 4000);
+            return false;
+          }
+        }
+        return true;
+      };
+
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:CreatechatCtrl#createChatRoom
@@ -113,23 +129,25 @@
        * @returns {undefined} Does not return anything.
        */
       self.createChatRoom = function() {
-        console.log('createChatRoom called');
-        ref.child('chatRooms').push({
-          "chatRoomName": $scope.chatName,
-          "createdBy": authData.password.email,
-          "startTime": $scope.startTime,
-          "description": $scope.chatDescription,
-          "slots": $scope.slots,
-          "days": $scope.day,
-          "active": false
-        }, function(error) {
-          if (error) {
-            Materialize.toast('Could not create Chat Room. Please try again', 4000);
-          } else {
-            Materialize.toast('Created Chat Room', 4000);
-            self.resetValues();
-          }
-        });
+        if ($scope.validateChatSettings()) {
+          ref.child('chatRooms').push({
+            "chatRoomName": $scope.chatName,
+            "createdBy": authData.password.email,
+            "startTime": $scope.startTime,
+            "endTime": $scope.endTime,
+            "description": $scope.chatDescription,
+            "slots": $scope.slots,
+            "days": $scope.day,
+            "active": false
+          }, function(error) {
+            if (error) {
+              Materialize.toast('Could not create Chat Room. Please try again', 4000);
+            } else {
+              Materialize.toast('Created Chat Room', 4000);
+              self.resetValues();
+            }
+          });
+        }
       };
 
       /**
@@ -141,11 +159,12 @@
        * controller's view. The user is redirected to the routr /chatRooms.
        * @returns {undefined} Does not return anything.
        */
-
-
-
-
-
+       $scope.showAllChatRooms = function(){
+        $location.path('/chatRooms');
+        $timeout(function() {
+          $scope.$apply();
+        });
+       };
 
       /**
        * @ngdoc function

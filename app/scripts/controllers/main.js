@@ -23,7 +23,7 @@
       $scope.email = '';
       $scope.password = '';
       $location.url($location.path());
-      
+
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:MainCtrl#redirectUser
@@ -35,6 +35,10 @@
        * @returns {undefined} Does not return anything.
        */
       function redirectUser() {
+        $scope.loading = true;
+        $timeout(function() {
+          $scope.$apply();
+        });
         var userRef = new Firebase('https://sfip.firebaseio.com/users');
         var authData = ref.getAuth();
         userRef.orderByChild('email').equalTo(authData.password.email).once('value', function(snapshot) {

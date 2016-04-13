@@ -50,7 +50,7 @@
       </div>
     </li>
   </ul>
-  <a class="btn right" ng-click="createChat.showAllChatRooms()">all Chat Rooms</a>
+  <a class="btn right" ng-click="showAllChatRooms()">all Chat Rooms</a>
   <br>
   <h5 class="light">Chat Room Settings</h5>
   <form class="col s12" style="padding: 0" id="createChatForm">
@@ -74,6 +74,10 @@
       <div class="input-field col s6">
         <input id="start" ng-model="startTime" name="date" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
         <label for="start">Start Time</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="endTime" ng-model="endTime" name="date" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')">
+        <label for="endTime">End Time</label>
       </div>
     </div>
     <div class="row">

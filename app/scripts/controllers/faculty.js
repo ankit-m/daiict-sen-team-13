@@ -48,7 +48,7 @@
           console.error(err);
         });
 
-        ref.child('chatRooms').orderByChild('createdBy').equalTo(authData.password.email).once('value', function(dataSnapshot) {
+        ref.child('chatRooms').orderByChild('createdBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
           $scope.chatRooms = dataSnapshot.val();
           console.log($scope.chatRooms);
           $timeout(function() {
@@ -248,7 +248,7 @@
        * where the controller will display a list of all active jobs in th database.
        * @returns {undefined} Does not return anything.
        */
-      self.showAllJobs = function() {
+      $scope.showAllJobs = function() {
         $location.path('/jobs');
       };
 
@@ -296,7 +296,6 @@
        * @returns {undefined} Does not return anything.
        */
       self.deleteJob = function(jobId) { //atomize this request
-        console.log('delete job');
         ref.child('postings').child(jobId).remove(function(error) {
           if (error) {
             Materialize.toast('Could not Delete Job. Try later', 4000);
