@@ -64,7 +64,6 @@
        * @returns {undefined} Does not return anything.
        */
       function getData() {
-        console.log('getData called');
         postingRef.orderByChild('postedBy').equalTo(authData.password.email).on('value', function(dataSnapshot) {
           $scope.createdJobs = dataSnapshot.val();
           console.log($scope.createdJobs);
@@ -75,8 +74,6 @@
         }, function(err) {
           console.error(err);
         });
-
-        console.log('getData return');
       }
       getData();
 

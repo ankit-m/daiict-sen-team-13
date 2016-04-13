@@ -63,7 +63,7 @@
           document.getElementById("applicationForm").reset();
           $('#letter').trigger('autoresize');
         };
-        // $scope.resetValues();
+        $scope.resetValues();
 
         /**
          * @ngdoc function
@@ -106,7 +106,7 @@
             console.error(err);
           });
         }
-        // getData();
+        getData();
 
         /**
          * @ngdoc function
@@ -189,28 +189,16 @@
         $scope.goTo = function(page) {
           switch (page) {
             case 'home':
-              if ($rootScope.userType === true) {
-                $location.path('/faculty');
-              } else {
                 $location.path('/student');
-              }
               break;
             case 'profile':
               $location.path('/profile');
               break;
             case 'chatRooms':
-              if ($rootScope.userType === true) {
-                $location.path('/createChat');
-              } else {
                 $location.path('/chatRooms');
-              }
               break;
             case 'jobs':
-              if ($rootScope.userType === true) {
-                $location.path('/posting');
-              } else {
                 $location.path('/jobs');
-              }
               break;
             case 'people':
               $location.path('/people');

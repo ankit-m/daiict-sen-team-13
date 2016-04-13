@@ -172,7 +172,7 @@
        * the function returns false.
        * @returns {boolean} Data is valid or not
        */
-      function validate(members, chatRoom) {
+      $scope.validate = function(members, chatRoom) {
         for (var member in members) {
           if (member.emailId === authData.password.email) {
             return false;
@@ -215,7 +215,7 @@
           return false;
         }
         return true;
-      }
+      };
 
       /**
        * @ngdoc function
@@ -240,7 +240,7 @@
       $scope.openChatRoom = function(key, chatRoom) {
         $scope.loading = true;
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
-          if (validate(dataSnapshot.val().members, chatRoom)) {
+          if ($scope.validate(dataSnapshot.val().members, chatRoom)) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,

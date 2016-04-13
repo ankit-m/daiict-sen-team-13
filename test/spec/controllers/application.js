@@ -21,6 +21,11 @@ describe('Controller: ApplicationCtrl', function() {
     });
   }));
 
+  // it('should redirect to all home if user is of type faculty', function(){
+  //   rootScope.userType = true;
+  //   expect(location).toHaveBeenCalledWith('/faculty');
+  // });
+
   it('should have no items to start', function() {
     expect(scope.letter.length).toBe(0);
     expect(scope.contactEmail.length).toBe(0);
@@ -52,7 +57,7 @@ describe('Controller: ApplicationCtrl', function() {
     expect(location).toHaveBeenCalledWith('/people');
 
     scope.goTo('home');
-    expect(location).toHaveBeenCalledWith('/faculty');
+    expect(location).toHaveBeenCalledWith('/student');
 
     scope.goTo('chatRooms');
     expect(location).toHaveBeenCalledWith('/chatRooms');

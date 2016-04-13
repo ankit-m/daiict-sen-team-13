@@ -56,9 +56,7 @@
        * @returns {undefined} Does not return anything.
        */
       $scope.logout = function() {
-        console.log('logout called');
         ref.unauth();
-        console.log('logged out');
         $location.path('/');
       };
 

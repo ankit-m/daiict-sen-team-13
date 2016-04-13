@@ -23,7 +23,6 @@ module.exports = function(config) {
       dir: 'coverage'
     },
 
-
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
     frameworks: [
