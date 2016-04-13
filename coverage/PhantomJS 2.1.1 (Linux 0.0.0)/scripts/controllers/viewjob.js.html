@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/controllers/viewjob.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">scripts/controllers/</a> viewjob.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.84% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.69% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.84% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/62</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+  'use strict';
+  /**
+   * @ngdoc controller
+   * @name daiictSenTeam13App.controller:ViewjobCtrl
+   * @description
+   * # ViewjobCtrl
+   * Controller of the daiictSenTeam13App
+   */
+  angular.module('daiictSenTeam13App')
+    .controller('ViewjobCtrl', ['$scope', '$location', '$routeParams', '$rootScope', <span class="fstat-no" title="function not covered" >function($scope, $location, $routeParams, $rootScope) {</span>
+<span class="cstat-no" title="statement not covered" >      var ref = new Firebase('https://sfip.firebaseio.com/');</span>
+<span class="cstat-no" title="statement not covered" >      var applicationRef = new Firebase('https://sfip.firebaseio.com/applications');</span>
+<span class="cstat-no" title="statement not covered" >      var authData = ref.getAuth();</span>
+<span class="cstat-no" title="statement not covered" >      var jobId = $routeParams.jobId;</span>
+<span class="cstat-no" title="statement not covered" >      var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      $scope.loading = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (authData &amp;&amp; jobId) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log("Authenticated user with uid:", authData.uid);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        $location.path('/');</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if ($rootScope.userType === false) {</span>
+<span class="cstat-no" title="statement not covered" >        $location.path('/student');</span>
+      }
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#getData
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @description
+       * Thus function is called on /viewJob.html page load. The jobId route
+       * parameter passed is used to look up the corresponding job's applications
+       * in the database and stored in a scope variable so that a professor can
+       * view all applications for that corresponding job.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="fstat-no" title="function not covered" >      function getData() {</span>
+<span class="cstat-no" title="statement not covered" >        console.log('getData called');</span>
+<span class="cstat-no" title="statement not covered" >        applicationRef.orderByChild('jobId').equalTo(jobId).on('value', <span class="fstat-no" title="function not covered" >function(dataSnapshot) {</span></span>
+<span class="cstat-no" title="statement not covered" >          $scope.applications = dataSnapshot.val();</span>
+<span class="cstat-no" title="statement not covered" >          console.log(dataSnapshot.val());</span>
+<span class="cstat-no" title="statement not covered" >          $scope.$apply();</span>
+        }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >          console.error(err);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        console.log('getData return');</span>
+<span class="cstat-no" title="statement not covered" >        $scope.loading = false;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      getData();</span>
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#initMaterial
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @description
+       * Initialises the Matrialise modules.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      $scope.initMaterial = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        $(document).ready(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          $(".button-collapse").sideNav({</span>
+            closeOnClick: $(window).width() &gt; 991 ? false : true
+          });
+<span class="cstat-no" title="statement not covered" >          $('.collapsible').collapsible({</span>
+            accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+          });
+        });
+      };
+<span class="cstat-no" title="statement not covered" >      $scope.initMaterial();</span>
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#logout
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @description
+       * Ends the user's session and logs him out.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      $scope.logout = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log('logout called');</span>
+<span class="cstat-no" title="statement not covered" >        ref.unauth();</span>
+<span class="cstat-no" title="statement not covered" >        console.log('logged out');</span>
+<span class="cstat-no" title="statement not covered" >        $location.path('/');</span>
+      };
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#acceptApplication
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @param {string} applicationId Unique key in the database to identify
+       * an application for a given job.
+       * @description
+       * This function is called when a professor clicks on accept application
+       * on a particular application for a particualr job. When the professor
+       * clicks on accept, the corresponding application's application id is
+       * passed as a parameter to this function. The application's status is
+       * updated as "accept" in the database after searching for the application
+       * in the database. An error toast message is generated if updation fails.
+       * Else, a toast with the message 'Accept Notification sent' is displayed.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      self.acceptApplication = <span class="fstat-no" title="function not covered" >function(applicationId) {</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log('accept');</span>
+<span class="cstat-no" title="statement not covered" >        ref.child('applications').child(applicationId).update({</span>
+          status: 'accept'
+        }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >          if (error) {</span>
+<span class="cstat-no" title="statement not covered" >            Materialize.toast('Try again', 4000);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            Materialize.toast('Accept Notification sent', 4000);</span>
+          }
+        });
+      };
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#rejectApplication
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @param {string} applicationId Unique key in the database to identify
+       * an application for a given job.
+       * @description
+       * This function is called when a professor clicks on reject application
+       * on a particular application for a particualr job. When the professor
+       * clicks on reject, the corresponding application's application id is
+       * passed as a parameter to this function. The application's status is
+       * updated as "reject" in the database after searching for the application
+       * in the database. An error toast message is generated if updation fails.
+       * Else, a toast with the message 'Reject Notification sent' is displayed.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      self.rejectApplication = <span class="fstat-no" title="function not covered" >function(applicationId) {</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log('reject');</span>
+<span class="cstat-no" title="statement not covered" >        ref.child('applications').child(applicationId).update({</span>
+          status: 'reject'
+        }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >          if (error) {</span>
+<span class="cstat-no" title="statement not covered" >            Materialize.toast('Try again', 4000);</span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            Materialize.toast('Reject Notification sent', 4000);</span>
+          }
+        });
+      };
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:ViewjobCtrl#goTo
+       * @methodOf daiictSenTeam13App.controller:ViewjobCtrl
+       * @param {string} page String that is passed according to
+       * the option clicked by the user in the navigation drawer
+       * displayed to the left of the screen. 'profile' if the
+       * profile option was clicked, 'chatRooms' if the chat rooms
+       * option was clicked etc.
+       * @description
+       * This function is used to redirect the user to either of
+       * the 4 pages, that are profile page, chatRooms page,
+       * jobs page or people page, based on what he/she has
+       * clicked on in the navigation bar displayed in the left
+       * of the screen. Note the following
+       * 1. A professor is redirected to '/createChat' on clicking
+       * "Chat Rooms" in the nav bar whereas a student is redirected
+       * to '/chatRooms'.
+       * 2. A professor is redirected to '/posting' on clicking
+       * 'Jobs' whereas a student is redirected to '/jobs'.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      $scope.goTo = <span class="fstat-no" title="function not covered" >function(page) {</span></span>
+<span class="cstat-no" title="statement not covered" >        switch (page) {</span>
+          case 'home':
+<span class="cstat-no" title="statement not covered" >            $location.path('/faculty');</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'profile':
+<span class="cstat-no" title="statement not covered" >            $location.path('/profile');</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'chatRooms':
+<span class="cstat-no" title="statement not covered" >            if ($rootScope.userType === true) {</span>
+<span class="cstat-no" title="statement not covered" >              $location.path('/createChat');</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              $location.path('/chatRooms');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'jobs':
+<span class="cstat-no" title="statement not covered" >            if ($rootScope.userType === true) {</span>
+<span class="cstat-no" title="statement not covered" >              $location.path('/posting');</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              $location.path('/jobs');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'people':
+<span class="cstat-no" title="statement not covered" >            $location.path('/people');</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          default:
+<span class="cstat-no" title="statement not covered" >            $location.path('/');</span>
+        }
+      };
+    }]);
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 13 2016 14:01:25 GMT+0530 (IST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

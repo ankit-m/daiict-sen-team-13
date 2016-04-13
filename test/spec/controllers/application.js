@@ -7,14 +7,17 @@ describe('Controller: ApplicationCtrl', function() {
 
   var ApplicationCtrl,
     scope,
-    location;
+    location,
+    rootScope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function($controller, $rootScope, $location) {
     scope = $rootScope.$new();
+    rootScope = $rootScope.$new();
     location = spyOn($location, 'path');
     ApplicationCtrl = $controller('ApplicationCtrl', {
-      $scope: scope
+      $scope: scope,
+      $rootScope: rootScope
     });
   }));
 
@@ -41,12 +44,21 @@ describe('Controller: ApplicationCtrl', function() {
     expect(scope.validate()).toBe(true);
   });
 
-  it('should go to correct page', function() {
+  it('should go to only student pages', function() {
     scope.goTo('profile');
     expect(location).toHaveBeenCalledWith('/profile');
-    
+
     scope.goTo('people');
     expect(location).toHaveBeenCalledWith('/people');
+
+    scope.goTo('home');
+    expect(location).toHaveBeenCalledWith('/faculty');
+
+    scope.goTo('chatRooms');
+    expect(location).toHaveBeenCalledWith('/chatRooms');
+
+    scope.goTo('jobs');
+    expect(location).toHaveBeenCalledWith('/jobs');
   });
 
 

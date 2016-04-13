@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/controllers/application.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">scripts/controllers/</a> application.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.89% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>44/76</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">55.17% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>16/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.5% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.89% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>44/76</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+  'use strict';
+  /**
+   * @ngdoc controller
+   * @name daiictSenTeam13App.controller:ApplicationCtrl
+   * @description
+   * # ApplicationCtrl
+   * Controller of the daiictSenTeam13App
+   */
+  angular.module('daiictSenTeam13App')
+    .controller('ApplicationCtrl', ['$scope', '$location', '$routeParams', '$window', '$rootScope', '$timeout',
+      function($scope, $location, $routeParams, $window, $rootScope, $timeout) {
+        var ref = new Firebase('https://sfip.firebaseio.com/');
+        var authData = ref.getAuth();
+        var jobId = $routeParams.jobId;
+        var jobName = $routeParams.jobName;
+        var job = {};
+&nbsp;
+        $scope.loading = true;
+        $scope.jobName = '';
+        $scope.letter = '';
+        $scope.contactEmail = '';
+        $scope.attachment = '';
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (authData &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >jobId </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >jobName)</span> {
+<span class="cstat-no" title="statement not covered" >          console.log("Authenticated user with uid:", authData.uid);</span>
+        } else {
+          $location.path('/');
+        }
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if ($rootScope.userType === true) {
+<span class="cstat-no" title="statement not covered" >          $location.path('/faculty');</span>
+        }
+&nbsp;
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#initMaterial
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Initialises the Matrialise modules.
+         * @returns {undefined} Does not return anything.
+         */
+        $scope.initMaterial = function() {
+          $(document).ready(function() {
+            $(".button-collapse").sideNav({
+              closeOnClick: $(window).width() &gt; 991 ? <span class="branch-0 cbranch-no" title="branch not covered" >false </span>: true
+            });
+            $('.modal-trigger').leanModal();
+          });
+        };
+        $scope.initMaterial();
+&nbsp;
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#resetValues
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Resets all the input fields that were filled by the student who is
+         * attempting to apply for a job.
+         * @returns {undefined} Does not return anything.
+         */
+        $scope.resetValues = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >          document.getElementById("applicationForm").reset();</span>
+<span class="cstat-no" title="statement not covered" >          $('#letter').trigger('autoresize');</span>
+        };
+        // $scope.resetValues();
+&nbsp;
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#logout
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Ends the user's session and logs him out.
+         * @returns {undefined} Does not return anything.
+         */
+        $scope.logout = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >          ref.unauth();</span>
+<span class="cstat-no" title="statement not covered" >          $location.path('/');</span>
+        };
+&nbsp;
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#getData
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Function called when /application page loads. The unique jobId of the
+         * job for which student wants to apply is passed to this view as a
+         * route parameter. The name of the job is retrieved based on this jobId
+         * and stored in a scope variable for displaying in the view.
+         * @returns {undefined} Does not return anything.
+         */
+<span class="fstat-no" title="function not covered" >        function getData() {</span>
+<span class="cstat-no" title="statement not covered" >          ref.child('postings').orderByKey().equalTo(jobId).once('value', <span class="fstat-no" title="function not covered" >function(dataSnapshot) {</span></span>
+<span class="cstat-no" title="statement not covered" >            job = dataSnapshot.val();</span>
+<span class="cstat-no" title="statement not covered" >            console.log(job);</span>
+<span class="cstat-no" title="statement not covered" >            for (var index in job) {</span>
+<span class="cstat-no" title="statement not covered" >              $scope.jobName = job[index].jobName;</span>
+<span class="cstat-no" title="statement not covered" >              break;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >            $timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >              $scope.$apply();</span>
+            });
+<span class="cstat-no" title="statement not covered" >            $scope.loading = false;</span>
+          }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >            console.error(err);</span>
+          });
+        }
+        // getData();
+&nbsp;
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#validate
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * Validation function called when user tries to submit application for
+         * the job selected. Only if all fields are filled in, validate will return true.
+         * @returns {boolean} Whether data is valid or not
+         */
+        $scope.validate = function() {
+          if (!/([^\s])/.test($scope.letter) || !/([^\s])/.test($scope.contactEmail)) {
+            Materialize.toast('All fields are required', 4000);
+            return false;
+          }
+          return true;
+        };
+&nbsp;
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#submitApplication
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @description
+         * This function is called when the student clicks on submit application. The
+         * validate function is called and if it returns true, an application for the
+         * given job is stored in the database, including informaton such as who applied
+         * contact email of the member who applied, the cover letter, date submitted on,
+         * jobId, job name etc. On error, a toast message is displayed prompting to try
+         * again later. Else, application is submitted successfully.
+         * @returns {undefined} Does not return anything.
+         */
+        $scope.submitApplication = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >          if ($scope.validate()) {</span>
+<span class="cstat-no" title="statement not covered" >            ref.child('applications').push({ //add server validation</span>
+              "appliedBy": authData.password.email,
+              "contactEmail": $scope.contactEmail,
+              "letter": $scope.letter,
+              "attachment": $scope.attachment,
+              "submittedOn": Firebase.ServerValue.TIMESTAMP,
+              "jobId": jobId,
+              "jobName": jobName
+            }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+<span class="cstat-no" title="statement not covered" >              if (error) {</span>
+<span class="cstat-no" title="statement not covered" >                Materialize.toast('Server error. Try again later', 4000);</span>
+<span class="cstat-no" title="statement not covered" >                $window.history.back();</span>
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                  $scope.$apply();</span>
+                });
+              } else {
+<span class="cstat-no" title="statement not covered" >                Materialize.toast('Application Submitted', 4000);</span>
+<span class="cstat-no" title="statement not covered" >                $window.history.back();</span>
+<span class="cstat-no" title="statement not covered" >                $timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                  $scope.$apply();</span>
+                });
+              }
+            });
+          }
+        };
+&nbsp;
+        /**
+         * @ngdoc function
+         * @name daiictSenTeam13App.controller:ApplicationCtrl#goTo
+         * @methodOf daiictSenTeam13App.controller:ApplicationCtrl
+         * @param {string} page String that is passed according to
+         * the option clicked by the user in the navigation drawer
+         * displayed to the left of the screen.
+         * @description
+         * This function is used to redirect the user to either of
+         * the 4 pages, that are profile page, chatRooms page,
+         * jobs page or people page, based on what he/she has
+         * clicked on in the navigation bar displayed in the left
+         * of the screen. Note the following
+         * 1. A professor is redirected to '/createChat' on clicking
+         * "Chat Rooms" in the nav bar whereas a student is redirected
+         * to '/chatRooms'.
+         * 2. A professor is redirected to '/posting' on clicking
+         * 'Jobs' whereas a student is redirected to '/jobs'.
+         * @returns {undefined} Does not return anything.
+         */
+        $scope.goTo = function(page) {
+          switch (page) {
+            case 'home':
+              <span class="missing-if-branch" title="if path not taken" >I</span>if ($rootScope.userType === true) {
+<span class="cstat-no" title="statement not covered" >                $location.path('/faculty');</span>
+              } else {
+                $location.path('/student');
+              }
+              break;
+            case 'profile':
+              $location.path('/profile');
+              break;
+            case 'chatRooms':
+              <span class="missing-if-branch" title="if path not taken" >I</span>if ($rootScope.userType === true) {
+<span class="cstat-no" title="statement not covered" >                $location.path('/createChat');</span>
+              } else {
+                $location.path('/chatRooms');
+              }
+              break;
+            case 'jobs':
+              <span class="missing-if-branch" title="if path not taken" >I</span>if ($rootScope.userType === true) {
+<span class="cstat-no" title="statement not covered" >                $location.path('/posting');</span>
+              } else {
+                $location.path('/jobs');
+              }
+              break;
+            case 'people':
+              $location.path('/people');
+              break;
+<span class="branch-5 cbranch-no" title="branch not covered" >            default:</span>
+<span class="cstat-no" title="statement not covered" >              $location.path('/');</span>
+          }
+        };
+&nbsp;
+      }
+    ]);
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 13 2016 14:01:25 GMT+0530 (IST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

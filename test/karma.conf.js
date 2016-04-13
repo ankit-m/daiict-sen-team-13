@@ -11,6 +11,19 @@ module.exports = function(config) {
     // base path, that will be used to resolve files and exclude
     basePath: '../',
 
+    // Code coverage report
+    reporters: ['progress', 'coverage'],
+
+    preprocessors: {
+      'app/scripts/**/*.js': ['coverage']
+    },
+
+    coverageReporter: {
+      type: 'html',
+      dir: 'coverage'
+    },
+
+
     // testing framework to use (jasmine/mocha/qunit/...)
     // as well as any additional frameworks (requirejs/chai/sinon/...)
     frameworks: [
@@ -37,8 +50,7 @@ module.exports = function(config) {
     ],
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
     // web server port
     port: 8080,
@@ -58,7 +70,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-coverage'
     ],
 
     // Continuous Integration mode

@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/controllers/people.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">scripts/controllers/</a> people.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.38% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.38% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/47</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+  'use strict';
+  /**
+   * @ngdoc controller
+   * @name daiictSenTeam13App.controller:PeopleCtrl
+   * @description
+   * # PeopleCtrl
+   * Controller of the daiictSenTeam13App
+   */
+  angular.module('daiictSenTeam13App')
+    .controller('PeopleCtrl', ['$scope', '$location', '$timeout', '$rootScope', <span class="fstat-no" title="function not covered" >function($scope, $location, $timeout, $rootScope) {</span>
+<span class="cstat-no" title="statement not covered" >      var ref = new Firebase('https://sfip.firebaseio.com/');</span>
+<span class="cstat-no" title="statement not covered" >      var authData = ref.getAuth();</span>
+<span class="cstat-no" title="statement not covered" >      var self = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      $scope.jobs = {};</span>
+<span class="cstat-no" title="statement not covered" >      $scope.allUsers = {};</span>
+<span class="cstat-no" title="statement not covered" >      $location.url($location.path());</span>
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:PeopleCtrl#goTo
+       * @methodOf daiictSenTeam13App.controller:PeopleCtrl
+       * @param {string} page String that is passed according to
+       * the option clicked by the user in the navigation drawer
+       * displayed to the left of the screen. 'profile' if the
+       * profile option was clicked, 'chatRooms' if the chat rooms
+       * option was clicked etc.
+       * @description
+       * This function is used to redirect the user to either of
+       * the 4 pages, that are profile page, chatRooms page,
+       * jobs page or people page, based on what he/she has
+       * clicked on in the navigation bar displayed in the left
+       * of the screen. Note the following
+       * 1. A professor is redirected to '/createChat' on clicking
+       * "Chat Rooms" in the nav bar whereas a student is redirected
+       * to '/chatRooms'.
+       * 2. A professor is redirected to '/posting' on clicking
+       * 'Jobs' whereas a student is redirected to '/jobs'.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      $scope.goTo = <span class="fstat-no" title="function not covered" >function(page) {</span></span>
+<span class="cstat-no" title="statement not covered" >        switch (page) {</span>
+          case 'home':
+<span class="cstat-no" title="statement not covered" >            if ($rootScope.userType === true) {</span>
+<span class="cstat-no" title="statement not covered" >              $location.path('/faculty');</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              $location.path('/student');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'profile':
+<span class="cstat-no" title="statement not covered" >            $location.path('/profile');</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'chatRooms':
+<span class="cstat-no" title="statement not covered" >            if ($rootScope.userType === true) {</span>
+<span class="cstat-no" title="statement not covered" >              $location.path('/createChat');</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              $location.path('/chatRooms');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'jobs':
+<span class="cstat-no" title="statement not covered" >            if ($rootScope.userType === true) {</span>
+<span class="cstat-no" title="statement not covered" >              $location.path('/posting');</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >              $location.path('/jobs');</span>
+            }
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          case 'people':
+<span class="cstat-no" title="statement not covered" >            $location.path('/people');</span>
+<span class="cstat-no" title="statement not covered" >            break;</span>
+          default:
+<span class="cstat-no" title="statement not covered" >            $location.path('/');</span>
+        }
+      };
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#initMaterial
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @description
+       * Initialises the Matrialise modules.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      $scope.initMaterial = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        $(document).ready(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >          $(".button-collapse").sideNav({</span>
+            'closeOnClick': $(window).width() &gt; 991 ? false : true
+          });
+        });
+      };
+<span class="cstat-no" title="statement not covered" >      $scope.initMaterial();</span>
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:PeopleCtrl#getData
+       * @methodOf daiictSenTeam13App.controller:PeopleCtrl
+       * @description
+       * Gets a list of all registered users on the portal. Function is called on
+       * '/people' page view load. The people object is stored in a scope
+       * variables variable so that it can be used in the view for displaying
+       * all registered users.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="fstat-no" title="function not covered" >      function getData() {</span>
+<span class="cstat-no" title="statement not covered" >        ref.child('profile').once('value', <span class="fstat-no" title="function not covered" >function(dataSnapshot) {</span></span>
+<span class="cstat-no" title="statement not covered" >          $scope.allUsers = dataSnapshot.val();</span>
+<span class="cstat-no" title="statement not covered" >          console.log($scope.allUsers);</span>
+<span class="cstat-no" title="statement not covered" >          $scope.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >          $timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.$apply();</span>
+          });
+        }, <span class="fstat-no" title="function not covered" >function(err) {</span>
+<span class="cstat-no" title="statement not covered" >          if (err) {</span>
+<span class="cstat-no" title="statement not covered" >            Materialize.toast('Could Not obtain Data', 4000);</span>
+<span class="cstat-no" title="statement not covered" >            $location.path('/');</span>
+          }
+        });
+      }
+<span class="cstat-no" title="statement not covered" >      getData();</span>
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:PeopleCtrl#viewProfile
+       * @methodOf daiictSenTeam13App.controller:PeopleCtrl
+       * @param {String} email It is the email address of the user whose profile
+       * the logged in user wants to view.
+       * @description
+       * This function gets called when a logged in user clicks on view
+       * profile for any of the users who is in the "people" list. It takes
+       * in the email address of the user whose profile the logged in user
+       * wants to view.The argument is passed as the route parameter when the function
+       * redirects the user to the profile page he wishes to view.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      self.viewProfile = <span class="fstat-no" title="function not covered" >function(email) {</span></span>
+<span class="cstat-no" title="statement not covered" >        $location.path('/viewProfile').search({</span>
+          'profileId': email
+        });
+      };
+&nbsp;
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:PeopleCtrl#logout
+       * @methodOf daiictSenTeam13App.controller:PeopleCtrl
+       * @description
+       * Ends the user's session and logs him out.
+       * @returns {undefined} Does not return anything.
+       */
+<span class="cstat-no" title="statement not covered" >      $scope.logout = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >        ref.unauth();</span>
+<span class="cstat-no" title="statement not covered" >        $location.path('/');</span>
+      };
+&nbsp;
+&nbsp;
+    }]);
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 13 2016 14:01:25 GMT+0530 (IST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
