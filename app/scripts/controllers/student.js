@@ -23,7 +23,7 @@
       } else {
         $location.path('/');
       }
-
+      console.log($rootScope.userType);
       if ($rootScope.userType === 'true') {
         $location.path('/faculty');
       }
