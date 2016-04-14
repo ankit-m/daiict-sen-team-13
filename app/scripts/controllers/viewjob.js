@@ -15,14 +15,15 @@
       var jobId = $routeParams.jobId;
       var self = this;
       $scope.loading = true;
-
+      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
+      
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
 
-      if ($rootScope.userType === false) {
+      if ($rootScope.userType === 'false') {
         $location.path('/student');
       }
 
@@ -175,14 +176,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');

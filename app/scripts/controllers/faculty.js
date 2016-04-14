@@ -17,7 +17,7 @@
       $scope.loading = true;
       $scope.chatRooms = {};
       $location.url($location.path());
-      
+      $rootScope.userType = sessionStorage.getItem('userType');
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
@@ -25,10 +25,10 @@
       }
       
 
-      if ($rootScope.userType === false) {
+      if ($rootScope.userType === 'false') {
         $location.path('/student');
       }
-
+      console.log("session data ", $rootScope.userType);
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:FacultyCtrl#getData

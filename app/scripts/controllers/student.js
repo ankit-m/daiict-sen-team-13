@@ -16,14 +16,14 @@
       $scope.chatRooms = {};
       $scope.loading = true;
       $location.url($location.path());
-
+      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
       if (authData) {
         console.log("Authenticated user with uid:", authData);
       } else {
         $location.path('/');
       }
 
-      if ($rootScope.userType === true) {
+      if ($rootScope.userType === 'true') {
         $location.path('/faculty');
       }
 
@@ -124,18 +124,10 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
-              $location.path('/createChat');
-            } else {
               $location.path('/chatRooms');
-            }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
-              $location.path('/posting');
-            } else {
               $location.path('/jobs');
-            }
             break;
           case 'people':
             $location.path('/people');

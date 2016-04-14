@@ -15,7 +15,7 @@
       $scope.loading = true;
       $scope.jobPostings = {};
       $location.url($location.path());
-
+      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:JobsCtrl#initMaterial
@@ -93,7 +93,7 @@
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/faculty');
             } else {
               $location.path('/student');
@@ -103,14 +103,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
