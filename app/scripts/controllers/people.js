@@ -11,8 +11,14 @@
     .controller('PeopleCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var self = this;
-      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
+
+      if (authData) {
+        console.log("Authenticated user with uid:", authData);
+      } else {
+        $location.path('/');
+      }
+
+      $rootScope.userType = sessionStorage.getItem('userType');
       $scope.jobs = {};
       $scope.allUsers = {};
       $location.url($location.path());

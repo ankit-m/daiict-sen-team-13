@@ -12,9 +12,8 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var email = $routeParams.profileId;
-      var self = this;
-      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
-      
+
+      $rootScope.userType = sessionStorage.getItem('userType');      
       $scope.loading = true;
 
       if (authData) {

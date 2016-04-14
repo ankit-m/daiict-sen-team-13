@@ -219,9 +219,13 @@
         });
       };
 
-      $window.onbeforeunload = function() {
+      $scope.$on("$stateChangeStart", function() {
         $scope.leaveThisRoom();
-      };
+      });
+
+      // $window.onbeforeunload = function() {
+      //   $scope.leaveThisRoom();
+      // };
 
       /**
        * @ngdoc function

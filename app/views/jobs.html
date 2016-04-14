@@ -54,7 +54,7 @@
         <p class="red-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Deadline:</b> {{job.deadline | date}}</p>
         <p style="padding-top: 0">{{job.description}}</p>
         <div class="right-align" style="padding: 16px">
-          <a class="btn" ng-click="applyForJob(key, job.jobName)" ng-if="!userType">Apply</a>
+          <a class="btn" ng-click="applyForJob(key, job.jobName)" ng-if="userType === 'false'">Apply</a>
         </div>
       </div>
     </li>

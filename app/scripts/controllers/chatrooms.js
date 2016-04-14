@@ -1,5 +1,6 @@
 (function() {
   'use strict';
+  
   /**
    * @ngdoc controller
    * @name daiictSenTeam13App.controller:ChatroomsCtrl
@@ -26,7 +27,7 @@
       } else {
         $location.path('/');
       }
-      console.log("session data ", $rootScope.userType);
+
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:ChatroomsCtrl#initMaterial
@@ -173,7 +174,6 @@
        * @returns {boolean} Data is valid or not
        */
       $scope.validate = function(chatRoom) {
-        console.log(chatRoom);
         for (var member in chatRoom.members) {
           if (member.emailId === authData.password.email) {
             return false;
@@ -192,33 +192,6 @@
           Materialize.toast('Chat room full. Please try again later', 4000);
           return false;
         }
-        // if (chatRoom.slots > 0) {
-        //   var currentDate = new Date();
-        //   var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
-        //   if (currentTime > chatRoom.startTime && currentTime < chatRoom.endTime) {
-        //     var today = new Date();
-        //     var weekday = new Array(7);
-        //     weekday[0] = "Sunday";
-        //     weekday[1] = "Monday";
-        //     weekday[2] = "Tuesday";
-        //     weekday[3] = "Wednesday";
-        //     weekday[4] = "Thursday";
-        //     weekday[5] = "Friday";
-        //     weekday[6] = "Saturday";
-        //     if (weekday[today.getDay()] === chatRoom.days) {
-        //       return true;
-        //     } else {
-        //       Materialize.toast('Wrong Day. Chat room not open.', 4000);
-        //       return false;
-        //     }
-        //   } else {
-        //     Materialize.toast('Chat room not open. Try again later', 4000);
-        //     return false;
-        //   }
-        // } else {
-        //   Materialize.toast('Chat room full. Please try again later', 4000);
-        //   return false;
-        // }
         return true;
       };
 

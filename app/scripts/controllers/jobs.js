@@ -15,7 +15,9 @@
       $scope.loading = true;
       $scope.jobPostings = {};
       $location.url($location.path());
-      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
+      $rootScope.userType = sessionStorage.getItem('userType');
+      $scope.userType = $rootScope.userType;
+
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:JobsCtrl#initMaterial

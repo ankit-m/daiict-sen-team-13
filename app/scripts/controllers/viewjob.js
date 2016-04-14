@@ -13,10 +13,10 @@
       var applicationRef = new Firebase('https://sfip.firebaseio.com/applications');
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
-      var self = this;
+
       $scope.loading = true;
-      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
-      
+      $rootScope.userType = sessionStorage.getItem('userType');
+
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {

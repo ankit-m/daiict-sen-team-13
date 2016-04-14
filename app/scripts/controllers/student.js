@@ -16,7 +16,8 @@
       $scope.chatRooms = {};
       $scope.loading = true;
       $location.url($location.path());
-      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
+      $rootScope.userType = sessionStorage.getItem('userType');
+
       if (authData) {
         console.log("Authenticated user with uid:", authData);
       } else {
@@ -227,39 +228,12 @@
           }
         }
         if (chatRoom.active === false) {
-          Materialize.toast('No faculty has opened the Chat Room yet. Try again later.', 4000);
+          Materialize.toast('Chat Room not open. Try again later.', 4000);
           return false;
         } else {
           if (chatRoom.slots > 0) {
             return true;
           }
-          Materialize.toast('Chat room full. Please try again later', 4000);
-          return false;
-        }
-        if (chatRoom.slots > 0) {
-          var currentDate = new Date();
-          var currentTime = String(currentDate.getHours()) + ':' + String(currentDate.getMinutes());
-          if (currentTime > chatRoom.startTime && currentTime < chatRoom.endTime) {
-            var today = new Date();
-            var weekday = new Array(7);
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
-            if (weekday[today.getDay()] === chatRoom.days) {
-              return true;
-            } else {
-              Materialize.toast('Wrong Day. Chat room not open.', 4000);
-              return false;
-            }
-          } else {
-            Materialize.toast('Chat room not open yet. Try again later', 4000);
-            return false;
-          }
-        } else {
           Materialize.toast('Chat room full. Please try again later', 4000);
           return false;
         }
