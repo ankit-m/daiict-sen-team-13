@@ -6,18 +6,36 @@ describe('Controller: StudentCtrl', function () {
   beforeEach(module('daiictSenTeam13App'));
 
   var StudentCtrl,
-    scope;
+    scope,
+    location;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, $location) {
     scope = $rootScope.$new();
-    StudentCtrl = $controller('StudentCtrl', {
+    location = spyOn($location, 'path');
+    FacultyCtrl = $controller('StudentCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(StudentCtrl.awesomeThings.length).toBe(3);
+  it('should go to all student pages only', function(){
+    scope.goTo('profile');
+    expect(location).toHaveBeenCalledWith('/profile');
+
+    scope.goTo('people');
+    expect(location).toHaveBeenCalledWith('/people');
+
+    scope.goTo('home');
+    expect(location).toHaveBeenCalledWith('/student');
+
+    scope.goTo('chatRooms');
+    expect(location).toHaveBeenCalledWith('/chatRooms');
+
+    scope.goTo('jobs');
+    expect(location).toHaveBeenCalledWith('/jobs');
   });
+
+
+  
 });
