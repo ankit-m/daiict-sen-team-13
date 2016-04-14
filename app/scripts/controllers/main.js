@@ -45,14 +45,12 @@
           for (var key in userObject) {
             if (userObject[key].type === 'professor') {
               sessionStorage.setItem('userType', 'true');
-              console.log("session data ", sessionStorage.getItem('userType'));
               $location.path('/faculty');
               $timeout(function() {
                 $scope.$apply();
               });
             } else if (userObject[key].type === 'student') {
               sessionStorage.setItem('userType', 'false');
-              console.log("Yo", sessionStorage.getItem('userType'));
               $location.path('/student');
               $timeout(function() {
                 $scope.$apply();
@@ -64,8 +62,15 @@
       }
 
       if (authData) {
-        console.log("Authenticated user with uid:", authData.uid);
-        redirectUser();
+        if (authData.password.isTemporaryPassword) {
+          $scope.loading = false;
+          $location.path('/resetPassword');
+          $timeout(function() {
+            $scope.$apply();
+          });
+        } else {
+          redirectUser();
+        }
       }
 
       /**
@@ -76,7 +81,7 @@
        * Validates user input on main page.
        * @returns {undefined} Does not return anything.
        */
-        $scope.validate=function() {
+      $scope.validate = function() {
         if (!$scope.email) {
           Materialize.toast('Enter a valid email', 4000);
           $scope.password = '';
