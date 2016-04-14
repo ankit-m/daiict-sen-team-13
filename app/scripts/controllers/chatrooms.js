@@ -172,8 +172,8 @@
        * the function returns false.
        * @returns {boolean} Data is valid or not
        */
-      $scope.validate = function(members, chatRoom) {
-        for (var member in members) {
+      $scope.validate = function(chatRoom) {
+        for (var member in chatRoom.members) {
           if (member.emailId === authData.password.email) {
             return false;
           }
@@ -241,10 +241,10 @@
        * both join the chat room if only one slot is left.
        * @returns {undefined} Does not return anything.
        */
-      $scope.openChatRoom = function(key, chatRoom) {
+      $scope.openChatRoom = function(key) {
         $scope.loading = true;
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
-          if ($scope.validate(dataSnapshot.val().members, chatRoom)) {
+          if ($scope.validate(dataSnapshot.val())) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,
