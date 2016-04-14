@@ -192,7 +192,7 @@
         ref.child('chatRooms').child(key).child('members').child(userKey).remove(function(error) {
           if (error) {
             Materialize.toast('Cannot Leave Room. Server Error.', 4000);
-          } else if ($rootScope.userType === 'false') {
+          } else if ($rootScope.userType === 'false') { //fix
             ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
               return remainingSlots + 1;
             }, function(error, committed) {
