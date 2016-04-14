@@ -21,7 +21,7 @@
         $scope.letter = '';
         $scope.contactEmail = '';
         $scope.attachment = '';
-
+        $rootScope.userType = sessionStorage.getItem('userType');
         if (authData && jobId && jobName) {
           console.log("Authenticated user with uid:", authData.uid);
         } else {
@@ -61,9 +61,10 @@
          */
         $scope.resetValues = function() {
           document.getElementById("applicationForm").reset();
+          document.getElementById("jobName").value = jobName;
           $('#letter').trigger('autoresize');
         };
-        $scope.resetValues();
+        // $scope.resetValues();
 
         /**
          * @ngdoc function

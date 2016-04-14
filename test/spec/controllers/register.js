@@ -16,4 +16,6 @@ describe('Controller: RegisterCtrl', function () {
       // place here mocked dependencies
     });
   }));
+
+  
 });

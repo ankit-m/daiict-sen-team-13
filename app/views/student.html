@@ -42,7 +42,7 @@
       <div class="collapsible-body">
         <p>{{job.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="student.applyForJob(key, job.jobName)">Apply</a>
+          <a class="btn" ng-click="applyForJob(key, job.jobName)">Apply</a>
         </div>
       </div>
     </li>
@@ -51,12 +51,20 @@
   <br>
   <h5 class="light">Chat Rooms</h5>
   <ul class="collapsible" data-collapsible="accordion">
-    <li ng-repeat="(key, chatRoom) in chatRooms">
-      <div class="collapsible-header">{{chatRoom.chatRoomName}}</div>
+    <li ng-repeat="(key, chat) in chatRooms">
+      <div class="collapsible-header">
+        {{chat.chatRoomName}}
+        <div class="secondary-content">
+          {{chat.days}}
+        </div>
+      </div>
       <div class="collapsible-body">
-        <p>{{chatRoom.description}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Created By:</b> {{chat.createdBy}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Start Time:</b> {{chat.startTime}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>End Time:</b> {{chat.endTime}}</p>
+        <p style="padding-top:0">{{chat.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="student.openChatRoom(key, chatRoom)">Join</a>
+          <a class="btn" ng-click="openChatRoom(key, chat)">Join</a>
         </div>
       </div>
     </li>

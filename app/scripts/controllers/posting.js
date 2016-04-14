@@ -12,7 +12,6 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
-      var self = this;
 
       $scope.loading = true;
       $scope.jobName = '';
@@ -24,14 +23,15 @@
       $scope.contactEmail = '';
       $scope.location = '';
       $location.url($location.path());
-
+      $rootScope.userType = sessionStorage.getItem('userType');
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
 
-      if ($rootScope.userType === false) {
+
+      if ($rootScope.userType === 'false') {
         $location.path('/student');
       }
 
@@ -91,7 +91,7 @@
         document.getElementById("postingForm").reset();
         $('#description').trigger('autoresize');
       };
-      $scope.resetValues();
+      //$scope.resetValues();
 
       /**
        * @ngdoc function
@@ -108,7 +108,7 @@
        * else, false is returned.
        * @returns {boolean} Data is valid or not.
        */
-      function validate() {
+       $scope.validate = function(){
         if (!/([^\s])/.test($scope.jobName) || !/([^\s])/.test($scope.description) || !/([^\s])/.test($scope.positions) || !/([^\s])/.test($scope.contactEmail)) {
           Materialize.toast('All fields are required', 4000);
           return false;
@@ -130,7 +130,7 @@
           return false;
         }
         return true;
-      }
+      };
 
       /**
        * @ngdoc function
@@ -145,19 +145,19 @@
        * is displayed. If successfully created, Job Created toast is displayed.
        * @returns {undefined} Does not return anything.
        */
-      self.createJob = function() {
-        if (validate()) {
+      $scope.createJob = function() {
+        if ($scope.validate()) {
           postingRef.push({
             "jobName": $scope.jobName,
             "description": $scope.description,
             "contactEmail": $scope.contactEmail,
             "location": $scope.location,
-            "startDate": new Date($scope.startDate),
-            "endDate": new Date($scope.endDate),
+            "startDate": (new Date($scope.startDate)).getTime(),
+            "endDate": (new Date($scope.endDate)).getTime(),
             "postedBy": authData.password.email,
             "positions": $scope.positions,
-            "deadline": new Date($scope.deadline),
-            "postedOn": new Date(Firebase.ServerValue.TIMESTAMP)
+            "deadline": (new Date($scope.deadline)).getTime(),
+            "postedOn": Firebase.ServerValue.TIMESTAMP
           }, function(error) {
             if (error) {
               Materialize.toast('Could not create Job. Please try again later.', 4000);
@@ -178,7 +178,7 @@
        * controller's view. The user is redirected to the route /jobs.
        * @returns {undefined} Does not return anything.
        */
-      self.showAll = function() {
+      $scope.showAll = function() {
         $location.path('/jobs');
       };
 
@@ -198,7 +198,7 @@
        * applications for the job, list of accepted and rejected applications.
        * @returns {undefined} Does not return anything.
        */
-      self.viewJob = function(jobId) {
+      $scope.viewJob = function(jobId) {
         console.log(jobId);
         $location.path('/viewJob').search({
           'jobId': jobId
@@ -223,7 +223,7 @@
        * On error, the user is informed that the corresponding job hasn't
        * been deleted and is prompted to try later.
        */
-      self.deleteJob = function(jobId) { //atomize this request
+      $scope.deleteJob = function(jobId) { //atomize this request
         console.log('delete job');
         ref.child('postings').child(jobId).remove(function(error) {
           if (error) {

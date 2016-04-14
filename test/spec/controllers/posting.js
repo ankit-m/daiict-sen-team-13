@@ -36,4 +36,9 @@ describe('Controller: PostingCtrl', function () {
     expect(location).toHaveBeenCalledWith('/posting');
   });
 
+  it('should show all jobs', function(){
+    scope.showAll();
+    expect(location).toHaveBeenCalledWith('/jobs');
+  });
+
 });

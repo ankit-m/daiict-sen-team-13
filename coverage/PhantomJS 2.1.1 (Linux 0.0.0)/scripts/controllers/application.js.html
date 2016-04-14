@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">34.72% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>24/72</span>
+        <span class='fraction'>25/72</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">17.39% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>5/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">34.72% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/72</span>
+        <span class='fraction'>25/72</span>
       </div>
     </div>
   </div>
@@ -256,7 +256,8 @@
 211
 212
 213
-214</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+214
+215</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -318,20 +319,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -348,7 +350,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -364,7 +366,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -530,11 +532,12 @@
          * attempting to apply for a job.
          * @returns {undefined} Does not return anything.
          */
-        $scope.resetValues = function() {
-          document.getElementById("applicationForm").reset();
+        $scope.resetValues = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >          document.getElementById("applicationForm").reset();</span>
+<span class="cstat-no" title="statement not covered" >          document.getElementById("jobName").value = jobName;</span>
 <span class="cstat-no" title="statement not covered" >          $('#letter').trigger('autoresize');</span>
         };
-        $scope.resetValues();
+        // $scope.resetValues();
 &nbsp;
         /**
          * @ngdoc function
@@ -544,7 +547,7 @@
          * Ends the user's session and logs him out.
          * @returns {undefined} Does not return anything.
          */
-<span class="cstat-no" title="statement not covered" >        $scope.logout = <span class="fstat-no" title="function not covered" >function() {</span></span>
+        $scope.logout = <span class="fstat-no" title="function not covered" >function() {</span>
 <span class="cstat-no" title="statement not covered" >          ref.unauth();</span>
 <span class="cstat-no" title="statement not covered" >          $location.path('/');</span>
         };
@@ -560,8 +563,8 @@
          * and stored in a scope variable for displaying in the view.
          * @returns {undefined} Does not return anything.
          */
-<span class="fstat-no" title="function not covered" >        function getData() {</span>
-<span class="cstat-no" title="statement not covered" >          ref.child('postings').orderByKey().equalTo(jobId).once('value', <span class="fstat-no" title="function not covered" >function(dataSnapshot) {</span></span>
+        function getData() {
+          ref.child('postings').orderByKey().equalTo(jobId).once('value', <span class="fstat-no" title="function not covered" >function(dataSnapshot) {</span>
 <span class="cstat-no" title="statement not covered" >            job = dataSnapshot.val();</span>
 <span class="cstat-no" title="statement not covered" >            console.log(job);</span>
 <span class="cstat-no" title="statement not covered" >            for (var index in job) {</span>
@@ -577,7 +580,7 @@
 <span class="cstat-no" title="statement not covered" >            console.error(err);</span>
           });
         }
-<span class="cstat-no" title="statement not covered" >        getData();</span>
+        getData();
 &nbsp;
         /**
          * @ngdoc function
@@ -688,7 +691,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 13 2016 16:27:55 GMT+0530 (IST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Apr 14 2016 17:27:19 GMT+0530 (IST)
 </div>
 </div>
 <script src="../../prettify.js"></script>

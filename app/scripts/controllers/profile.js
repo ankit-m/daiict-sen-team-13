@@ -17,7 +17,7 @@
       $scope.projectName="";
       $scope.projectDescription="";
       var self = this;
-
+      $rootScope.userType = sessionStorage.getItem('userType');
       $scope.loading = true;
 
       if (authData) {
@@ -75,7 +75,7 @@
         $location.path('/');
       };
 
-      self.updateProfile = function(type) {
+      $scope.updateProfile = function(type) {
         console.log('called', type);
         switch (type) {
           case 'institute':
@@ -189,12 +189,12 @@
         }
       };
 
-      self.removeItem = function(key, type) {
+      $scope.removeItem = function(key, type) {
         ref.child('profile').child(profileKey).child(type).child(key).remove();
       };
 
-      self.viewHomePage = function() {
-        if ($rootScope.userType === true) {
+      $scope.viewHomePage = function() {
+        if ($rootScope.userType === 'true') {
           $location.path('/faculty');
         } else {
           $location.path('/student');
@@ -204,7 +204,7 @@
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/faculty');
             } else {
               $location.path('/student');
@@ -214,14 +214,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');

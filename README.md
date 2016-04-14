@@ -1,4 +1,4 @@
-# daiict-sen-team13
+# daiict-sen-team13 [![Build Status](https://travis-ci.org/ankit-m/daiict-sen-team-13.svg?branch=master)](https://travis-ci.org/ankit-m/daiict-sen-team-13)
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.15.1.

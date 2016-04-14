@@ -35,5 +35,16 @@ describe('Controller: FacultyCtrl', function () {
     scope.goTo('jobs');
     expect(location).toHaveBeenCalledWith('/posting');
   });
+
+  it('should show all chat rooms', function(){
+    scope.showAllChatRooms();
+    expect(location).toHaveBeenCalledWith('/chatRooms');
+  }); 
+
+  it('should show all jobs', function(){
+    scope.showAllJobs();
+    expect(location).toHaveBeenCalledWith('/jobs');
+  }); 
+
   
 });

@@ -35,4 +35,9 @@ describe('Controller: CreatechatCtrl', function () {
     scope.goTo('jobs');
     expect(location).toHaveBeenCalledWith('/posting');
   });
+
+  it('should show all chat rooms', function(){
+    scope.showAllChatRooms();
+    expect(location).toHaveBeenCalledWith('/location');
+  });  
 });

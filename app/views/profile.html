@@ -50,23 +50,23 @@
   <form class="col s12" style="padding: 0">
     <div class="row">
       <div class="input-field col s12">
-        <input ng-model="institute" ng-blur="profile.updateProfile('institute')" id="institute" type="text">
+        <input ng-model="institute" ng-blur="updateProfile('institute')" id="institute" type="text">
         <label class="active" for="institute">Institute</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <textarea id="about" ng-model="about" ng-blur="profile.updateProfile('about')" class="materialize-textarea"></textarea>
+        <textarea id="about" ng-model="about" ng-blur="updateProfile('about')" class="materialize-textarea"></textarea>
         <label class="active" for="about">About</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s6">
-        <input ng-model="location" ng-blur="profile.updateProfile('location')" id="location" type="text">
+        <input ng-model="location" ng-blur="updateProfile('location')" id="location" type="text">
         <label class="active" for="location">Location</label>
       </div>
       <div class="input-field col s6">
-        <input ng-model="contact" ng-blur="profile.updateProfile('contact')" id="contact" type="text">
+        <input ng-model="contact" ng-blur="updateProfile('contact')" id="contact" type="text">
         <label class="active" for="contact">Contact</label>
       </div>
     </div>
@@ -74,27 +74,27 @@
       <h6 class="grey-text">Areas of Interest</h6>
       <ul class="collection">
         <li ng-repeat="(key, item) in interests" class="collection-item">{{item.interest}}
-          <a class="secondary-content pointer" ng-click="profile.removeItem(key, 'interests')">Remove</a>
+          <a class="secondary-content pointer" ng-click="removeItem(key, 'interests')">Remove</a>
         </li>
       </ul>
       <div class="input-field col s12">
         <input ng-model="interest" id="interest" type="text">
         <label for="interest">Add Interest</label>
       </div>
-      <div class="btn right" ng-click="profile.updateProfile('interest')">Add</div>
+      <div class="btn right" ng-click="updateProfile('interest')">Add</div>
     </div>
     <div class="row" style="padding: 0 10.5px 0 10.5px">
       <h6 class="grey-text">Publications</h6>
       <ul class="collection">
         <li ng-repeat="(key, item) in publications" class="collection-item">{{item.publication}}
-          <a class="pointer secondary-content" ng-click="profile.removeItem(key, 'publications')">Remove</a>
+          <a class="pointer secondary-content" ng-click="removeItem(key, 'publications')">Remove</a>
         </li>
       </ul>
       <div class="input-field col s12">
         <input ng-model="publication" id="publication" type="text">
         <label for="publication">Add Publication</label>
       </div>
-      <div class="btn right" ng-click="profile.updateProfile('publication')">Add</div>
+      <div class="btn right" ng-click="updateProfile('publication')">Add</div>
     </div>
     <div class="row" style="padding: 0 10.5px 0 10.5px">
       <h6 class="grey-text">Projects</h6>
@@ -102,7 +102,7 @@
       <ul class="collapsible" data-collapsible="accordion">
       <li ng-repeat="(key, item) in projects ">
         <div class="collapsible-header">{{item.projectName}}
-        <a class="pointer secondary-content" ng-click="profile.removeItem(key, 'projects')">Remove</a>
+        <a class="pointer secondary-content" ng-click="removeItem(key, 'projects')">Remove</a>
         </div>
         <div class="collapsible-body">
           <p>{{item.projectDescription}}</p>
@@ -121,7 +121,7 @@
       <input ng-model="projectDescription" id="projectDescription" type="text">
       <label for="projectDescription">Project Description</label>
    </div>
-   <div class="btn right" ng-click="profile.updateProfile('project')">Add</div>
+   <div class="btn right" ng-click="updateProfile('project')">Add</div>
   </div>
   </form>
 

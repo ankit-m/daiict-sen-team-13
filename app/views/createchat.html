@@ -40,12 +40,12 @@
     <li ng-repeat="(chatRoomId, chat) in chatRooms">
       <div class="collapsible-header">
         {{chat.chatRoomName}}
-        <div class="secondary-content red-text pointer" ng-click="createChat.deleteChatRoom(chatRoomId); $event.stopPropagation()">Delete</div>
+        <div class="secondary-content red-text pointer" ng-click="deleteChatRoom(chatRoomId); $event.stopPropagation()">Delete</div>
       </div>
       <div class="collapsible-body">
         <p>{{chat.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
-          <a class="btn" ng-click="createChat.openChatRoom(key, chat)">Open Room</a>
+          <a class="btn" ng-click="openChatRoom(chatRoomId)">Open Room</a>
         </div>
       </div>
     </li>
@@ -100,7 +100,7 @@
     </div>
   </form>
   <div class="right-align">
-    <div class="btn" ng-click="createChat.resetValues()">Reset</div>
-    <div class="btn" ng-click="createChat.createChatRoom()">Create</div>
+    <div class="btn" ng-click="resetValues()">Reset</div>
+    <div class="btn" ng-click="createChatRoom()">Create</div>
   </div>
 </div>

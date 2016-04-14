@@ -14,7 +14,7 @@
       var key = $routeParams.roomId;
       var userKey = '';
       var tempChatRoomRef = new Firebase('https://sfip.firebaseio.com/chatRooms/' + key + "/");
-
+      $rootScope.userType = sessionStorage.getItem('userType');
       $scope.loading = true;
       $scope.chatHistory = [];
       $scope.members = [];
@@ -189,7 +189,6 @@
        */
       $scope.leaveThisRoom = function() {
         ref.child('chatRooms').child(key).child('members').child(userKey).remove(function(error) {
-          console.log($rootScope.userType);
           if (error) {
             Materialize.toast('Cannot Leave Room. Server Error.', 4000);
           } else if ($rootScope.userType === false) {
@@ -209,6 +208,9 @@
               }
             });
           } else {
+            ref.child('chatRooms').child(key).update({
+              active: false
+            });
             $timeout(function() {
               $scope.$apply();
             });
@@ -300,7 +302,7 @@
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/faculty');
             } else {
               $location.path('/student');
@@ -310,14 +312,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');

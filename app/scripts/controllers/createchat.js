@@ -16,14 +16,16 @@
       $scope.loading = true;
       $scope.day = 'Monday';
       $location.url($location.path());
+      $rootScope.userType = sessionStorage.getItem('userType');
 
       if (authData && $rootScope.userType) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
+      
 
-      if ($rootScope.userType === false) {
+      if ($rootScope.userType === 'false') {
         $location.path('/student');
       }
 
@@ -93,7 +95,7 @@
        * create chat page.
        * @returns {undefined} Does not return anything.
        */
-      self.resetValues = function() {
+      $scope.resetValues = function() {
         document.getElementById("createChatForm").reset();
         document.getElementById("Monday").checked = true;
         $('#chatDescription').trigger('autoresize');
@@ -128,7 +130,7 @@
        * function is called.
        * @returns {undefined} Does not return anything.
        */
-      self.createChatRoom = function() {
+      $scope.createChatRoom = function() {
         if ($scope.validateChatSettings()) {
           ref.child('chatRooms').push({
             "chatRoomName": $scope.chatName,
@@ -226,7 +228,7 @@
        * both join the chat room if only one slot is left.
        * @returns {undefined} Does not return anything.
        */
-      self.openChatRoom = function(key) {
+      $scope.openChatRoom = function(key) {
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
           if (validate(dataSnapshot.val().members)) {
             ref.child('chatRooms').child(key).child('members').push({
@@ -278,20 +280,13 @@
        * try later.
        *
        */
-      self.deleteChatRoom = function(chatRoomId) {
+      $scope.deleteChatRoom = function(chatRoomId) {
         ref.child('chatRooms').child(chatRoomId).remove(function(error) {
           if (error) {
             Materialize.toast('Could not Delete Chat Room. Try later', 4000);
           } else {
             Materialize.toast('Deleted Chat Room', 4000);
           }
-        });
-      };
-
-
-      self.viewMemberProfile = function(email) {
-        $location.path('/viewProfile').search({
-          'profileId': email
         });
       };
 

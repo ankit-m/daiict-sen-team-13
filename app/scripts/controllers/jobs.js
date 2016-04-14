@@ -11,12 +11,11 @@
     .controller('JobsCtrl', ['$scope', '$location', '$rootScope', '$timeout', function($scope, $location, $rootScope, $timeout) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var self = this;
 
       $scope.loading = true;
       $scope.jobPostings = {};
       $location.url($location.path());
-
+      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:JobsCtrl#initMaterial
@@ -94,7 +93,7 @@
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/faculty');
             } else {
               $location.path('/student');
@@ -104,14 +103,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -159,10 +158,21 @@
        *
        * @returns {undefined} Does not return anything.
        */
-      self.applyForJob = function(jobId, jobName) {
-        $location.path('/application').search({
-          'jobId': jobId,
-          'jobName': jobName
+      $scope.applyForJob = function(jobId, jobName) {
+        ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).once('value', function(data) {
+          var applied = false;
+          for (var application in data.val()) {
+            if (data.val()[application].jobId === jobId) {
+              applied = true;
+              Materialize.toast('You have already applied.', 4000);
+            }
+          }
+          if (applied === false) {
+            $location.path('/application').search({
+              'jobId': jobId,
+              'jobName': jobName
+            });
+          }
         });
       };
 

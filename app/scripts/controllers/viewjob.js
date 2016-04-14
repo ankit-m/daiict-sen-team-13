@@ -14,16 +14,16 @@
       var authData = ref.getAuth();
       var jobId = $routeParams.jobId;
       var self = this;
-
       $scope.loading = true;
-
+      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
+      
       if (authData && jobId) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
         $location.path('/');
       }
 
-      if ($rootScope.userType === false) {
+      if ($rootScope.userType === 'false') {
         $location.path('/student');
       }
 
@@ -103,7 +103,7 @@
        * Else, a toast with the message 'Accept Notification sent' is displayed.
        * @returns {undefined} Does not return anything.
        */
-      self.acceptApplication = function(applicationId) {
+      $scope.acceptApplication = function(applicationId) {
         console.log('accept');
         ref.child('applications').child(applicationId).update({
           status: 'accept'
@@ -132,7 +132,7 @@
        * Else, a toast with the message 'Reject Notification sent' is displayed.
        * @returns {undefined} Does not return anything.
        */
-      self.rejectApplication = function(applicationId) {
+      $scope.rejectApplication = function(applicationId) {
         console.log('reject');
         ref.child('applications').child(applicationId).update({
           status: 'reject'
@@ -176,14 +176,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -195,6 +195,12 @@
           default:
             $location.path('/');
         }
+      };
+
+      $scope.viewApplicantProfile = function(email) {
+        $location.path('/viewProfile').search({
+          'profileId': email
+        });
       };
     }]);
 })();

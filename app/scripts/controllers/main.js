@@ -12,7 +12,6 @@
     .controller('MainCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var self = this;
 
       $rootScope.userType = null;
       $scope.loading = true;
@@ -45,13 +44,15 @@
           var userObject = snapshot.val();
           for (var key in userObject) {
             if (userObject[key].type === 'professor') {
-              $rootScope.userType = true;
+              sessionStorage.setItem('userType', 'true');
+              console.log("session data ", sessionStorage.getItem('userType'));
               $location.path('/faculty');
               $timeout(function() {
                 $scope.$apply();
               });
             } else if (userObject[key].type === 'student') {
-              $rootScope.userType = false;
+              sessionStorage.setItem('userType', 'false');
+              console.log("Yo", sessionStorage.getItem('userType'));
               $location.path('/student');
               $timeout(function() {
                 $scope.$apply();
@@ -75,7 +76,7 @@
        * Validates user input on main page.
        * @returns {undefined} Does not return anything.
        */
-      function validate() {
+        $scope.validate=function() {
         if (!$scope.email) {
           Materialize.toast('Enter a valid email', 4000);
           $scope.password = '';
@@ -86,7 +87,7 @@
           return false;
         }
         return true;
-      }
+      };
 
       /**
        * @ngdoc function
@@ -123,7 +124,7 @@
        * Sends the password to user's email.
        * @returns {undefined} Does not return anything.
        */
-      self.resetPassword = function() {
+      $scope.resetPassword = function() {
         ref.resetPassword({
           email: $scope.email
         }, function(error) {
@@ -135,6 +136,8 @@
               default:
                 Materialize.toast("Error resetting password:" + error, 4000);
             }
+          } else {
+            Materialize.toast('New password sent.', 4000);
           }
         });
       };
@@ -149,8 +152,8 @@
        * In case of login error, raises appropriate toats.
        * @returns {undefined} Does not return anything.
        */
-      self.login = function() {
-        if (validate()) {
+      $scope.login = function() {
+        if ($scope.validate()) {
           $scope.loading = true;
           ref.authWithPassword({
             "email": $scope.email.toString(),

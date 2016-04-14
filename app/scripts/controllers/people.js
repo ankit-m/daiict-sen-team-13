@@ -12,7 +12,7 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
       var self = this;
-
+      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
       $scope.jobs = {};
       $scope.allUsers = {};
       $location.url($location.path());
@@ -42,7 +42,7 @@
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/faculty');
             } else {
               $location.path('/student');
@@ -52,14 +52,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -132,7 +132,7 @@
        * redirects the user to the profile page he wishes to view.
        * @returns {undefined} Does not return anything.
        */
-      self.viewProfile = function(email) {
+      $scope.viewProfile = function(email) {
         $location.path('/viewProfile').search({
           'profileId': email
         });

@@ -39,14 +39,22 @@
     <h5 class="light col s6" style="margin-bottom: 0">All Chat Rooms</h5>
     <div class="input-field col s6" style="margin: 0">
       <input ng-model="search" id="search" type="text">
-      <label for="search">Search </label>
+      <label for="search">Search</label>
     </div>
   </div>
   <ul class="collapsible" data-collapsible="accordion">
     <li ng-repeat="(key, chat) in chatRooms | searchChatRoom:search">
-      <div class="collapsible-header">{{chat.chatRoomName}}</div>
+      <div class="collapsible-header">
+        {{chat.chatRoomName}}
+        <div class="secondary-content">
+          {{chat.days}}
+        </div>
+      </div>
       <div class="collapsible-body">
-        <p>{{chat.description}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Created By:</b> {{chat.createdBy}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Start Time:</b> {{chat.startTime}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>End Time:</b> {{chat.endTime}}</p>
+        <p style="padding-top:0">{{chat.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
           <a class="btn" ng-click="openChatRoom(key, chat)" ng-hide="chat.createdBy === userEmail">Join</a>
           <a class="btn" ng-click="openChatRoom(key, chat)" ng-show="chat.createdBy === userEmail">Open Room</a>
