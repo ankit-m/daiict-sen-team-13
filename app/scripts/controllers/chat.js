@@ -114,10 +114,8 @@
           });
         });
       }
-      
       getData();
 
-      
       ref.child('chatRooms').child(key).child('members').on('child_removed', function(dataSnapshot) {
         if (dataSnapshot.val().emailId === authData.password.email) {
           $location.path('/chatRooms');
@@ -191,7 +189,6 @@
        */
       $scope.leaveThisRoom = function() {
         ref.child('chatRooms').child(key).child('members').child(userKey).remove(function(error) {
-          console.log($rootScope.userType);
           if (error) {
             Materialize.toast('Cannot Leave Room. Server Error.', 4000);
           } else if ($rootScope.userType === false) {
@@ -211,6 +208,9 @@
               }
             });
           } else {
+            ref.child('chatRooms').child(key).update({
+              active: false
+            });
             $timeout(function() {
               $scope.$apply();
             });

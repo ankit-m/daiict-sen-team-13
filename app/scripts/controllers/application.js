@@ -61,6 +61,7 @@
          */
         $scope.resetValues = function() {
           document.getElementById("applicationForm").reset();
+          document.getElementById("jobName").value = jobName;
           $('#letter').trigger('autoresize');
         };
         // $scope.resetValues();

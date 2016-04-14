@@ -11,7 +11,6 @@
     .controller('ChatroomsCtrl', ['$scope', '$location', '$timeout', '$rootScope', function($scope, $location, $timeout, $rootScope) {
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var authData = ref.getAuth();
-      var self = this;
 
       $scope.chatHistory = [];
       $scope.members = [];
@@ -178,7 +177,7 @@
             return false;
           }
         }
-        if ($scope.userType === true && chatRoom.createdBy === authData.password.email) {
+        if ($rootScope.userType === true && chatRoom.createdBy === authData.password.email) {
           return true;
         }
         if (chatRoom.active === false) {

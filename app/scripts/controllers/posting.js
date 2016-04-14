@@ -12,7 +12,6 @@
       var ref = new Firebase('https://sfip.firebaseio.com/');
       var postingRef = new Firebase('https://sfip.firebaseio.com/postings');
       var authData = ref.getAuth();
-      var self = this;
 
       $scope.loading = true;
       $scope.jobName = '';
