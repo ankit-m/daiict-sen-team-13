@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - stable
 
-before_install:
+before_script:
   - 'gem update --system'
   - 'gem install sass'
   - 'gem install compass'
@@ -12,7 +12,7 @@ before_install:
 install:
   - npm install
 
-scripts:
+script:
   - npm run build
 
 branches:
