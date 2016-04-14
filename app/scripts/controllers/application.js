@@ -21,7 +21,7 @@
         $scope.letter = '';
         $scope.contactEmail = '';
         $scope.attachment = '';
-
+        $rootScope.userType = sessionStorage.getItem('userType');
         if (authData && jobId && jobName) {
           console.log("Authenticated user with uid:", authData.uid);
         } else {

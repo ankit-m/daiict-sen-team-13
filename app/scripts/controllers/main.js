@@ -44,13 +44,15 @@
           var userObject = snapshot.val();
           for (var key in userObject) {
             if (userObject[key].type === 'professor') {
-              $rootScope.userType = true;
+              sessionStorage.setItem('userType', 'true');
+              console.log("session data ", sessionStorage.getItem('userType'));
               $location.path('/faculty');
               $timeout(function() {
                 $scope.$apply();
               });
             } else if (userObject[key].type === 'student') {
-              $rootScope.userType = false;
+              sessionStorage.setItem('userType', 'false');
+              console.log("Yo", sessionStorage.getItem('userType'));
               $location.path('/student');
               $timeout(function() {
                 $scope.$apply();

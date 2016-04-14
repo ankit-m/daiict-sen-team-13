@@ -16,7 +16,7 @@
       $scope.loading = true;
       $scope.day = 'Monday';
       $location.url($location.path());
-
+      $rootScope.userType = sessionStorage.getItem('userType');
 
       if (authData && $rootScope.userType) {
         console.log("Authenticated user with uid:", authData.uid);
@@ -25,7 +25,7 @@
       }
       
 
-      if ($rootScope.userType === false) {
+      if ($rootScope.userType === 'false') {
         $location.path('/student');
       }
 

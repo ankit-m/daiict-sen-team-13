@@ -23,7 +23,7 @@
       $scope.contactEmail = '';
       $scope.location = '';
       $location.url($location.path());
-
+      $rootScope.userType = sessionStorage.getItem('userType');
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);
       } else {
@@ -31,7 +31,7 @@
       }
 
 
-      if ($rootScope.userType === false) {
+      if ($rootScope.userType === 'false') {
         $location.path('/student');
       }
 

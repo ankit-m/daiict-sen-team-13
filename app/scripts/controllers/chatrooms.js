@@ -18,6 +18,7 @@
       $scope.jobs = {};
       $scope.userEmail = '';
       $location.url($location.path());
+      $rootScope.userType = sessionStorage.getItem('userType');
 
       if (authData) {
         $scope.userEmail = authData.password.email;
@@ -25,7 +26,7 @@
       } else {
         $location.path('/');
       }
-
+      console.log("session data ", $rootScope.userType);
       /**
        * @ngdoc function
        * @name daiictSenTeam13App.controller:ChatroomsCtrl#initMaterial
@@ -70,7 +71,7 @@
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/faculty');
             } else {
               $location.path('/student');
@@ -80,14 +81,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
@@ -177,7 +178,7 @@
             return false;
           }
         }
-        if ($rootScope.userType === true && chatRoom.createdBy === authData.password.email) {
+        if ($rootScope.userType === 'true' && chatRoom.createdBy === authData.password.email) {
           return true;
         }
         if (chatRoom.active === false) {
@@ -252,7 +253,7 @@
               if (error) {
                 $scope.loading = false;
                 console.log(error);
-              } else if ($rootScope.userType === false) {
+              } else if ($rootScope.userType === 'false') {
                 ref.child('chatRooms').child(key).child('slots').transaction(function(remainingSlots) {
                   if (remainingSlots === 0) {
                     return;

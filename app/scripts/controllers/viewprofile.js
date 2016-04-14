@@ -13,7 +13,8 @@
       var authData = ref.getAuth();
       var email = $routeParams.profileId;
       var self = this;
-
+      $rootScope.userType = Boolean(sessionStorage.getItem('userType'));
+      
       $scope.loading = true;
 
       if (authData) {
@@ -72,7 +73,7 @@
       $scope.goTo = function(page) {
         switch (page) {
           case 'home':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/faculty');
             } else {
               $location.path('/student');
@@ -82,14 +83,14 @@
             $location.path('/profile');
             break;
           case 'chatRooms':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/createChat');
             } else {
               $location.path('/chatRooms');
             }
             break;
           case 'jobs':
-            if ($rootScope.userType === true) {
+            if ($rootScope.userType === 'true') {
               $location.path('/posting');
             } else {
               $location.path('/jobs');
