@@ -28,7 +28,7 @@
           $location.path('/');
         }
 
-        if ($rootScope.userType === true) {
+        if ($rootScope.userType === 'true') {
           $location.path('/faculty');
         }
 
