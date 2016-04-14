@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.36% </span>
+        <span class="strong">2.54% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/119</span>
+        <span class='fraction'>3/118</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/25</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">3.36% </span>
+        <span class="strong">2.54% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/119</span>
+        <span class='fraction'>3/118</span>
       </div>
     </div>
   </div>
@@ -380,9 +380,7 @@
 335
 336
 337
-338
-339
-340</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+338</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -393,7 +391,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -613,8 +610,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -734,7 +730,6 @@
     .controller('StudentCtrl', ['$scope', '$location', '$timeout', '$rootScope', <span class="fstat-no" title="function not covered" >function($scope, $location, $timeout, $rootScope) {</span>
 <span class="cstat-no" title="statement not covered" >      var ref = new Firebase('https://sfip.firebaseio.com/');</span>
 <span class="cstat-no" title="statement not covered" >      var authData = ref.getAuth();</span>
-<span class="cstat-no" title="statement not covered" >      var self = this;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >      $scope.jobs = {};</span>
 <span class="cstat-no" title="statement not covered" >      $scope.chatRooms = {};</span>
@@ -903,7 +898,7 @@
        *
        * @returns {undefined} Does not return anything.
        */
-<span class="cstat-no" title="statement not covered" >      self.applyForJob = <span class="fstat-no" title="function not covered" >function(jobId, jobName) {</span></span>
+<span class="cstat-no" title="statement not covered" >      $scope.applyForJob = <span class="fstat-no" title="function not covered" >function(jobId, jobName) {</span></span>
 <span class="cstat-no" title="statement not covered" >        ref.child('applications').orderByChild('appliedBy').equalTo(authData.password.email).once('value', <span class="fstat-no" title="function not covered" >function(data) {</span></span>
 <span class="cstat-no" title="statement not covered" >          var applied = false;</span>
 <span class="cstat-no" title="statement not covered" >          for (var application in data.val()) {</span>
@@ -919,7 +914,6 @@
             });
           }
         });
-&nbsp;
       };
 &nbsp;
       /**
@@ -953,7 +947,7 @@
        * the function returns false.
        * @returns {undefined} Does not return anything.
        */
-<span class="fstat-no" title="function not covered" >      function validate(members, chatRoom) {</span>
+<span class="cstat-no" title="statement not covered" >       $scope.validate = <span class="fstat-no" title="function not covered" >function(members, chatRoom) {</span></span>
 <span class="cstat-no" title="statement not covered" >        for (var member in members) {</span>
 <span class="cstat-no" title="statement not covered" >          if (member.emailId === authData.password.email) {</span>
 <span class="cstat-no" title="statement not covered" >            return false;</span>
@@ -997,7 +991,7 @@
 <span class="cstat-no" title="statement not covered" >          return false;</span>
         }
 <span class="cstat-no" title="statement not covered" >        return true;</span>
-      }
+      };
 &nbsp;
       /**
        * @ngdoc function
@@ -1018,10 +1012,10 @@
        * both join the chat room if only one slot is left.
        * @returns {undefined} Does not return anything.
        */
-<span class="cstat-no" title="statement not covered" >      self.openChatRoom = <span class="fstat-no" title="function not covered" >function(key, chatRoom) {</span></span>
+<span class="cstat-no" title="statement not covered" >      $scope.openChatRoom = <span class="fstat-no" title="function not covered" >function(key, chatRoom) {</span></span>
 <span class="cstat-no" title="statement not covered" >        $scope.loading = true;</span>
 <span class="cstat-no" title="statement not covered" >        ref.child('chatRooms').child(key).once('value', <span class="fstat-no" title="function not covered" >function(dataSnapshot) {</span></span>
-<span class="cstat-no" title="statement not covered" >          if (validate(dataSnapshot.val().members, chatRoom)) {</span>
+<span class="cstat-no" title="statement not covered" >          if ($scope.validate(dataSnapshot.val().members, chatRoom)) {</span>
 <span class="cstat-no" title="statement not covered" >            ref.child('chatRooms').child(key).child('members').push({</span>
               'emailId': authData.password.email,
               'kicked': 0,
@@ -1066,7 +1060,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 13 2016 19:23:55 GMT+0530 (IST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Apr 14 2016 17:27:19 GMT+0530 (IST)
 </div>
 </div>
 <script src="../../prettify.js"></script>
