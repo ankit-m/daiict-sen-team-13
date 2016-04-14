@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "stable"
+  - stable
 
 before_install:
   - 'gem update --system'
@@ -8,6 +8,9 @@ before_install:
   - 'gem install compass --version "=0.12.2"'
   - 'npm install -g bower grunt-cli'
   - 'bower install'
+
+install:
+  - npm install
 
 scripts:
   - npm run build
