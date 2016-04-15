@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="collapsible-body">
-        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Created By:</b> {{chat.createdBy}}</p>
+      <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Created By:</b> <a href="" ng-click="viewProfile(chat.createdBy); $event.stopPropagation()">{{chat.createdBy}}</a>
         <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Start Time:</b> {{chat.startTime}}</p>
         <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>End Time:</b> {{chat.endTime}}</p>
         <p style="padding-top:0">{{chat.description}}</p>

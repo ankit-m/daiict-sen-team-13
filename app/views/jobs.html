@@ -48,7 +48,7 @@
         <div class="secondary-content">{{job.location}}</div>
       </div>
       <div class="collapsible-body">
-        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Posted By:</b> {{job.postedBy}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Posted By:</b> <a href="" ng-click="viewProfile(job.postedBy); $event.stopPropagation()">{{job.postedBy}}</a>
         <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Start Date:</b> {{job.startDate | date}}</p>
         <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>End Date:</b> {{job.endDate | date}}</p>
         <p class="red-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Deadline:</b> {{job.deadline | date}}</p>
