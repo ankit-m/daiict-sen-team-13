@@ -4,24 +4,24 @@ Date: 1st February 2016
 
 Recorded By: Gauruv (201301117)
 
-Agenda: 
+Agenda:
 -------
 Finalize the process of fact collecting
 
-Brief description about the meeting: 
+Brief description about the meeting:
 ------------------------------------
 We discussed the different prospective of our background study for the project. The different techniques by which we will be able to extract information which would help us to clearly identify our requirements.
 
 Background Research:
--Market study / Existing websites
+- Market study / Existing websites
 
--To identify the extra features we can incorporate in our project
+- To identify the extra features we can incorporate in our project
 
--Interviews of professors
+- Interviews of professors
 
--Interviews of student
+- Interviews of student
 
--Survey through google form
+- Survey through google form
 
 Features of our project:
 Profile feature
@@ -82,14 +82,17 @@ One to one
 
 Post Meeting Action Items :
 ----------------------------
+
+
 |                  Action                  |  Assigned To   |     Deadline     |
- --------------------------------------------------------------------------------
+|------------------------------------------|----------------|------------------|
 |		interview faculty	 |    Everyone    |    14/02/2016    |
 |    Make the meeting log on github        |    Gauruv     |    14/02/2016    |
- --------------------------------------------------------------------------------
+
+
 Decision Made :
 ---------------
 Everyone was assigned the task to interview a faculty member and upload the findings on drive
-Next meeting : 
+Next meeting :
 --------------
 12 February 2016

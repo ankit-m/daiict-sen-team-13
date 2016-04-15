@@ -30,15 +30,15 @@ Meeting Ended :
 Post Meeting Action Items :
 ---------------------------
 
-    |                  Action                      |  Assigned To   |  Deadline        |
-    --------------------------------------------------------------------------------
-    | Risk monitoring, mitigation and management   |   Viraj, Jay   |    18/03/2016    |
-    |        design document                       |   Samriddhi    |    18/03/2016    |
-    |        Quality assurance plan                |    Dhwanil     |    18/03/2016    |
-    |      Configuration management plan           |    Sheetal     |    18/03/2016    |
-    |               Mockup                         |  Viraj, Malav  |    18/03/2016    |
-    |           Activity graph                     |    Sakshi      |    18/03/2016    |
-    |    Make the meeting log on github            |    Sakshi      |    18/03/2016    |
+|                  Action                      |  Assigned To   |  Deadline        |
+|----------------------------------------------|----------------|------------------|
+| Risk monitoring, mitigation and management   |   Viraj, Jay   |    18/03/2016    |
+|        design document                       |   Samriddhi    |    18/03/2016    |
+|        Quality assurance plan                |    Dhwanil     |    18/03/2016    |
+|      Configuration management plan           |    Sheetal     |    18/03/2016    |
+|               Mockup                         |  Viraj, Malav  |    18/03/2016    |
+|           Activity graph                     |    Sakshi      |    18/03/2016    |
+|    Make the meeting log on github            |    Sakshi      |    18/03/2016    |
 
 
 Decision Made :

@@ -6,13 +6,13 @@ Time : Scheduled - 5:30 P.M.
 Venue : Cep Ground floor
 Recorded By : Chaudhari Jay (201301073)
 
-Agenda : 
+Agenda :
 -------
 Track down the project work.
 
 Brief Description about the meeting :
 ------------------------------------
-Our Project Plan Documents are complete, so we assign a person to review that Documents. We discussed about 
+Our Project Plan Documents are complete, so we assign a person to review that Documents. We discussed about
 other documents which we need to make in deployment phase.
 1. User Manual
 2. Test Report
@@ -26,7 +26,7 @@ Meeting Ended :
 Post Meeting Action Items :
 
   |                          Action                        |         Assigned To         |  Deadline  |
-  -----------------------------------------------------------------------------------------------------------
+  |--------------------------------------------------------|-----------------------------|------------|
   | Review Risk Monitoring, Mitigation and Management Plan |            Rajiv            | 06/04/2016 |                                        
   |          Review Configuration Management Plan          |            Ankit            | 06/04/2016 |                               
   |            Review Quality Assurance Plan               |          Samriddhi          | 06/04/2016 |                                  
@@ -36,7 +36,7 @@ Post Meeting Action Items :
   |                     Complete Coding                    |          Ankit,Rajiv        | 07-04-2016 |                                 
   |                        Test Case                       |         Malav,Sheetal       | 07-04-2016 |                                            
   |             Make the meeting log on github             |         Chaudhari Jay       | 04/04/2016 |                                            
- 
+
 Decision Made :
 --------------
 Complete all documents till next meeting.

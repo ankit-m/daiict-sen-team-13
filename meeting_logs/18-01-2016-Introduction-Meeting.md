@@ -10,11 +10,11 @@ Recorded By : Ankit Muchhala (201301099)
 
 
 
-Agenda : 
+Agenda :
 -------
 This meeting was to introduce all the group members and get everyone talking. We decided on the collaboration platform (github.com) and how we will communicate.
 
-Brief description about the meeting : 
+Brief description about the meeting :
 -------------------------------------
 Some rudimentary project ideas were discussed. Some of the ideas put forth were:
 
@@ -34,16 +34,16 @@ Meeting Ended :
 Post Meeting Action Items :
 ---------------------------
 
-    |                  Action                  |  Assigned To   |  Deadline        |  
-    --------------------------------------------------------------------------------
-    | Think over the discussed project ideas   |    Everyone    |    21/01/2016    |  
-    |       Finding more project Ideas         |    Everyone    |    21/01/2016    |  
-    |        Make a github account             |    Everyone    |    19/01/2016    |  
-    |  Make a git Repository and add Everyone  | Ankit muchhala |    19/01/2016    |  
-    |    Make the meeting log on github        | Ankit muchhala |    21/01/2016    |  
+|                  Action                  |  Assigned To   |  Deadline        |  
+|------------------------------------------|----------------|------------------|
+| Think over the discussed project ideas   |    Everyone    |    21/01/2016    |  
+|       Finding more project Ideas         |    Everyone    |    21/01/2016    |  
+|        Make a github account             |    Everyone    |    19/01/2016    |  
+|  Make a git Repository and add Everyone  | Ankit muchhala |    19/01/2016    |  
+|    Make the meeting log on github        | Ankit muchhala |    21/01/2016    |  
 
 
-Decision Made : 
+Decision Made :
 ---------------
 Most of them liked the Idea of faculty Student Interaction portal. So we decided to think more on the features and whether it is useful to develop it. If not try to come up with a more acceptable idea.
 

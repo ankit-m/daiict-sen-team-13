@@ -1,12 +1,12 @@
-Meeting  :
-==========
+Meeting  24
+===========
 Date : 5th April 2016
 Time : Scheduled - 5:00 P.M.
        Started   - 5:00 P.M.
 Venue : Cep Ground floor
 Recorded By : Viraj Raja Bathwar (201301057)
 
-Agenda : 
+Agenda :
 -------
 To know the current documentation status and to discuss the conventions followed in the portal and the documentation.
 
@@ -21,8 +21,8 @@ Meeting Ended :
 06:00 P.M.
 
 Post Meeting Action Items :
-The conventions which were discussed  were to be implemented to all the documentation and some more documents that is User Manual, Test 
-Report and Critical Path were to be created. Also the documentation is scheduled to revise completely. 
+The conventions which were discussed  were to be implemented to all the documentation and some more documents that is User Manual, Test
+Report and Critical Path were to be created. Also the documentation is scheduled to revise completely.
 
 Next meeting:
 -------------
