@@ -219,16 +219,7 @@
         });
       };
 
-      var x = false;
-
-      $scope.$on("$destroy", function() {
-        if (x === false) {
-          $scope.leaveThisRoom();
-        }
-      });
-
       $window.onbeforeunload = function() {
-        x = true;
         $scope.leaveThisRoom();
       };
 
