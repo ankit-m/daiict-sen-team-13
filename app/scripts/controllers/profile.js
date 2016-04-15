@@ -19,6 +19,7 @@
       var self = this;
       $rootScope.userType = sessionStorage.getItem('userType');
       $scope.loading = true;
+      $location.url($location.path());
 
       if (authData) {
         console.log("Authenticated user with uid:", authData.uid);

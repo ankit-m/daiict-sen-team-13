@@ -282,5 +282,11 @@
         $scope.loading = false;
       };
 
+      $scope.viewProfile = function(email) {
+        $location.path('/viewProfile').search({
+          'profileId': email
+        });
+      };
+
     }]);
 })();

@@ -40,6 +40,10 @@
     <li ng-repeat="(key, job) in jobs">
       <div class="collapsible-header">{{job.jobName}}</div>
       <div class="collapsible-body">
+        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Posted By:</b> <a href="" ng-click="viewProfile(job.postedBy); $event.stopPropagation()">{{job.postedBy}}</a>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Start Date:</b> {{job.startDate | date}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>End Date:</b> {{job.endDate | date}}</p>
+        <p class="red-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Deadline:</b> {{job.deadline | date}}</p>
         <p>{{job.description}}</p>
         <div class="right-align" style="padding:0 16px 16px 16px">
           <a class="btn" ng-click="applyForJob(key, job.jobName)">Apply</a>
@@ -59,7 +63,7 @@
         </div>
       </div>
       <div class="collapsible-body">
-        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Created By:</b> {{chat.createdBy}}</p>
+        <p class="grey-text" style="margin-bottom: 8px; padding: 8px 28px 0 28px"><b>Created By:</b> <a href="" ng-click="viewProfile(chat.createdBy); $event.stopPropagation()">{{chat.createdBy}}</a>
         <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>Start Time:</b> {{chat.startTime}}</p>
         <p class="grey-text" style="margin-bottom: 8px; padding: 0 28px 0 28px"><b>End Time:</b> {{chat.endTime}}</p>
         <p style="padding-top:0">{{chat.description}}</p>
