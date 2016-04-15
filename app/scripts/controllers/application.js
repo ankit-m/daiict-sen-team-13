@@ -23,7 +23,6 @@
         $scope.attachment = '';
         $rootScope.userType = sessionStorage.getItem('userType');
         if (authData && jobId && jobName) {
-          console.log("Authenticated user with uid:", authData.uid);
         } else {
           $location.path('/');
         }
@@ -93,7 +92,6 @@
         function getData() {
           ref.child('postings').orderByKey().equalTo(jobId).once('value', function(dataSnapshot) {
             job = dataSnapshot.val();
-            console.log(job);
             for (var index in job) {
               $scope.jobName = job[index].jobName;
               break;
