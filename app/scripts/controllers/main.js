@@ -40,6 +40,7 @@
         });
         var userRef = new Firebase('https://sfip.firebaseio.com/users');
         var authData = ref.getAuth();
+        
         userRef.orderByChild('email').equalTo(authData.password.email).once('value', function(snapshot) {
           var userObject = snapshot.val();
           for (var key in userObject) {
@@ -62,15 +63,7 @@
       }
 
       if (authData) {
-        if (authData.password.isTemporaryPassword) {
-          $scope.loading = false;
-          $location.path('/resetPassword');
-          $timeout(function() {
-            $scope.$apply();
-          });
-        } else {
-          redirectUser();
-        }
+        redirectUser();
       }
 
       /**
