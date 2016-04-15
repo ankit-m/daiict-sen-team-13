@@ -23,7 +23,7 @@
       } else {
         $location.path('/');
       }
-      
+
 
       if ($rootScope.userType === 'false') {
         $location.path('/student');
@@ -150,10 +150,20 @@
         $location.path('/chatRooms');
       };
 
-
-      $scope.validate = function(members) {
-        for (var member in members) {
-          if (member.emailId === authData.password.email) {
+      /**
+       * @ngdoc function
+       * @name daiictSenTeam13App.controller:FacultyCtrl#validate
+       * @methodOf daiictSenTeam13App.controller:FacultyCtrl
+       * @param {object} chatRoom chatRoom object which contains data
+       * corresponding to the chatRoom which user is trying to join
+       * @description
+       * Checks of the faculty is already in the chatRoom.
+       * @returns {boolean} Data is valid or not
+       */
+      $scope.validate = function(chatRoom) {
+        for (var member in chatRoom.members) {
+          if (chatRoom.members[member].emailId === authData.password.email) {
+            Materialize.toast('You are already in the room. Please refresh.', 4000);
             return false;
           }
         }
@@ -176,7 +186,7 @@
        */
       $scope.openChatRoom = function(key) {
         ref.child('chatRooms').child(key).once('value', function(dataSnapshot) {
-          if ($scope.validate(dataSnapshot.val().members)) {
+          if ($scope.validate(dataSnapshot.val())) {
             ref.child('chatRooms').child(key).child('members').push({
               'emailId': authData.password.email,
               'kicked': 0,

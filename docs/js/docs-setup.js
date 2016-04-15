@@ -46,7 +46,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "ChatroomsCtrl",
-      "keywords": "$scope active allowed api applied bar based belong belonging called chat chatroom chatrooms chatroomsctrl check checks clicked clicking code controller corresponding created creating creator creators current daiictsenteam13app data database databse day delay described details displayed displays drawer ends ensure enter error false full function getdata goto greater identify initialises initmaterial inputs jobs join key left lesser list logout logs matrialise mechanism members message method modules moment nav navigation network note object open openchatroom option passed people preferences professor profile queries redirect redirected relevant retrieves return returned returns room rooms rooom scope screen session set slot start stored string student takes time toast transactions true unique updations user valid validate validated validating validation variable view wrong"
+      "keywords": "$scope active api applied bar based called chat chatroom chatrooms chatroomsctrl check checks clicked clicking controller corresponding created daiictsenteam13app data database databse delay described details displayed displays drawer ends ensure enter error function getdata goto identify initialises initmaterial inputs jobs join key left list logout logs matrialise mechanism members message method modules nav navigation network note object openchatroom option passed people professor profile queries redirect redirected relevant retrieves return returns room rooms scope screen session slot stored string student takes toast transactions true unique updations user valid validate validated validating validation variable view"
     },
     {
       "section": "api",
@@ -55,7 +55,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "CreatechatCtrl",
-      "keywords": "$scope active allowed api applied asks bar based belong belonging button called chat chatroom chatroomid chatrooms check checks clicked clicking clicks code controller corresponding create createchatctrl createchatroom created createdby creates creating creation creator creators current currently daiictsenteam13app data database databse day delay delete deletechatroom deleted deletion described description details displayed displays doesn drawer ends ensure enter entry error exist false fields filled full function getdata goto greater hasn identified identifies identify informed initialises initmaterial input inputs jobs join key left lesser list logged logout logs matrialise maximum mechanism members message method modules moment nav navigation network note number object open openchatroom option particualr passed people preferences professor profile prompted queries redirect redirected resets resetvalues retrieves return returned returns room rooms rooom routr scope screen session set showallchatrooms slot slots start starttime stored string student successful takes thr time toast transactions true unique updations user valid validate validated validating validation variable view wrong"
+      "keywords": "$scope active api applied asks bar based button called chat chatroom chatroomid chatrooms check checks clicked clicking clicks controller corresponding create createchatctrl createchatroom created createdby creates creation currently daiictsenteam13app data database databse delay delete deletechatroom deleted deletion described description details displayed displays doesn drawer ends ensure entry error exist faculty fields filled function getdata goto hasn identified identifies identify informed initialises initmaterial input jobs join key left list logged logout logs matrialise maximum mechanism members message method modules nav navigation network note number object openchatroom option particualr passed people professor profile prompted queries redirect redirected resets resetvalues retrieves return returns room rooms routr scope screen session showallchatrooms slot slots starttime stored string student successful thr toast transactions true unique updations user valid validate validated validation variable view"
     },
     {
       "section": "api",
@@ -64,7 +64,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "StudentCtrl",
-      "keywords": "accepted active api applications bar based button called chat chatroom chatroomid chatrooms clicked clicking clicks controller corresponding created createdjobs daiictsenteam13app database delete deletechatroom deleted deletejob deletion display displayed displaying doesn drawer ends entry error exist faculty function getdata goto hasn html identified identifies identify informed initialises initmaterial input job jobid jobs join key left list loaded logout logs matrialise members message modules nav navigation note object objects open openchatroom option parameter particualr passed people professor profile prompted redirect redirected redirects rejected return room rooms route scope screen session showallchatrooms showalljobs stored string student studentctrl successful takes thr toast unique user variables view viewjob"
+      "keywords": "accepted active api applications bar based button called chat chatroom chatroomid chatrooms checks clicked clicking clicks controller corresponding created createdjobs daiictsenteam13app data database delete deletechatroom deleted deletejob deletion display displayed displaying doesn drawer ends entry error exist faculty function getdata goto hasn html identified identifies identify informed initialises initmaterial input job jobid jobs join key left list loaded logout logs matrialise members message modules nav navigation note object objects open openchatroom option parameter particualr passed people professor profile prompted redirect redirected redirects rejected return room rooms route scope screen session showallchatrooms showalljobs stored string student studentctrl successful takes thr toast unique user valid validate variables view viewjob"
     },
     {
       "section": "api",
@@ -109,7 +109,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "ProfileCtrl",
-      "keywords": "altered api argument bar based baswd box called case changing chat chatrooms clicked clicking clicks content controller corresponding daiictsenteam13app data database delete details displayed drawer edits ends error example field fields function getdata goto identify initialises initmaterial institute interest interests jobs key left loaded location logged logout logs matrialise message modules nav navigation note option passed people professor profile profilectrl publication publications redirect redirected remove removeitem removes retrieved retrieves return rooms scope screen searches session stored stores string student switch takes text thekey thr toast triggered type unique updated updateprofile updates user variables view wished wishes"
+      "keywords": "api controller daiictsenteam13app profilectrl"
     },
     {
       "section": "api",
@@ -136,7 +136,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "StudentCtrl",
-      "keywords": "active allowed api applications applied apply applyforjob arr bar based belong belonging called case chat chatroom chatrooms checks clicked clicking clicks code controller corresponding creating creator creators current daiictsenteam13app data database databse day delay described displayed displaying drawer ends ensure enter entry false full function getdata goto greater hasn identifies identify initialises initmaterial input inputs job jobid jobname jobs join key left lesser list load logout logs matrialise mechanism members message modules moment nav navigation network note object open openchatroom option parameters passed people preferences professor profile purpose redirect redirected resume return returned returns room rooms rooom route scope screen session set slot start statament stored string student studentctrl submitted takes time toast transactions true unique updations upload user validate validated validating validation variables ve view wrong"
+      "keywords": "active api applications applied apply applyforjob arr bar based called case chat chatroom chatrooms checks clicked clicking clicks controller corresponding daiictsenteam13app data database databse delay described displayed displaying drawer ends ensure entry function getdata goto hasn identifies identify initialises initmaterial input job jobid jobname jobs join key left list load logout logs matrialise mechanism members message modules nav navigation network note object openchatroom option parameters passed people professor profile purpose redirect redirected resume return returns room rooms route scope screen session slot statament stored string student studentctrl submitted takes toast transactions true unique updations upload user validate validated variables ve view"
     },
     {
       "section": "api",
@@ -154,7 +154,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "daiictSenTeam13App",
       "shortDescription": "ViewprofileCtrl",
-      "keywords": "api associated bar based called chat chatrooms clicked clicking controller daiictsenteam13app data database displayed drawer email ends error function getdata goto initialises initmaterial institute interests jobs left loaded logged logout logs matrialise message modules nav navigation note option parameter passed people professor profile publications redirect redirected retrieved retrieves return rooms route scope screen session stores string student user variables view viewprofilectrl wishes"
+      "keywords": "api controller daiictsenteam13app viewprofilectrl"
     },
     {
       "section": "api",

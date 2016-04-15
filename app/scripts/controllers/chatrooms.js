@@ -146,36 +146,18 @@
        * @ngdoc function
        * @name daiictSenTeam13App.controller:ChatroomsCtrl#validate
        * @methodOf daiictSenTeam13App.controller:ChatroomsCtrl
-       * @param {object} members list of members belonging to the
-       * chat room which user is trying to join.
        * @param {object} chatRoom chatRoom object which contains data
        * corresponding to the chatRoom which user is trying to join
        * @description
        * This function is a validating function called when a user
        * tries to enter a chat room. The function takes in as inputs
        * the chatroom object corresponding to the chat room which the
-       * user tries to enter and a list of members that belong to that
-       * chat room(if any). Validation checks applied are
-       * 1. If chat room is full, user is not allowed to join and
-       * false is returned.
-       * 2. If chat room is not full, the code then checks if the
-       * chat room is open at the given moment based on the chat room's
-       * creators preferences of day and time for which he/she wants the
-       * chat room to be open.
-       * 3. If current time is greater than the chat room start time:
-       * and if the current day is same as the day which
-       * the creator has set when creating the chat room, the
-       * user is allowed to join and the function returns true.
-       * Else a toast with the message wrong day is displayed and
-       * false is returned by the function.
-       * If the current time is lesser than the chat rooom start time
-       * a toast with the message chat room not open yet is displayed and
-       * the function returns false.
+       * user tries to enter. Validation checks if the chatRoom is active
+       * or not.
        * @returns {boolean} Data is valid or not
        */
       $scope.validate = function(chatRoom) {
         for (var member in chatRoom.members) {
-          console.log(chatRoom.members[member].emailId, authData.password.email);
           if (chatRoom.members[member].emailId === authData.password.email) {
             Materialize.toast('You are already in the room. Please refresh.', 4000);
             return false;
