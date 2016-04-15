@@ -24,8 +24,9 @@ angular.module('daiictSenTeam13App')
         var actual2 = ('' + value.description).toLowerCase();
         var actual3 = ('' + value.days).toLowerCase();
         var actual4 = ('' + value.startTime).toLowerCase();
+        var actual5 = ('' + value.createdBy).toLowerCase();
 
-        if (actual.indexOf(expected) !== -1 || actual2.indexOf(expected) !== -1 || actual3.indexOf(expected) !== -1 || actual4.indexOf(expected) !== -1) {
+        if (actual.indexOf(expected) !== -1 || actual2.indexOf(expected) !== -1 || actual3.indexOf(expected) !== -1 || actual4.indexOf(expected) !== -1 || actual5.indexOf(expected) !== -1) {
           result[key] = value;
         }
       });
