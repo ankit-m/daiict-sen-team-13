@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  
+
   /**
    * @ngdoc controller
    * @name daiictSenTeam13App.controller:ChatroomsCtrl
@@ -175,7 +175,9 @@
        */
       $scope.validate = function(chatRoom) {
         for (var member in chatRoom.members) {
-          if (member.emailId === authData.password.email) {
+          console.log(chatRoom.members[member].emailId, authData.password.email);
+          if (chatRoom.members[member].emailId === authData.password.email) {
+            Materialize.toast('You are already in the room. Please refresh.', 4000);
             return false;
           }
         }

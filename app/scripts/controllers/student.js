@@ -223,7 +223,7 @@
        */
        $scope.validate = function(members, chatRoom) {
         for (var member in members) {
-          if (member.emailId === authData.password.email) {
+          if (chatRoom.members[member].emailId === authData.password.email) {
             return false;
           }
         }
